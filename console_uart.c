@@ -89,18 +89,3 @@ void init_console_uart(QueueHandle_t uart_rx_queue) {
 
 } // End init_console_uart
 
-void console_uart_task(void* parm) {
-
-    uint32_t character = 0;
-
-    while(1) {
-
-        // Wait for character to be received in the queue
-        xQueueReceive(uart_tx_q, &character, portMAX_DELAY);
-
-        // Print the character to UART0
-        MAP_UARTCharPutNonBlocking(UART0_BASE, character);
-    }
-
-} // End console_uart_task
-

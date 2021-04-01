@@ -21,6 +21,7 @@ C_SRCS += \
 ../hooks.c \
 ../logger.c \
 ../main.c \
+../rpi_uart_task.c \
 ../task_manager_page.c \
 ../text_controls.c \
 ../tm4c123gh6pm_startup_ccs.c \
@@ -39,6 +40,7 @@ C_DEPS += \
 ./hooks.d \
 ./logger.d \
 ./main.d \
+./rpi_uart_task.d \
 ./task_manager_page.d \
 ./text_controls.d \
 ./tm4c123gh6pm_startup_ccs.d \
@@ -57,6 +59,7 @@ OBJS += \
 ./hooks.obj \
 ./logger.obj \
 ./main.obj \
+./rpi_uart_task.obj \
 ./task_manager_page.obj \
 ./text_controls.obj \
 ./tm4c123gh6pm_startup_ccs.obj \
@@ -75,6 +78,7 @@ OBJS__QUOTED += \
 "hooks.obj" \
 "logger.obj" \
 "main.obj" \
+"rpi_uart_task.obj" \
 "task_manager_page.obj" \
 "text_controls.obj" \
 "tm4c123gh6pm_startup_ccs.obj" \
@@ -93,6 +97,7 @@ C_DEPS__QUOTED += \
 "hooks.d" \
 "logger.d" \
 "main.d" \
+"rpi_uart_task.d" \
 "task_manager_page.d" \
 "text_controls.d" \
 "tm4c123gh6pm_startup_ccs.d" \
@@ -111,6 +116,7 @@ C_SRCS__QUOTED += \
 "../hooks.c" \
 "../logger.c" \
 "../main.c" \
+"../rpi_uart_task.c" \
 "../task_manager_page.c" \
 "../text_controls.c" \
 "../tm4c123gh6pm_startup_ccs.c" \

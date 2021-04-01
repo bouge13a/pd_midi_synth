@@ -19,10 +19,10 @@
 #include "board_pin_defs.h"
 
 static adc_pin_t joystick_x = {
-    .name            = "joystick x",
-    .gpio_peripheral = SYSCTL_PERIPH_GPIOB,
+    .name            = "pad 0",
+    .gpio_peripheral = SYSCTL_PERIPH_GPIOE,
     .gpio_base       = GPIO_PORTB_AHB_BASE,
-    .gpio_pin        = GPIO_PIN_5,
+    .gpio_pin        = GPIO_PIN_3,
     .sequencer       = 0,
     .channel         = 11,
     .step            = 0,
