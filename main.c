@@ -70,9 +70,6 @@ int main(void){
 
     init_console(console_uart_rx_q);
 
-    // Enable processor interrupts.
-    IntMasterEnable();
-
     /////////////////////////////////////////////////////////
     //                  Add pages to Console
     /////////////////////////////////////////////////////////
@@ -127,6 +124,8 @@ int main(void){
                 NULL );                     /* Used to pass out the created task's handle. */
 
 
+    // Enable processor interrupts.
+    IntMasterEnable();
 
     ///////////////////////////////////////////////////////
     //               Start Scheduler

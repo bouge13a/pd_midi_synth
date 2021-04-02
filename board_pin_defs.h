@@ -36,6 +36,7 @@ typedef struct {
     uint32_t sequencer;
     uint32_t channel;
     uint32_t step;
+    uint32_t adc_base;
 }adc_pin_t;
 
 typedef struct {
