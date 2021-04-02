@@ -26,6 +26,8 @@
 #include "I2C_task.h"
 #include "logger.h"
 #include "task_manager_page.h"
+#include "GPIs.h"
+#include "GPOs.h"
 
 int main(void){
 
@@ -54,6 +56,12 @@ int main(void){
     //                    Initialization
     /////////////////////////////////////////////////////////
 
+    init_i2c();
+
+    init_gpis();
+
+    init_gpos();
+
     init_logger();
 
     init_console_uart(console_uart_rx_q);
@@ -62,7 +70,6 @@ int main(void){
 
     init_adc();
 
-    init_i2c();
 
     // Enable processor interrupts.
     IntMasterEnable();
@@ -108,9 +115,9 @@ int main(void){
 
     xTaskCreate(adc_task,               /* Function that implements the task. */
                 "ADC",                  /* Text name for the task. */
-                configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
+                220,                        /* Stack size in words, not bytes. */
                 NULL,                       /* Parameter passed into the task. */
-                2,                          /* Priority at which the task is created. */
+                3,                          /* Priority at which the task is created. */
                 NULL );                     /* Used to pass out the created task's handle. */
 
     xTaskCreate(i2c_task,               /* Function that implements the task. */

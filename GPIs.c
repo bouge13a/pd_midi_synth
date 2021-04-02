@@ -35,29 +35,32 @@ void init_gpis(void) {
 
     uint32_t idx;
 
-    for(idx=0; idx<gpi_info.num_gpis; idx++) {
+    if (0 !=gpi_info.num_gpis) {
 
-        MAP_SysCtlPeripheralEnable(gpi_info.gpis[idx]->peripheral);
+        for(idx=0; idx<gpi_info.num_gpis; idx++) {
 
-        SysCtlGPIOAHBEnable(gpi_info.gpis[idx]->peripheral);
+            MAP_SysCtlPeripheralEnable(gpi_info.gpis[idx]->peripheral);
 
-        while(!SysCtlPeripheralReady(gpi_info.gpis[idx]->peripheral));
+            SysCtlGPIOAHBEnable(gpi_info.gpis[idx]->peripheral);
 
-        // Unlock port so we can change it to a GPIO input
-        // Once we have enabled (unlocked) the commit register then re-lock it
-        // to prevent further changes.  PF0 is muxed with NMI thus a special case.
-        HWREG(gpi_info.gpis[idx]->port + GPIO_O_LOCK) = GPIO_LOCK_KEY;
-        HWREG(gpi_info.gpis[idx]->port + GPIO_O_CR) |= gpi_info.gpis[idx]->pin;
-        HWREG(gpi_info.gpis[idx]->port + GPIO_O_LOCK) = 0;
+            while(!SysCtlPeripheralReady(gpi_info.gpis[idx]->peripheral));
 
-        MAP_GPIODirModeSet(gpi_info.gpis[idx]->port,
-                           gpi_info.gpis[idx]->pin,
-                           gpi_info.gpis[idx]->direction);
+            // Unlock port so we can change it to a GPIO input
+            // Once we have enabled (unlocked) the commit register then re-lock it
+            // to prevent further changes.  PF0 is muxed with NMI thus a special case.
+            HWREG(gpi_info.gpis[idx]->port + GPIO_O_LOCK) = GPIO_LOCK_KEY;
+            HWREG(gpi_info.gpis[idx]->port + GPIO_O_CR) |= gpi_info.gpis[idx]->pin;
+            HWREG(gpi_info.gpis[idx]->port + GPIO_O_LOCK) = 0;
 
-        MAP_GPIOPadConfigSet(gpi_info.gpis[idx]->port,
-                             gpi_info.gpis[idx]->pin,
-                             GPIO_STRENGTH_2MA,
-                             GPIO_PIN_TYPE_STD_WPU);
+            MAP_GPIODirModeSet(gpi_info.gpis[idx]->port,
+                               gpi_info.gpis[idx]->pin,
+                               gpi_info.gpis[idx]->direction);
+
+            MAP_GPIOPadConfigSet(gpi_info.gpis[idx]->port,
+                                 gpi_info.gpis[idx]->pin,
+                                 GPIO_STRENGTH_2MA,
+                                 GPIO_PIN_TYPE_STD_WPU);
+        }
     }
 
 } // End init_buttons

@@ -31,10 +31,10 @@ ADC_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/portable.h
 ADC_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/deprecated_definitions.h
 ADC_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/portable/CCS/ARM_CM4F/portmacro.h
 ADC_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/mpu_wrappers.h
-ADC_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/semphr.h
-ADC_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h
 ADC_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h
 ADC_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h
+ADC_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/event_groups.h
+ADC_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/timers.h
 ADC_task.obj: ../driverlib/inc/hw_ints.h
 ADC_task.obj: ../driverlib/interrupt.h
 
@@ -69,9 +69,9 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/portable.h:
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/deprecated_definitions.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/portable/CCS/ARM_CM4F/portmacro.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/mpu_wrappers.h: 
-C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/semphr.h: 
-C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h: 
+C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/event_groups.h: 
+C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/timers.h: 
 ../driverlib/inc/hw_ints.h: 
 ../driverlib/interrupt.h: 

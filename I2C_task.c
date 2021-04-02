@@ -49,8 +49,8 @@ void init_i2c(void) {
     GPIOPinConfigure(GPIO_PA6_I2C1SCL);
     GPIOPinConfigure(GPIO_PA7_I2C1SDA);
 
-    GPIOPinTypeI2CSCL(GPIO_PORTA_AHB_BASE, GPIO_PIN_6);
-    GPIOPinTypeI2C(GPIO_PORTA_AHB_BASE, GPIO_PIN_7);
+    GPIOPinTypeI2CSCL(GPIO_PORTA_BASE, GPIO_PIN_6);
+    GPIOPinTypeI2C(GPIO_PORTA_BASE, GPIO_PIN_7);
 
     I2CMasterInitExpClk(I2C1_BASE, SysCtlClockGet(), false);
 
