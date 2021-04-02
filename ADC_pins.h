@@ -123,9 +123,9 @@ static adc_pin_t pad10 = {
     .gpio_peripheral = SYSCTL_PERIPH_GPIOB,
     .gpio_base       = GPIO_PORTB_AHB_BASE,
     .gpio_pin        = GPIO_PIN_4,
-    .sequencer       = 1,
+    .sequencer       = 2,
     .channel         = 10,
-    .step            = 4,
+    .step            = 0,
 };
 
 static adc_pin_t pad11 = {
@@ -133,9 +133,9 @@ static adc_pin_t pad11 = {
     .gpio_peripheral = SYSCTL_PERIPH_GPIOB,
     .gpio_base       = GPIO_PORTB_AHB_BASE,
     .gpio_pin        = GPIO_PIN_5,
-    .sequencer       = 1,
+    .sequencer       = 2,
     .channel         = 11,
-    .step            = 5,
+    .step            = 1,
 };
 
 static adc_pin_t* adc_pins[] = {

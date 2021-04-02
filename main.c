@@ -62,14 +62,13 @@ int main(void){
 
     init_gpos();
 
+    init_adc();
+
     init_logger();
 
     init_console_uart(console_uart_rx_q);
 
     init_console(console_uart_rx_q);
-
-    init_adc();
-
 
     // Enable processor interrupts.
     IntMasterEnable();
@@ -126,6 +125,8 @@ int main(void){
                 NULL,                       /* Parameter passed into the task. */
                 3,                          /* Priority at which the task is created. */
                 NULL );                     /* Used to pass out the created task's handle. */
+
+
 
     ///////////////////////////////////////////////////////
     //               Start Scheduler

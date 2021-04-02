@@ -128,9 +128,9 @@ static void draw_menu(void) {
 
 } // End draw_menu
 
-void console_task(void* parm) {
+static uint8_t rx_char = 0;
 
-    uint8_t rx_char = 0;
+void console_task(void* parm) {
 
     clear_terminal();
 

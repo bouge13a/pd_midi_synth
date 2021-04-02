@@ -8,6 +8,7 @@
 #include <console_uart.h>
 #include <stdbool.h>
 
+#include "FreeRTOS.h"
 #include "task.h"
 
 #include "driverlib/rom.h"
@@ -22,7 +23,6 @@
 #include "utils/uartstdio.h"
 
 static QueueHandle_t uart_rx_q;
-static QueueHandle_t uart_tx_q;
 
 
 int get_char(void) {
@@ -37,25 +37,32 @@ static void UART_RX_int_handler(void) {
 
     uint8_t character = 0;
 
-    // Get the interrrupt status.
+    /* We have not woken a task at the start of the ISR. */
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+
+    // Get the interrupt status.
     uint32_t ui32Status = 0;
 
     //Get the charater from UART0
     character = MAP_UARTCharGetNonBlocking(UART0_BASE);
 
-    xQueueSendFromISR(uart_rx_q, &character, 0);
+    xQueueSendFromISR(uart_rx_q, &character, &xHigherPriorityTaskWoken);
 
     ui32Status = MAP_UARTIntStatus(UART0_BASE, true);
 
     // Clear the asserted interrupts.
     MAP_UARTIntClear(UART0_BASE, ui32Status);
 
+    /* Now the buffer is empty we can switch context if necessary. */
+    if( xHigherPriorityTaskWoken )
+    {
+        /* Actual macro used here is port specific. */
+        portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
+    }
+
 } // End UART_RX_int_handler(void)
 
 void init_console_uart(QueueHandle_t uart_rx_queue) {
-
-    // Create the UART tx queue
-    uart_tx_q = xQueueCreate(100, sizeof(uint8_t));
 
     // Set the UART rx queue
     uart_rx_q = uart_rx_queue;
@@ -81,7 +88,7 @@ void init_console_uart(QueueHandle_t uart_rx_queue) {
     MAP_IntEnable(INT_UART0);
     MAP_UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
 
-    MAP_IntPrioritySet(INT_UART0, 191+1);
+    MAP_IntPrioritySet(INT_UART0, configMAX_SYSCALL_INTERRUPT_PRIORITY+1);
 
     // Register the interrupt
     UARTIntRegister(UART0_BASE, UART_RX_int_handler);
