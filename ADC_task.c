@@ -50,7 +50,10 @@ void init_adc(void) {
     SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC1);
 
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_COMP0);
+
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_ADC1));
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_COMP0));
 
     ADCSequenceDisable(ADC0_BASE, 0);
     ADCSequenceDisable(ADC1_BASE, 1);
@@ -104,24 +107,24 @@ void init_adc(void) {
 
     for(idx=0; idx<8; idx++) {
 
-        if (idx < 8) {
+        if (idx <= 7) {
 
-            ADCComparatorConfigure(adc_pin_struct.adc_pins[idx]->adc_base,
-                                   ADC_CTL_CMP0 + idx,
-                                   ADC_COMP_INT_LOW_ONCE | ADC_COMP_INT_MID_ONCE | ADC_COMP_INT_HIGH_ONCE);
+            ADCComparatorConfigure(ADC0_BASE,
+                                   idx,
+                                   ADC_COMP_INT_MID_ONCE);
 
-            ADCComparatorRegionSet(adc_pin_struct.adc_pins[idx]->adc_base,
-                                   ADC_CTL_CMP0 + idx,
+            ADCComparatorRegionSet(ADC0_BASE,
+                                   idx,
                                    COMP_LOW_REF,
                                    COMP_HIGH_REF);
         } else {
 
-            ADCComparatorConfigure(adc_pin_struct.adc_pins[idx]->adc_base,
-                                   ADC_CTL_CMP1 + idx - 7,
-                                   ADC_COMP_INT_LOW_ONCE | ADC_COMP_INT_MID_ONCE | ADC_COMP_INT_HIGH_ONCE);
+            ADCComparatorConfigure(ADC1_BASE,
+                                   idx - 8,
+                                   ADC_COMP_INT_MID_ONCE);
 
-            ADCComparatorRegionSet(adc_pin_struct.adc_pins[idx]->adc_base,
-                                   ADC_CTL_CMP1 + idx - 7,
+            ADCComparatorRegionSet(ADC1_BASE,
+                                   idx - 8,
                                    COMP_LOW_REF,
                                    COMP_HIGH_REF);
         }

@@ -29,6 +29,7 @@
 #include "GPIs.h"
 #include "GPOs.h"
 
+
 int main(void){
 
     QueueHandle_t console_uart_rx_q = NULL;
@@ -63,6 +64,8 @@ int main(void){
     init_gpos();
 
     init_adc();
+
+    init_comp_ints();
 
     init_logger();
 

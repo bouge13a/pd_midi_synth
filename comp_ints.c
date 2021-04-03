@@ -5,6 +5,7 @@
  *      Author: steph
  */
 
+#include "comp_ints.h"
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -58,6 +59,8 @@ void init_comp_ints(void) {
 
     uint32_t idx;
 
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);
+
     for(idx=0; idx<12; idx++) {
         comp_states[idx].previous_state = MEDIUM;
         comp_states[idx].current_state  = LOW;
@@ -87,7 +90,7 @@ void init_comp_ints(void) {
 
 } // End init_comp_ints
 
-void process_interrupt(uint32_t status, uint32_t base) {
+static void process_interrupt(uint32_t status, uint32_t base) {
 
     uint32_t note;
 
@@ -129,9 +132,6 @@ void process_interrupt(uint32_t status, uint32_t base) {
     } else {
         assert(0);
     }
-
-
-
 
 } // End process_interrupt
 

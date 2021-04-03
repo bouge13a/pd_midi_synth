@@ -1,6 +1,7 @@
 # FIXED
 
 comp_ints.obj: ../comp_ints.c
+comp_ints.obj: ../comp_ints.h
 comp_ints.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h
 comp_ints.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/_ti_config.h
 comp_ints.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/linkage.h
@@ -25,6 +26,7 @@ comp_ints.obj: ../ADC_task.h
 comp_ints.obj: ../board_pin_defs.h
 
 ../comp_ints.c: 
+../comp_ints.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/_ti_config.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/linkage.h: 
