@@ -25,6 +25,9 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/interrupt.h"
 
+#define COMP_LOW_REF   300
+#define COMP_HIGH_REF 1000
+
 static const uint32_t ADC_PERIOD_MS = 10;
 
 void ADCSeq0Handler(void);
@@ -41,6 +44,8 @@ static const uint32_t BIT_1 = 1 << 1;
 void init_adc(void) {
 
     int idx;
+
+    adc_event = xEventGroupCreate();
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC1);
@@ -97,15 +102,38 @@ void init_adc(void) {
     ADCIntEnable(ADC0_BASE, 0);
     ADCIntEnable(ADC1_BASE, 1);
 
+    for(idx=0; idx<8; idx++) {
+
+        if (idx < 8) {
+
+            ADCComparatorConfigure(adc_pin_struct.adc_pins[idx]->adc_base,
+                                   ADC_CTL_CMP0 + idx,
+                                   ADC_COMP_INT_LOW_ONCE | ADC_COMP_INT_MID_ONCE | ADC_COMP_INT_HIGH_ONCE);
+
+            ADCComparatorRegionSet(adc_pin_struct.adc_pins[idx]->adc_base,
+                                   ADC_CTL_CMP0 + idx,
+                                   COMP_LOW_REF,
+                                   COMP_HIGH_REF);
+        } else {
+
+            ADCComparatorConfigure(adc_pin_struct.adc_pins[idx]->adc_base,
+                                   ADC_CTL_CMP1 + idx - 7,
+                                   ADC_COMP_INT_LOW_ONCE | ADC_COMP_INT_MID_ONCE | ADC_COMP_INT_HIGH_ONCE);
+
+            ADCComparatorRegionSet(adc_pin_struct.adc_pins[idx]->adc_base,
+                                   ADC_CTL_CMP1 + idx - 7,
+                                   COMP_LOW_REF,
+                                   COMP_HIGH_REF);
+        }
+    }
+
+    ADCComparatorIntEnable(ADC0_BASE, 0);
+    ADCComparatorIntEnable(ADC1_BASE, 1);
+
     // Enable the interrupt for ADC0 sequence 0 on the processor (NVIC).
     IntEnable(INT_ADC0SS0);
     IntEnable(INT_ADC1SS1);
 
-//    ADCIntRegister(ADC0_BASE, 0, ADCSeq0Handler);
-//    ADCIntRegister(ADC1_BASE, 1, ADCSeq1Handler);
-
-
-    adc_event = xEventGroupCreate();
 } // End init_adc
 
 adc_pin_t* get_adc_config(const char* name) {
