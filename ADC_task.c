@@ -105,7 +105,7 @@ void init_adc(void) {
     ADCIntEnable(ADC0_BASE, 0);
     ADCIntEnable(ADC1_BASE, 1);
 
-    for(idx=0; idx<8; idx++) {
+    for(idx=0; idx<12; idx++) {
 
         if (idx <= 7) {
 

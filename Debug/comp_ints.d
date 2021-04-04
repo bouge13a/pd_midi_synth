@@ -24,6 +24,19 @@ comp_ints.obj: ../driverlib/interrupt.h
 comp_ints.obj: ../driverlib/timer.h
 comp_ints.obj: ../ADC_task.h
 comp_ints.obj: ../board_pin_defs.h
+comp_ints.obj: ../host_uart_task.h
+comp_ints.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h
+comp_ints.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stddef.h
+comp_ints.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOSConfig.h
+comp_ints.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdlib.h
+comp_ints.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/projdefs.h
+comp_ints.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/portable.h
+comp_ints.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/deprecated_definitions.h
+comp_ints.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/portable/CCS/ARM_CM4F/portmacro.h
+comp_ints.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/mpu_wrappers.h
+comp_ints.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h
+comp_ints.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h
+comp_ints.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h
 
 ../comp_ints.c: 
 ../comp_ints.h: 
@@ -49,3 +62,16 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/assert.h:
 ../driverlib/timer.h: 
 ../ADC_task.h: 
 ../board_pin_defs.h: 
+../host_uart_task.h: 
+C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h: 
+C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stddef.h: 
+C:/Users/steph/workspace_v10/drum_pad/FreeRTOSConfig.h: 
+C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdlib.h: 
+C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/projdefs.h: 
+C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/portable.h: 
+C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/deprecated_definitions.h: 
+C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/portable/CCS/ARM_CM4F/portmacro.h: 
+C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/mpu_wrappers.h: 
+C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h: 
+C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h: 
+C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h: 

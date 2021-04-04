@@ -22,8 +22,10 @@
 
 #include "ADC_task.h"
 #include "board_pin_defs.h"
+#include "host_uart_task.h"
 
-static const uint32_t TIMER0_PRESCALE = 16000000/16000;
+//static const uint32_t TIMER0_PRESCALE = 16000000/16000;
+static const float MAX_TIME_DIFF = 10000000;
 
 void Comp0IntHandler(void);
 void Comp1IntHandler(void);
@@ -36,10 +38,7 @@ typedef enum {
 
 typedef struct {
     comp_state_e previous_state;
-    comp_state_e current_state;
-    uint32_t     low_time;
-    uint32_t     high_time;
-    adc_pin_t*   adc_config;
+    uint64_t     low_time;
 }comp_state_t;
 
 static const uint32_t BIT_0 = 1;
@@ -62,35 +61,21 @@ void init_comp_ints(void) {
     SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);
 
     for(idx=0; idx<12; idx++) {
-        comp_states[idx].previous_state = MEDIUM;
-        comp_states[idx].current_state  = LOW;
+        comp_states[idx].previous_state = HIGH;
     }
-
-    comp_states[0].adc_config = get_adc_config("pad 0");
-    comp_states[1].adc_config = get_adc_config("pad 1");
-    comp_states[2].adc_config = get_adc_config("pad 2");
-    comp_states[3].adc_config = get_adc_config("pad 3");
-    comp_states[4].adc_config = get_adc_config("pad 4");
-    comp_states[5].adc_config = get_adc_config("pad 5");
-    comp_states[6].adc_config = get_adc_config("pad 6");
-    comp_states[7].adc_config = get_adc_config("pad 7");
-    comp_states[8].adc_config = get_adc_config("pad 8");
-    comp_states[9].adc_config = get_adc_config("pad 9");
-    comp_states[10].adc_config = get_adc_config("pad 10");
-    comp_states[11].adc_config = get_adc_config("pad 11");
 
     TimerConfigure(TIMER0_BASE, TIMER_CFG_PERIODIC_UP);
 
-    TimerPrescaleSet(TIMER0_BASE,
-                     TIMER_BOTH,
-                     TIMER0_PRESCALE);
+//    TimerPrescaleSet(TIMER0_BASE,
+//                     TIMER_BOTH,
+//                     TIMER0_PRESCALE);
 
     TimerEnable(TIMER0_BASE,
                 TIMER_BOTH);
 
 } // End init_comp_ints
 
-static void process_interrupt(uint32_t status, uint32_t base) {
+static uint32_t get_pad_num(uint32_t status, uint32_t base) {
 
     uint32_t note;
 
@@ -131,6 +116,92 @@ static void process_interrupt(uint32_t status, uint32_t base) {
         }
     } else {
         assert(0);
+    }
+
+    return note;
+}
+
+
+
+static void process_interrupt(uint32_t status, uint32_t base) {
+
+    uart_msg_u uart_msg;
+    uint32_t pad_num = get_pad_num(status, base);
+
+    switch(comp_states[pad_num].previous_state) {
+    case HIGH :
+
+        //Pack the message
+        // High to low is a note off
+        uart_msg.bitfield.message_type = NOTE_OFF;
+        uart_msg.bitfield.pad_num = pad_num;
+
+        // send the message to the teensy
+        send_to_host_from_isr(uart_msg);
+
+        // Reconfigure the comparator int to LOW_ONCE
+        if (ADC0_BASE == base) {
+            ADCComparatorConfigure(ADC0_BASE,
+                                   pad_num,
+                                   ADC_COMP_INT_MID_ONCE);
+        } else {
+            ADCComparatorConfigure(ADC1_BASE,
+                                   pad_num - 4,
+                                   ADC_COMP_INT_MID_ONCE);
+        }
+
+        comp_states[pad_num].previous_state = LOW;
+
+        break;
+
+    case MEDIUM :
+
+        //Pack the message
+        // High to low is a note off
+        uart_msg.bitfield.message_type = NOTE_ON;
+        uart_msg.bitfield.pad_num = pad_num;
+
+        uart_msg.bitfield.value = 63;
+
+        // send the message to the teensy
+        send_to_host_from_isr(uart_msg);
+
+        // Reconfigure the comparator int to HIGH_ONCE
+        if (ADC0_BASE == base) {
+            ADCComparatorConfigure(ADC0_BASE,
+                                   pad_num,
+                                   ADC_COMP_INT_LOW_ONCE);
+        } else {
+            ADCComparatorConfigure(ADC1_BASE,
+                                   pad_num - 4,
+                                   ADC_COMP_INT_LOW_ONCE);
+        }
+
+        comp_states[pad_num].previous_state = HIGH;
+
+        break;
+
+    case LOW :
+
+        // Reconfigure the comparator int to HIGH_ONCE
+        if (ADC0_BASE == base) {
+            ADCComparatorConfigure(ADC0_BASE,
+                                   pad_num,
+                                   ADC_COMP_INT_HIGH_ONCE);
+        } else {
+            ADCComparatorConfigure(ADC1_BASE,
+                                   pad_num - 4,
+                                   ADC_COMP_INT_HIGH_ONCE);
+        }
+
+        comp_states[pad_num].previous_state = MEDIUM;
+
+        break;
+
+    default:
+        assert(0);
+        break;
+
     }
 
 } // End process_interrupt
