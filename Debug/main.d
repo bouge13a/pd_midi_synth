@@ -40,6 +40,7 @@ main.obj: ../ADC_task.h
 main.obj: ../I2C_task.h
 main.obj: ../logger.h
 main.obj: ../task_manager_page.h
+main.obj: ../comp_ints.h
 
 ../main.c: 
 C:/Users/steph/workspace_v10/drum_pad/GPIs.h: 
@@ -81,3 +82,4 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h:
 ../I2C_task.h: 
 ../logger.h: 
 ../task_manager_page.h: 
+../comp_ints.h: 

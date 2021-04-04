@@ -25,13 +25,15 @@ typedef enum {
 
 void init_console(QueueHandle_t uart_rx_queue);
 
-void add_page(const char* name,
-              void (*pfnDrawPage)(void),
-              void (*pfnDrawData)(void),
-              void (*pfnDrawInput)(int),
-              uint32_t refresh_rate,
-              bool write_to_page);
+uint32_t add_page(const char* name,
+                  void (*pfnDrawPage)(void),
+                  void (*pfnDrawData)(void),
+                  void (*pfnDrawInput)(int),
+                  uint32_t refresh_rate,
+                  bool write_to_page);
 
 void console_task(void* parm);
+
+bool is_on_screen(uint32_t page_number);
 
 #endif /* CONSOLE_TASK_H_ */

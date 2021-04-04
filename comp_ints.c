@@ -10,6 +10,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <assert.h>
+#include <uartstdio.h>
 
 #include "driverlib/inc/hw_ints.h"
 #include "driverlib/inc/hw_memmap.h"
@@ -23,6 +24,7 @@
 #include "ADC_task.h"
 #include "board_pin_defs.h"
 #include "host_uart_task.h"
+
 
 //static const uint32_t TIMER0_PRESCALE = 16000000/16000;
 static const float MAX_TIME_DIFF = 10000000;
@@ -49,14 +51,17 @@ static const uint32_t BIT_4 = 4 << 1;
 static const uint32_t BIT_5 = 5 << 1;
 static const uint32_t BIT_6 = 6 << 1;
 static const uint32_t BIT_7 = 7 << 1;
-static const uint32_t BIT_8 = 8 << 1;
+
 
 static comp_state_t comp_states[12];
 
+static uint32_t page_number;
 
-void init_comp_ints(void) {
+void init_comp_ints(uint32_t page_num) {
 
     uint32_t idx;
+
+    page_number = page_num;
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);
 
@@ -133,6 +138,12 @@ static void process_interrupt(uint32_t status, uint32_t base) {
         // send the message to the teensy
         send_to_host_from_isr(uart_msg);
 
+        if(is_on_screen(page_number)){
+            printf("%d %d %d", uart_msg.bitfield.message_type,
+                               uart_msg.bitfield.pad_num,
+                               uart_msg.bitfield.value);
+        }
+
         // Reconfigure the comparator int to LOW_ONCE
         if (ADC0_BASE == base) {
             ADCComparatorConfigure(ADC0_BASE,
@@ -159,6 +170,12 @@ static void process_interrupt(uint32_t status, uint32_t base) {
 
         // send the message to the teensy
         send_to_host_from_isr(uart_msg);
+
+        if(is_on_screen(page_number)){
+            printf("%d %d %d", uart_msg.bitfield.message_type,
+                               uart_msg.bitfield.pad_num,
+                               uart_msg.bitfield.value);
+        }
 
         // Reconfigure the comparator int to HIGH_ONCE
         if (ADC0_BASE == base) {
@@ -227,3 +244,13 @@ void Comp1IntHandler(void) {
     ADCComparatorIntEnable(ADC1_BASE, 1);
 
 } // End Comp1IntHandler
+
+void drumpad_drawpage(void){
+
+}
+void drumpad_drawdata(void){
+
+}
+void drumpad_drawinput(int character) {
+
+}

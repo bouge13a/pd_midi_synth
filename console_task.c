@@ -31,6 +31,7 @@ typedef struct  {
     void (*pfnDrawData)(void);
     void (*pfnDrawInput)(int);
     uint32_t refresh_rate;
+    bool on_screen;
     bool write_to_page;
 } console_page_t;
 
@@ -54,12 +55,14 @@ void init_console(QueueHandle_t uart_rx_queue) {
 
 } // End init_console
 
-void add_page(const char* name,
-              void (*pfnDrawPage)(void),
-              void (*pfnDrawData)(void),
-              void (*pfnDrawInput)(int),
-              uint32_t refresh_rate,
-              bool write_to_page) {
+uint32_t add_page(const char* name,
+                  void (*pfnDrawPage)(void),
+                  void (*pfnDrawData)(void),
+                  void (*pfnDrawInput)(int),
+                  uint32_t refresh_rate,
+                  bool write_to_page) {
+
+    uint32_t page_number;
 
     assert(name);
     assert(pfnDrawPage);
@@ -72,10 +75,24 @@ void add_page(const char* name,
     console_pages[num_console_pages].pfnDrawInput  = pfnDrawInput;
     console_pages[num_console_pages].refresh_rate  = refresh_rate;
     console_pages[num_console_pages].write_to_page = write_to_page;
+    console_pages[num_console_pages].on_screen     = false;
+
+    page_number = num_console_pages;
 
     num_console_pages++;
 
+    return page_number;
+
 } // End add_page
+
+bool is_on_screen(uint32_t page_number) {
+
+    if (true == console_pages[page_number].on_screen) {
+        return true;
+    } else {
+        return false;
+    }
+} // is_on_screen
 
 static void start_draw_menu(void) {
 
@@ -153,9 +170,13 @@ void console_task(void* parm) {
 
         if (9 == rx_char) {
 
+            console_pages[last_page].on_screen = false;
+
             last_page = current_page;
 
             current_page = (current_page + 1) % num_console_pages;
+
+            console_pages[current_page].on_screen = true;
 
             draw_menu();
 

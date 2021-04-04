@@ -28,6 +28,7 @@
 #include "task_manager_page.h"
 #include "GPIs.h"
 #include "GPOs.h"
+#include "comp_ints.h"
 
 
 int main(void){
@@ -64,8 +65,6 @@ int main(void){
     init_gpos();
 
     init_adc();
-
-    init_comp_ints();
 
     init_logger();
 
@@ -104,6 +103,14 @@ int main(void){
              taskmanager_drawinput,
              portMAX_DELAY,
              false);
+
+    // Comp ints writes to page so the page number must be passed
+    init_comp_ints(add_page("UART Msgs",
+                             drumpad_drawpage,
+                             drumpad_drawdata,
+                             drumpad_drawinput,
+                             portMAX_DELAY,
+                             true));
 
     ///////////////////////////////////////////////////////
     //                Create Tasks
