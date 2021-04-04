@@ -24,6 +24,7 @@ console_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/mpu_wra
 console_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h
 console_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h
 console_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h
+console_task.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h
 console_task.obj: ../text_controls.h
 console_task.obj: ../console_uart.h
 console_task.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/assert.h
@@ -54,6 +55,7 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/mpu_wrappers.h:
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h: 
+C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h: 
 ../text_controls.h: 
 ../console_uart.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/assert.h: 

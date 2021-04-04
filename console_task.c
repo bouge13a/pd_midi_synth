@@ -31,6 +31,7 @@ typedef struct  {
     void (*pfnDrawData)(void);
     void (*pfnDrawInput)(int);
     uint32_t refresh_rate;
+    bool write_to_page;
 } console_page_t;
 
 static void start_draw_menu(void);
@@ -57,18 +58,20 @@ void add_page(const char* name,
               void (*pfnDrawPage)(void),
               void (*pfnDrawData)(void),
               void (*pfnDrawInput)(int),
-              uint32_t refresh_rate) {
+              uint32_t refresh_rate,
+              bool write_to_page) {
 
     assert(name);
     assert(pfnDrawPage);
     assert(pfnDrawData);
     assert(pfnDrawInput);
 
-    console_pages[num_console_pages].name         = name;
-    console_pages[num_console_pages].pfnDrawPage  = pfnDrawPage;
-    console_pages[num_console_pages].pfnDrawData  = pfnDrawData;
-    console_pages[num_console_pages].pfnDrawInput = pfnDrawInput;
-    console_pages[num_console_pages].refresh_rate = refresh_rate;
+    console_pages[num_console_pages].name          = name;
+    console_pages[num_console_pages].pfnDrawPage   = pfnDrawPage;
+    console_pages[num_console_pages].pfnDrawData   = pfnDrawData;
+    console_pages[num_console_pages].pfnDrawInput  = pfnDrawInput;
+    console_pages[num_console_pages].refresh_rate  = refresh_rate;
+    console_pages[num_console_pages].write_to_page = write_to_page;
 
     num_console_pages++;
 
@@ -196,7 +199,11 @@ void console_task(void* parm) {
             }
         }
 
-        console_pages[current_page].pfnDrawData();
+        if (console_pages[current_page].write_to_page) {
+            cursor_pos(6, 0);
+        } else {
+            console_pages[current_page].pfnDrawData();
+        }
 
         set_text_mode(mode_concealed);
 

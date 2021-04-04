@@ -66,10 +66,6 @@ void init_comp_ints(void) {
 
     TimerConfigure(TIMER0_BASE, TIMER_CFG_PERIODIC_UP);
 
-//    TimerPrescaleSet(TIMER0_BASE,
-//                     TIMER_BOTH,
-//                     TIMER0_PRESCALE);
-
     TimerEnable(TIMER0_BASE,
                 TIMER_BOTH);
 
@@ -120,8 +116,6 @@ static uint32_t get_pad_num(uint32_t status, uint32_t base) {
 
     return note;
 }
-
-
 
 static void process_interrupt(uint32_t status, uint32_t base) {
 

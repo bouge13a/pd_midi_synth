@@ -81,25 +81,29 @@ int main(void){
              homepage_drawpage,
              homepage_drawdata,
              homepage_drawinput,
-             portMAX_DELAY);
+             portMAX_DELAY,
+             false);
 
     add_page("Controls",
              control_drawpage,
              control_drawdata,
              control_drawinput,
-             250);
+             250,
+             false);
 
     add_page("Logger",
              logger_drawpage,
              logger_drawdata,
              logger_drawinput,
-             1000);
+             1000,
+             false);
 
     add_page("Task Manager",
              taskmanager_drawpage,
              taskmanager_drawdata,
              taskmanager_drawinput,
-             portMAX_DELAY);
+             portMAX_DELAY,
+             false);
 
     ///////////////////////////////////////////////////////
     //                Create Tasks
