@@ -33,25 +33,25 @@ void init_host_uart(void) {
 
     set_gpo(blue_debug, 0);
 
-    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
     // Enable the peripherals used by UART
-    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART2);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART1);
 
 
-    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART2));
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART1));
 
     // Set GPIO A0 and A1 as UART pins.
-    MAP_GPIOPinConfigure(GPIO_PD6_U2RX);
-    MAP_GPIOPinConfigure(GPIO_PD7_U2TX);
+    MAP_GPIOPinConfigure(GPIO_PB0_U1RX);
+    MAP_GPIOPinConfigure(GPIO_PB1_U1TX);
 
-    GPIOPinTypeUART(GPIO_PORTD_AHB_BASE, GPIO_PIN_6 | GPIO_PIN_7);
+    GPIOPinTypeUART(GPIO_PORTB_AHB_BASE, GPIO_PIN_0 | GPIO_PIN_1);
 
     // Use the internal 16MHz oscillator as the UART clock source.
-    MAP_UARTClockSourceSet(UART2_BASE, UART_CLOCK_PIOSC);
+    MAP_UARTClockSourceSet(UART1_BASE, UART_CLOCK_PIOSC);
 
-    UARTFIFOEnable(UART2_BASE);
+    UARTFIFOEnable(UART1_BASE);
 
-    MAP_UARTConfigSetExpClk(UART2_BASE, MAP_SysCtlClockGet(), 115200,
+    MAP_UARTConfigSetExpClk(UART1_BASE, MAP_SysCtlClockGet(), 115200,
                             (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
                              UART_CONFIG_PAR_NONE));
 
@@ -73,12 +73,12 @@ void host_uart_task(void* parm) {
             case NOTE_ON:
             case OVERDRIVE:
                 for(loop_index=0; loop_index<3; loop_index++) {
-                    MAP_UARTCharPutNonBlocking(UART2_BASE, uart_msg.bytes[loop_index]);
+                    MAP_UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[loop_index]);
                 }
                 break;
 
             case NOTE_OFF:
-                MAP_UARTCharPutNonBlocking(UART2_BASE, uart_msg.bytes[loop_index]);
+                MAP_UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[loop_index]);
                 break;
 
             default:
