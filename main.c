@@ -4,8 +4,7 @@
  * main.c
  */
 
-#include <GPIs.h>
-#include <GPOs.h>
+
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
@@ -29,6 +28,7 @@
 #include "GPIs.h"
 #include "GPOs.h"
 #include "comp_ints.h"
+#include "host_uart_task.h"
 
 
 int main(void){
@@ -66,11 +66,13 @@ int main(void){
 
     init_adc();
 
-    init_logger();
-
     init_console_uart(console_uart_rx_q);
 
     init_console(console_uart_rx_q);
+
+    init_logger();
+
+    init_host_uart();
 
     /////////////////////////////////////////////////////////
     //                  Add pages to Console
@@ -120,7 +122,7 @@ int main(void){
                 "Console",                  /* Text name for the task. */
                 220,                        /* Stack size in words, not bytes. */
                 NULL,                       /* Parameter passed into the task. */
-                1,                          /* Priority at which the task is created. */
+                3,                          /* Priority at which the task is created. */
                 NULL );                     /* Used to pass out the created task's handle. */
 
     xTaskCreate(adc_task,               /* Function that implements the task. */
@@ -132,6 +134,14 @@ int main(void){
 
     xTaskCreate(i2c_task,               /* Function that implements the task. */
                 "I2C1",                  /* Text name for the task. */
+                configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
+                NULL,                       /* Parameter passed into the task. */
+                3,                          /* Priority at which the task is created. */
+                NULL );                     /* Used to pass out the created task's handle. */
+
+
+    xTaskCreate(host_uart_task,               /* Function that implements the task. */
+                "UART1",                  /* Text name for the task. */
                 configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
                 NULL,                       /* Parameter passed into the task. */
                 3,                          /* Priority at which the task is created. */

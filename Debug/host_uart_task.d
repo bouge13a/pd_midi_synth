@@ -38,6 +38,8 @@ host_uart_task.obj: ../driverlib/inc/hw_ints.h
 host_uart_task.obj: ../driverlib/interrupt.h
 host_uart_task.obj: ../utils/uartstdio.h
 host_uart_task.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdarg.h
+host_uart_task.obj: ../driverlib/inc/hw_gpio.h
+host_uart_task.obj: ../driverlib/inc/hw_types.h
 
 ../host_uart_task.c: 
 C:/Users/steph/workspace_v10/drum_pad/host_uart_task.h: 
@@ -77,3 +79,5 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h:
 ../driverlib/interrupt.h: 
 ../utils/uartstdio.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdarg.h: 
+../driverlib/inc/hw_gpio.h: 
+../driverlib/inc/hw_types.h: 

@@ -75,19 +75,19 @@ void init_adc(void) {
         ADCSequenceStepConfigure(adc_pin_struct.adc_pins[idx]->adc_base,
                                  adc_pin_struct.adc_pins[idx]->sequencer,
                                  adc_pin_struct.adc_pins[idx]->step,
-                                 adc_pin_struct.adc_pins[idx]->channel);
+                                 adc_pin_struct.adc_pins[idx]->channel | adc_pin_struct.adc_pins[idx]->comparator);
 
     }
 
     ADCSequenceStepConfigure(ADC0_BASE,
                              0,
                              adc_pin_struct.adc_pins[7]->step,
-                             adc_pin_struct.adc_pins[7]->channel | ADC_CTL_IE | ADC_CTL_END);
+                             adc_pin_struct.adc_pins[7]->channel | adc_pin_struct.adc_pins[7]->comparator | ADC_CTL_IE | ADC_CTL_END);
 
     ADCSequenceStepConfigure(ADC1_BASE,
                              1,
                              adc_pin_struct.adc_pins[11]->step,
-                             adc_pin_struct.adc_pins[11]->channel | ADC_CTL_IE | ADC_CTL_END);
+                             adc_pin_struct.adc_pins[11]->channel | adc_pin_struct.adc_pins[11]->comparator | ADC_CTL_IE | ADC_CTL_END);
 
     ADCSequenceEnable(ADC0_BASE, 0);
     ADCSequenceEnable(ADC1_BASE, 1);
@@ -130,8 +130,16 @@ void init_adc(void) {
         }
     }
 
+    IntPrioritySet(INT_COMP0, configMAX_SYSCALL_INTERRUPT_PRIORITY + 1);
+    IntPrioritySet(INT_COMP1, configMAX_SYSCALL_INTERRUPT_PRIORITY + 1);
+
+
     ADCComparatorIntEnable(ADC0_BASE, 0);
     ADCComparatorIntEnable(ADC1_BASE, 1);
+
+
+    IntEnable(INT_COMP0);
+    IntEnable(INT_COMP1);
 
     // Enable the interrupt for ADC0 sequence 0 on the processor (NVIC).
     IntEnable(INT_ADC0SS0);

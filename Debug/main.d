@@ -1,11 +1,11 @@
 # FIXED
 
 main.obj: ../main.c
-main.obj: C:/Users/steph/workspace_v10/drum_pad/GPIs.h
-main.obj: C:/Users/steph/workspace_v10/drum_pad/board_pin_defs.h
-main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdint.h
+main.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h
+main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stddef.h
 main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/_ti_config.h
 main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/linkage.h
+main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdint.h
 main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/_stdint40.h
 main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/sys/stdint.h
 main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/sys/cdefs.h
@@ -13,9 +13,6 @@ main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/sys/_ty
 main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/machine/_types.h
 main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/machine/_stdint.h
 main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/sys/_stdint.h
-main.obj: C:/Users/steph/workspace_v10/drum_pad/GPOs.h
-main.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h
-main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stddef.h
 main.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOSConfig.h
 main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdlib.h
 main.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/projdefs.h
@@ -37,17 +34,21 @@ main.obj: ../homepage.h
 main.obj: ../console_uart.h
 main.obj: ../control_page.h
 main.obj: ../ADC_task.h
+main.obj: ../board_pin_defs.h
 main.obj: ../I2C_task.h
 main.obj: ../logger.h
 main.obj: ../task_manager_page.h
+main.obj: ../GPIs.h
+main.obj: ../GPOs.h
 main.obj: ../comp_ints.h
+main.obj: ../host_uart_task.h
 
 ../main.c: 
-C:/Users/steph/workspace_v10/drum_pad/GPIs.h: 
-C:/Users/steph/workspace_v10/drum_pad/board_pin_defs.h: 
-C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdint.h: 
+C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h: 
+C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stddef.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/_ti_config.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/linkage.h: 
+C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdint.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/_stdint40.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/sys/stdint.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/sys/cdefs.h: 
@@ -55,9 +56,6 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/sys/_types.h:
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/machine/_types.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/machine/_stdint.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/sys/_stdint.h: 
-C:/Users/steph/workspace_v10/drum_pad/GPOs.h: 
-C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h: 
-C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stddef.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOSConfig.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdlib.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/projdefs.h: 
@@ -79,7 +77,11 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h:
 ../console_uart.h: 
 ../control_page.h: 
 ../ADC_task.h: 
+../board_pin_defs.h: 
 ../I2C_task.h: 
 ../logger.h: 
 ../task_manager_page.h: 
+../GPIs.h: 
+../GPOs.h: 
 ../comp_ints.h: 
+../host_uart_task.h: 

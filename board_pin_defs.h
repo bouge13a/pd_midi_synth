@@ -37,6 +37,7 @@ typedef struct {
     uint32_t channel;
     uint32_t step;
     uint32_t adc_base;
+    uint32_t comparator;
 }adc_pin_t;
 
 typedef struct {

@@ -24,10 +24,7 @@
 #include "ADC_task.h"
 #include "board_pin_defs.h"
 #include "host_uart_task.h"
-
-
-//static const uint32_t TIMER0_PRESCALE = 16000000/16000;
-static const float MAX_TIME_DIFF = 10000000;
+#include "console_task.h"
 
 void Comp0IntHandler(void);
 void Comp1IntHandler(void);
@@ -42,16 +39,6 @@ typedef struct {
     comp_state_e previous_state;
     uint64_t     low_time;
 }comp_state_t;
-
-static const uint32_t BIT_0 = 1;
-static const uint32_t BIT_1 = 1 << 1;
-static const uint32_t BIT_2 = 2 << 1;
-static const uint32_t BIT_3 = 3 << 1;
-static const uint32_t BIT_4 = 4 << 1;
-static const uint32_t BIT_5 = 5 << 1;
-static const uint32_t BIT_6 = 6 << 1;
-static const uint32_t BIT_7 = 7 << 1;
-
 
 static comp_state_t comp_states[12];
 
@@ -78,43 +65,26 @@ void init_comp_ints(uint32_t page_num) {
 
 static uint32_t get_pad_num(uint32_t status, uint32_t base) {
 
-    uint32_t note;
+    uint32_t note = 0;
+
+    assert(status);
 
     if (base == ADC0_BASE) {
-        switch(status) {
-            case BIT_0 : note = 0;
-                break;
-            case BIT_1 : note = 1;
-                break;
-            case BIT_2 : note = 2;
-                break;
-            case BIT_3 : note = 3;
-                break;
-            case BIT_4 : note = 4;
-                break;
-            case BIT_5 : note = 5;
-                break;
-            case BIT_6 : note = 6;
-                break;
-            case BIT_7 : note = 7;
-                break;
-            default:
-                assert(0);
+
+        while (status != 1) {
+            status = status >> 1;
+            note++;
         }
+
     } else if (ADC1_BASE == base) {
-        switch(status) {
-            case BIT_1 : note = 8;
-                break;
-            case BIT_2 : note = 9;
-                break;
-            case BIT_3 : note = 10;
-                break;
-            case BIT_4 : note = 11;
-                break;
-            default :
-                assert(0);
-                break;
+
+        note = 8;
+
+        while (status != 1) {
+            status = status >> 1;
+            note++;
         }
+
     } else {
         assert(0);
     }
@@ -139,9 +109,9 @@ static void process_interrupt(uint32_t status, uint32_t base) {
         send_to_host_from_isr(uart_msg);
 
         if(is_on_screen(page_number)){
-            printf("%d %d %d", uart_msg.bitfield.message_type,
-                               uart_msg.bitfield.pad_num,
-                               uart_msg.bitfield.value);
+            UARTprintf("%d %d %d\n", uart_msg.bitfield.message_type,
+                                     uart_msg.bitfield.pad_num,
+                                     uart_msg.bitfield.value);
         }
 
         // Reconfigure the comparator int to LOW_ONCE
@@ -151,7 +121,7 @@ static void process_interrupt(uint32_t status, uint32_t base) {
                                    ADC_COMP_INT_MID_ONCE);
         } else {
             ADCComparatorConfigure(ADC1_BASE,
-                                   pad_num - 4,
+                                   pad_num - 8,
                                    ADC_COMP_INT_MID_ONCE);
         }
 
@@ -172,9 +142,9 @@ static void process_interrupt(uint32_t status, uint32_t base) {
         send_to_host_from_isr(uart_msg);
 
         if(is_on_screen(page_number)){
-            printf("%d %d %d", uart_msg.bitfield.message_type,
-                               uart_msg.bitfield.pad_num,
-                               uart_msg.bitfield.value);
+            UARTprintf("%d %d %d\n", uart_msg.bitfield.message_type,
+                                     uart_msg.bitfield.pad_num,
+                                     uart_msg.bitfield.value);
         }
 
         // Reconfigure the comparator int to HIGH_ONCE
@@ -184,7 +154,7 @@ static void process_interrupt(uint32_t status, uint32_t base) {
                                    ADC_COMP_INT_LOW_ONCE);
         } else {
             ADCComparatorConfigure(ADC1_BASE,
-                                   pad_num - 4,
+                                   pad_num - 8,
                                    ADC_COMP_INT_LOW_ONCE);
         }
 
@@ -201,7 +171,7 @@ static void process_interrupt(uint32_t status, uint32_t base) {
                                    ADC_COMP_INT_HIGH_ONCE);
         } else {
             ADCComparatorConfigure(ADC1_BASE,
-                                   pad_num - 4,
+                                   pad_num - 8,
                                    ADC_COMP_INT_HIGH_ONCE);
         }
 
@@ -227,6 +197,8 @@ void Comp0IntHandler(void) {
 
     process_interrupt(status, ADC0_BASE);
 
+    ADCComparatorIntClear(ADC0_BASE, status);
+
     ADCComparatorIntEnable(ADC0_BASE, 0);
 
 } // End Comp0IntHandler
@@ -240,6 +212,8 @@ void Comp1IntHandler(void) {
     status = ADCComparatorIntStatus(ADC1_BASE);
 
     process_interrupt(status, ADC1_BASE);
+
+    ADCComparatorIntClear(ADC1_BASE, status);
 
     ADCComparatorIntEnable(ADC1_BASE, 1);
 

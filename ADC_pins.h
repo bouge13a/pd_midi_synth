@@ -27,6 +27,7 @@ static adc_pin_t pad0 = {
     .channel         = 0,
     .step            = 0,
     .adc_base        = ADC0_BASE,
+    .comparator      = ADC_CTL_CMP0,
 };
 
 static adc_pin_t pad1 = {
@@ -38,6 +39,7 @@ static adc_pin_t pad1 = {
     .channel         = 1,
     .step            = 1,
     .adc_base        = ADC0_BASE,
+    .comparator      = ADC_CTL_CMP1,
 };
 
 static adc_pin_t pad2 = {
@@ -49,6 +51,7 @@ static adc_pin_t pad2 = {
     .channel         = 2,
     .step            = 2,
     .adc_base        = ADC0_BASE,
+    .comparator      = ADC_CTL_CMP2,
 };
 
 static adc_pin_t pad3 = {
@@ -60,6 +63,7 @@ static adc_pin_t pad3 = {
     .channel         = 3,
     .step            = 3,
     .adc_base        = ADC0_BASE,
+    .comparator      = ADC_CTL_CMP3,
 };
 
 static adc_pin_t pad4 = {
@@ -71,6 +75,7 @@ static adc_pin_t pad4 = {
     .channel         = 4,
     .step            = 4,
     .adc_base        = ADC0_BASE,
+    .comparator      = ADC_CTL_CMP4,
 };
 
 static adc_pin_t pad5 = {
@@ -82,6 +87,7 @@ static adc_pin_t pad5 = {
     .channel         = 5,
     .step            = 5,
     .adc_base        = ADC0_BASE,
+    .comparator      = ADC_CTL_CMP5,
 };
 
 static adc_pin_t pad6 = {
@@ -93,6 +99,7 @@ static adc_pin_t pad6 = {
     .channel         = 6,
     .step            = 6,
     .adc_base        = ADC0_BASE,
+    .comparator      = ADC_CTL_CMP6,
 };
 
 static adc_pin_t pad7 = {
@@ -104,6 +111,7 @@ static adc_pin_t pad7 = {
     .channel         = 7,
     .step            = 7,
     .adc_base        = ADC0_BASE,
+    .comparator      = ADC_CTL_CMP1,
 };
 
 static adc_pin_t pad8 = {
@@ -115,6 +123,7 @@ static adc_pin_t pad8 = {
     .channel         = 8,
     .step            = 0,
     .adc_base        = ADC1_BASE,
+    .comparator      = ADC_CTL_CMP0,
 };
 
 static adc_pin_t pad9 = {
@@ -126,6 +135,7 @@ static adc_pin_t pad9 = {
     .channel         = 9,
     .step            = 1,
     .adc_base        = ADC1_BASE,
+    .comparator      = ADC_CTL_CMP1,
 };
 
 static adc_pin_t pad10 = {
@@ -137,6 +147,7 @@ static adc_pin_t pad10 = {
     .channel         = 10,
     .step            = 2,
     .adc_base        = ADC1_BASE,
+    .comparator      = ADC_CTL_CMP2,
 };
 
 static adc_pin_t pad11 = {
@@ -148,6 +159,7 @@ static adc_pin_t pad11 = {
     .channel         = 11,
     .step            = 3,
     .adc_base        = ADC1_BASE,
+    .comparator      = ADC_CTL_CMP3,
 };
 
 static adc_pin_t* adc_pins[] = {

@@ -39,6 +39,7 @@ comp_ints.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/mpu_wrappe
 comp_ints.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h
 comp_ints.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h
 comp_ints.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h
+comp_ints.obj: ../console_task.h
 
 ../comp_ints.c: 
 ../comp_ints.h: 
@@ -79,3 +80,4 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/mpu_wrappers.h:
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h: 
+../console_task.h: 

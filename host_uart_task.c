@@ -20,6 +20,8 @@
 #include "driverlib/inc/hw_ints.h"
 #include "driverlib/interrupt.h"
 #include "utils/uartstdio.h"
+#include "driverlib/inc/hw_gpio.h"
+#include "driverlib/inc/hw_types.h"
 
 static QueueHandle_t uart_tx_q = NULL;
 static gpio_pin_t* blue_debug;
@@ -31,23 +33,25 @@ void init_host_uart(void) {
 
     set_gpo(blue_debug, 0);
 
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
     // Enable the peripherals used by UART
-    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART1);
-    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART2);
 
-    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART1));
+
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART2));
 
     // Set GPIO A0 and A1 as UART pins.
-    MAP_GPIOPinConfigure(GPIO_PB0_U1RX);
-    MAP_GPIOPinConfigure(GPIO_PB1_U1TX);
-    MAP_GPIOPinTypeUART(GPIO_PORTB_BASE, GPIO_PIN_0 | GPIO_PIN_1);
+    MAP_GPIOPinConfigure(GPIO_PD6_U2RX);
+    MAP_GPIOPinConfigure(GPIO_PD7_U2TX);
+
+    GPIOPinTypeUART(GPIO_PORTD_AHB_BASE, GPIO_PIN_6 | GPIO_PIN_7);
 
     // Use the internal 16MHz oscillator as the UART clock source.
-    MAP_UARTClockSourceSet(UART1_BASE, UART_CLOCK_PIOSC);
+    MAP_UARTClockSourceSet(UART2_BASE, UART_CLOCK_PIOSC);
 
-    UARTFIFOEnable(UART1_BASE);
+    UARTFIFOEnable(UART2_BASE);
 
-    MAP_UARTConfigSetExpClk(UART1_BASE, MAP_SysCtlClockGet(), 115200,
+    MAP_UARTConfigSetExpClk(UART2_BASE, MAP_SysCtlClockGet(), 115200,
                             (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
                              UART_CONFIG_PAR_NONE));
 
@@ -68,13 +72,13 @@ void host_uart_task(void* parm) {
         switch(uart_msg.bitfield.message_type) {
             case NOTE_ON:
             case OVERDRIVE:
-                for(loop_index=0; loop_index<=3; loop_index++) {
-                    MAP_UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[loop_index]);
+                for(loop_index=0; loop_index<3; loop_index++) {
+                    MAP_UARTCharPutNonBlocking(UART2_BASE, uart_msg.bytes[loop_index]);
                 }
                 break;
 
             case NOTE_OFF:
-                MAP_UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[loop_index]);
+                MAP_UARTCharPutNonBlocking(UART2_BASE, uart_msg.bytes[loop_index]);
                 break;
 
             default:
