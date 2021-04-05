@@ -27,7 +27,6 @@
 #include "task_manager_page.h"
 #include "GPIs.h"
 #include "GPOs.h"
-#include "comp_ints.h"
 #include "host_uart_task.h"
 
 
@@ -106,14 +105,6 @@ int main(void){
              portMAX_DELAY,
              false);
 
-    // Comp ints writes to page so the page number must be passed
-    init_comp_ints(add_page("UART Msgs",
-                             drumpad_drawpage,
-                             drumpad_drawdata,
-                             drumpad_drawinput,
-                             portMAX_DELAY,
-                             true));
-
     ///////////////////////////////////////////////////////
     //                Create Tasks
     ///////////////////////////////////////////////////////
@@ -129,7 +120,7 @@ int main(void){
                 "ADC",                  /* Text name for the task. */
                 220,                        /* Stack size in words, not bytes. */
                 NULL,                       /* Parameter passed into the task. */
-                3,                          /* Priority at which the task is created. */
+                4,                          /* Priority at which the task is created. */
                 NULL );                     /* Used to pass out the created task's handle. */
 
     xTaskCreate(i2c_task,               /* Function that implements the task. */

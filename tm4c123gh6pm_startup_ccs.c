@@ -63,8 +63,6 @@ extern void xPortSysTickHandler(void);
 extern void ADCSeq0Handler(void);
 extern void ADCSeq1Handler(void);
 
-extern void Comp0IntHandler(void);
-extern void Comp1IntHandler(void);
 
 //*****************************************************************************
 //
@@ -118,8 +116,8 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // Timer 1 subtimer B
     IntDefaultHandler,                      // Timer 2 subtimer A
     IntDefaultHandler,                      // Timer 2 subtimer B
-    Comp0IntHandler,                      // Analog Comparator 0
-    Comp1IntHandler,                      // Analog Comparator 1
+    IntDefaultHandler,                      // Analog Comparator 0
+    IntDefaultHandler,                      // Analog Comparator 1
     IntDefaultHandler,                      // Analog Comparator 2
     IntDefaultHandler,                      // System Control (PLL, OSC, BO)
     IntDefaultHandler,                      // FLASH Control

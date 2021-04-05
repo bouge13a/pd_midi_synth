@@ -13,7 +13,6 @@ C_SRCS += \
 ../GPIs.c \
 ../GPOs.c \
 ../I2C_task.c \
-../comp_ints.c \
 ../console_task.c \
 ../console_uart.c \
 ../control_page.c \
@@ -33,7 +32,6 @@ C_DEPS += \
 ./GPIs.d \
 ./GPOs.d \
 ./I2C_task.d \
-./comp_ints.d \
 ./console_task.d \
 ./console_uart.d \
 ./control_page.d \
@@ -53,7 +51,6 @@ OBJS += \
 ./GPIs.obj \
 ./GPOs.obj \
 ./I2C_task.obj \
-./comp_ints.obj \
 ./console_task.obj \
 ./console_uart.obj \
 ./control_page.obj \
@@ -73,7 +70,6 @@ OBJS__QUOTED += \
 "GPIs.obj" \
 "GPOs.obj" \
 "I2C_task.obj" \
-"comp_ints.obj" \
 "console_task.obj" \
 "console_uart.obj" \
 "control_page.obj" \
@@ -93,7 +89,6 @@ C_DEPS__QUOTED += \
 "GPIs.d" \
 "GPOs.d" \
 "I2C_task.d" \
-"comp_ints.d" \
 "console_task.d" \
 "console_uart.d" \
 "control_page.d" \
@@ -113,7 +108,6 @@ C_SRCS__QUOTED += \
 "../GPIs.c" \
 "../GPOs.c" \
 "../I2C_task.c" \
-"../comp_ints.c" \
 "../console_task.c" \
 "../console_uart.c" \
 "../control_page.c" \

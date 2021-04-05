@@ -40,7 +40,6 @@ main.obj: ../logger.h
 main.obj: ../task_manager_page.h
 main.obj: ../GPIs.h
 main.obj: ../GPOs.h
-main.obj: ../comp_ints.h
 main.obj: ../host_uart_task.h
 
 ../main.c: 
@@ -83,5 +82,4 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h:
 ../task_manager_page.h: 
 ../GPIs.h: 
 ../GPOs.h: 
-../comp_ints.h: 
 ../host_uart_task.h: 
