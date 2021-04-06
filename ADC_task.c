@@ -25,6 +25,8 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/interrupt.h"
 
+#include "drum_pad_functions.h"
+
 #define COMP_LOW_REF   300
 #define COMP_HIGH_REF 1000
 
@@ -211,7 +213,9 @@ void adc_task(void* parm) {
         ADCSequenceDataGet(ADC0_BASE, 0, adc00_step_values);
         ADCSequenceDataGet(ADC1_BASE, 1, adc11_step_values);
 
-        vTaskDelay(ADC_PERIOD_MS);
+        process_drumpad(adc00_step_values, adc11_step_values);
+
+        vTaskDelay(0);
     }
 
 } // End task

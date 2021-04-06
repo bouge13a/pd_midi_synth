@@ -27,6 +27,7 @@ host_uart_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.
 host_uart_task.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h
 host_uart_task.obj: ../GPOs.h
 host_uart_task.obj: ../board_pin_defs.h
+host_uart_task.obj: ../console_task.h
 host_uart_task.obj: ../driverlib/rom.h
 host_uart_task.obj: ../driverlib/rom_map.h
 host_uart_task.obj: ../driverlib/sysctl.h
@@ -68,6 +69,7 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h:
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h: 
 ../GPOs.h: 
 ../board_pin_defs.h: 
+../console_task.h: 
 ../driverlib/rom.h: 
 ../driverlib/rom_map.h: 
 ../driverlib/sysctl.h: 

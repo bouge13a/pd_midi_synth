@@ -32,13 +32,19 @@ typedef union {
     char       bytes[4];
 }uart_msg_u;
 
-void init_host_uart(void);
+void init_host_uart(uint32_t oage_number);
 
 void host_uart_task(void* parm);
 
 void send_to_host(uart_msg_u message);
 
 void send_to_host_from_isr(uart_msg_u message);
+
+// GUI functions
+void uartmsg_drawpage(void);
+void uartmsg_drawdata(void);
+void uartmsg_drawinput(int character);
+
 
 
 #endif /* HOST_UART_TASK_H_ */

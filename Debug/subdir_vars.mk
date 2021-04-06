@@ -16,6 +16,7 @@ C_SRCS += \
 ../console_task.c \
 ../console_uart.c \
 ../control_page.c \
+../drum_pad_functions.c \
 ../heap_2.c \
 ../homepage.c \
 ../hooks.c \
@@ -35,6 +36,7 @@ C_DEPS += \
 ./console_task.d \
 ./console_uart.d \
 ./control_page.d \
+./drum_pad_functions.d \
 ./heap_2.d \
 ./homepage.d \
 ./hooks.d \
@@ -54,6 +56,7 @@ OBJS += \
 ./console_task.obj \
 ./console_uart.obj \
 ./control_page.obj \
+./drum_pad_functions.obj \
 ./heap_2.obj \
 ./homepage.obj \
 ./hooks.obj \
@@ -73,6 +76,7 @@ OBJS__QUOTED += \
 "console_task.obj" \
 "console_uart.obj" \
 "control_page.obj" \
+"drum_pad_functions.obj" \
 "heap_2.obj" \
 "homepage.obj" \
 "hooks.obj" \
@@ -92,6 +96,7 @@ C_DEPS__QUOTED += \
 "console_task.d" \
 "console_uart.d" \
 "control_page.d" \
+"drum_pad_functions.d" \
 "heap_2.d" \
 "homepage.d" \
 "hooks.d" \
@@ -111,6 +116,7 @@ C_SRCS__QUOTED += \
 "../console_task.c" \
 "../console_uart.c" \
 "../control_page.c" \
+"../drum_pad_functions.c" \
 "../heap_2.c" \
 "../homepage.c" \
 "../hooks.c" \

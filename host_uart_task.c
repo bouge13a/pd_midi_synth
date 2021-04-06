@@ -9,6 +9,7 @@
 #include <stdbool.h>
 
 #include "GPOs.h"
+#include "console_task.h"
 
 #include "driverlib/rom.h"
 #include "driverlib/rom_map.h"
@@ -25,10 +26,13 @@
 
 static QueueHandle_t uart_tx_q = NULL;
 static gpio_pin_t* blue_debug;
+static uint32_t page_num;
 
-void init_host_uart(void) {
+void init_host_uart(uint32_t page_number) {
 
-    uart_tx_q = xQueueCreate(10, sizeof(uart_msg_u));
+    page_num = page_number;
+
+    uart_tx_q = xQueueCreate(12, sizeof(uart_msg_u));
     blue_debug = get_gpo_config("blue debug");
 
     set_gpo(blue_debug, 0);
@@ -78,11 +82,17 @@ void host_uart_task(void* parm) {
                 break;
 
             case NOTE_OFF:
-                MAP_UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[loop_index]);
+                MAP_UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[0]);
                 break;
 
             default:
                 break;
+        }
+
+        if (is_on_screen(page_num)) {
+            UARTprintf("%d %d %d\n", uart_msg.bitfield.message_type,
+                                     uart_msg.bitfield.pad_num,
+                                     uart_msg.bitfield.value);
         }
 
         set_gpo(blue_debug, 0);
@@ -100,6 +110,17 @@ void send_to_host(uart_msg_u message) {
 void send_to_host_from_isr(uart_msg_u message) {
 
     xQueueSendFromISR(uart_tx_q, &message, 0);
+
+}
+
+// GUI functions
+void uartmsg_drawpage(void) {
+
+}
+void uartmsg_drawdata(void){
+
+}
+void uartmsg_drawinput(int character){
 
 }
 

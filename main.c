@@ -28,6 +28,7 @@
 #include "GPIs.h"
 #include "GPOs.h"
 #include "host_uart_task.h"
+#include "drum_pad_functions.h"
 
 
 int main(void){
@@ -41,7 +42,7 @@ int main(void){
     MAP_FPULazyStackingEnable();
 
     // Set the system clock to 50 MHz
-    MAP_SysCtlClockSet(SYSCTL_SYSDIV_4 |
+    SysCtlClockSet(SYSCTL_SYSDIV_4 |
                        SYSCTL_USE_PLL |
                        SYSCTL_OSC_MAIN |
                        SYSCTL_XTAL_16MHZ);
@@ -71,7 +72,7 @@ int main(void){
 
     init_logger();
 
-    init_host_uart();
+    init_drumpad();
 
     /////////////////////////////////////////////////////////
     //                  Add pages to Console
@@ -104,6 +105,13 @@ int main(void){
              taskmanager_drawinput,
              portMAX_DELAY,
              false);
+
+    init_host_uart(add_page("UART msgs",
+                            uartmsg_drawpage,
+                            uartmsg_drawdata,
+                            uartmsg_drawinput,
+                            portMAX_DELAY,
+                            true));
 
     ///////////////////////////////////////////////////////
     //                Create Tasks

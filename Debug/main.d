@@ -41,6 +41,7 @@ main.obj: ../task_manager_page.h
 main.obj: ../GPIs.h
 main.obj: ../GPOs.h
 main.obj: ../host_uart_task.h
+main.obj: ../drum_pad_functions.h
 
 ../main.c: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h: 
@@ -83,3 +84,4 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h:
 ../GPIs.h: 
 ../GPOs.h: 
 ../host_uart_task.h: 
+../drum_pad_functions.h: 
