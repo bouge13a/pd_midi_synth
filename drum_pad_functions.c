@@ -56,24 +56,29 @@ void process_drumpad(uint32_t* adc00values, uint32_t* adc11values) {
                     }
                 }
                 break;
+
             case MID_STATE:
 
                 // Make sure that the note stays high long enough
                 if (idx < 8) {
-                    high_value = adc00values[idx];
+
                     if (adc00values[idx] < LOW_REF) {
                         pad_states[idx].state = LOW_STATE;
                         pad_states[idx].value_idx = 0;
                         break;
                     }
 
+                   // high_value = adc00values[idx];
+
                 } else {
-                    high_value = adc00values[idx];
+
                     if (adc11values[idx - 8] < LOW_REF) {
                         pad_states[idx].state = LOW_STATE;
-                        pad_states[idx].low_value = adc11values[idx-8];
+                        pad_states[idx].value_idx = 0;
                         break;
                     }
+
+                   // high_value = adc00values[idx];
                 }
 
                 if(pad_states[idx].value_idx>=SAMPLES_TO_WAIT) {
@@ -91,17 +96,20 @@ void process_drumpad(uint32_t* adc00values, uint32_t* adc11values) {
                 pad_states[idx].value_idx++;
 
                 break;
+
             case HIGH_STATE:
                 if (idx < 8) {
                     if(adc00values[idx] < LOW_REF) {
                         uart_msg.bitfield.message_type = NOTE_OFF;
+                        uart_msg.bitfield.pad_num = idx;
                         pad_states[idx].state = LOW_STATE;
                         send_to_host(uart_msg);
                         break;
                     }
                 } else {
-                    if(adc11values[idx] < LOW_REF) {
+                    if(adc11values[idx-8] < LOW_REF) {
                         uart_msg.bitfield.message_type = NOTE_OFF;
+                        uart_msg.bitfield.pad_num = idx;
                         pad_states[idx].state = LOW_STATE;
                         send_to_host(uart_msg);
                         break;
