@@ -15,6 +15,7 @@ drum_pad_functions.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/i
 drum_pad_functions.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/sys/_stdint.h
 drum_pad_functions.obj: C:/Users/steph/workspace_v10/drum_pad/utils/uartstdio.h
 drum_pad_functions.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdarg.h
+drum_pad_functions.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdio.h
 drum_pad_functions.obj: ../drum_pad_functions.h
 drum_pad_functions.obj: ../host_uart_task.h
 drum_pad_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h
@@ -50,6 +51,7 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/machine/_stdint.h
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/sys/_stdint.h: 
 C:/Users/steph/workspace_v10/drum_pad/utils/uartstdio.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdarg.h: 
+C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdio.h: 
 ../drum_pad_functions.h: 
 ../host_uart_task.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h: 

@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <uartstdio.h>
+#include <stdio.h>
 
 #include "drum_pad_functions.h"
 #include "host_uart_task.h"
@@ -20,10 +21,12 @@
 #include "driverlib/sysctl.h"
 
 static const uint32_t NUM_OF_PADS = 12;
-static const uint32_t LOW_REF = 100;
-static const uint32_t SAMPLES_TO_WAIT = 10;
+static const uint32_t LOW_REF = 50;
+static const uint32_t SAMPLES_TO_WAIT = 100;
+static const uint32_t IDLE_CYCLES = 1000;
 
 typedef enum {
+    IDLE_STATE,
     LOW_STATE,
     MID_STATE,
     HIGH_STATE,
@@ -34,11 +37,15 @@ typedef struct {
     uint64_t low_time;
     pad_states_e state;
     uint32_t value_idx;
+    uint32_t idle_idx;
 }pad_states_t;
 
 pad_states_t pad_states[12];
 
 static uint32_t page_num;
+
+static char float_string[20];
+
 
 void init_drumpad(uint32_t page_number) {
 
@@ -56,29 +63,41 @@ void init_drumpad(uint32_t page_number) {
 
     TimerConfigure(TIMER0_BASE, TIMER_CFG_PERIODIC_UP);
 
+    TimerPrescaleSet(TIMER0_BASE, TIMER_BOTH, 1000);
+
     TimerEnable(TIMER0_BASE, TIMER_BOTH);
+
 }
 
 void process_drumpad(uint32_t* adc00values, uint32_t* adc11values) {
 
     uint32_t idx;
     uart_msg_u uart_msg;
-    uint32_t slope = 0;
+    float slope = 0.0;
 
     for(idx=0; idx < NUM_OF_PADS; idx++){
         switch (pad_states[idx].state) {
+
+            case IDLE_STATE :
+                if (pad_states[idx].idle_idx >= IDLE_CYCLES) {
+                    pad_states[idx].state = LOW_STATE;
+                    pad_states[idx].idle_idx = 0;
+                }
+                pad_states[idx].idle_idx++;
+                break;
+
             case LOW_STATE:
                 if (idx < 8) {
                     if (adc00values[idx] > LOW_REF) {
                         pad_states[idx].state = MID_STATE;
                         pad_states[idx].low_value = adc00values[idx];
-                        pad_states[idx].low_time = TimerValueGet64(TIMER0_BASE);
+                        pad_states[idx].low_time = TimerValueGet(TIMER0_BASE, TIMER_BOTH);
                     }
                 } else {
                     if (adc11values[idx - 8] > LOW_REF) {
                         pad_states[idx].state = MID_STATE;
                         pad_states[idx].low_value = adc11values[idx-8];
-                        pad_states[idx].low_time = TimerValueGet64(TIMER0_BASE);
+                        pad_states[idx].low_time = TimerValueGet(TIMER0_BASE, TIMER_BOTH);
                     }
                 }
                 break;
@@ -93,9 +112,6 @@ void process_drumpad(uint32_t* adc00values, uint32_t* adc11values) {
                         pad_states[idx].value_idx = 0;
                         break;
                     }
-
-                   // high_value = adc00values[idx];
-
                 } else {
 
                     if (adc11values[idx - 8] < LOW_REF) {
@@ -103,8 +119,6 @@ void process_drumpad(uint32_t* adc00values, uint32_t* adc11values) {
                         pad_states[idx].value_idx = 0;
                         break;
                     }
-
-                   // high_value = adc00values[idx];
                 }
 
                 if(pad_states[idx].value_idx>=SAMPLES_TO_WAIT) {
@@ -115,18 +129,21 @@ void process_drumpad(uint32_t* adc00values, uint32_t* adc11values) {
                     uart_msg.bitfield.pad_num = idx;
 
                     if (idx < 8) {
-                        slope = ((adc00values[idx] - pad_states[idx].low_value));
+                        slope = (adc00values[idx] - pad_states[idx].low_value);
+                        slope = slope / ((float)(TimerValueGet(TIMER0_BASE, TIMER_BOTH) - pad_states[idx].low_time));
                     } else {
-                        slope = ((adc00values[idx - 8] - pad_states[idx].low_value));
-                    }
-
-                    if((idx == 0) && (is_on_screen(page_num))) {
-                        UARTprintf("%d\n", slope);
+                        slope = (adc11values[idx - 8] - pad_states[idx].low_value);
                     }
 
                     uart_msg.bitfield.value = 63;
 
-                    send_to_host(uart_msg);
+                    if (slope > 0) {
+                        if((idx == 0) && (is_on_screen(page_num))) {
+                            sprintf(float_string, "%f", slope*1000000);
+                            UARTprintf("%s\n", float_string);
+                        }
+                        send_to_host(uart_msg);
+                    }
 
                     break;
                 }
@@ -139,7 +156,7 @@ void process_drumpad(uint32_t* adc00values, uint32_t* adc11values) {
                     if(adc00values[idx] < LOW_REF) {
                         uart_msg.bitfield.message_type = NOTE_OFF;
                         uart_msg.bitfield.pad_num = idx;
-                        pad_states[idx].state = LOW_STATE;
+                        pad_states[idx].state = IDLE_STATE;
                         send_to_host(uart_msg);
                         break;
                     }
@@ -147,7 +164,7 @@ void process_drumpad(uint32_t* adc00values, uint32_t* adc11values) {
                     if(adc11values[idx-8] < LOW_REF) {
                         uart_msg.bitfield.message_type = NOTE_OFF;
                         uart_msg.bitfield.pad_num = idx;
-                        pad_states[idx].state = LOW_STATE;
+                        pad_states[idx].state = IDLE_STATE;
                         send_to_host(uart_msg);
                         break;
                     }
