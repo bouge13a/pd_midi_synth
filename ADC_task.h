@@ -20,4 +20,5 @@ adc_pins_t get_adc_struct(void);
 
 void adc_task(void* parm);
 
+
 #endif /* ADC_TASK_H_ */

@@ -10,6 +10,7 @@ CMD_SRCS += \
 
 C_SRCS += \
 ../ADC_task.c \
+../ADS1015.c \
 ../GPIs.c \
 ../GPOs.c \
 ../I2C_task.c \
@@ -30,6 +31,7 @@ C_SRCS += \
 
 C_DEPS += \
 ./ADC_task.d \
+./ADS1015.d \
 ./GPIs.d \
 ./GPOs.d \
 ./I2C_task.d \
@@ -50,6 +52,7 @@ C_DEPS += \
 
 OBJS += \
 ./ADC_task.obj \
+./ADS1015.obj \
 ./GPIs.obj \
 ./GPOs.obj \
 ./I2C_task.obj \
@@ -70,6 +73,7 @@ OBJS += \
 
 OBJS__QUOTED += \
 "ADC_task.obj" \
+"ADS1015.obj" \
 "GPIs.obj" \
 "GPOs.obj" \
 "I2C_task.obj" \
@@ -90,6 +94,7 @@ OBJS__QUOTED += \
 
 C_DEPS__QUOTED += \
 "ADC_task.d" \
+"ADS1015.d" \
 "GPIs.d" \
 "GPOs.d" \
 "I2C_task.d" \
@@ -110,6 +115,7 @@ C_DEPS__QUOTED += \
 
 C_SRCS__QUOTED += \
 "../ADC_task.c" \
+"../ADS1015.c" \
 "../GPIs.c" \
 "../GPOs.c" \
 "../I2C_task.c" \

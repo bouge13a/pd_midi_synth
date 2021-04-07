@@ -10,9 +10,12 @@
 
 #include <stdint.h>
 
-void init_drumpad(void);
+void init_drumpad(uint32_t page_number);
 
 void process_drumpad(uint32_t* adc00values, uint32_t* adc11values);
 
+void slope_drawpage(void);
+void slope_drawdata(void);
+void slope_drawinput(int character);
 
 #endif /* DRUM_PAD_FUNCTIONS_H_ */

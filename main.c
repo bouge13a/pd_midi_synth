@@ -72,8 +72,6 @@ int main(void){
 
     init_logger();
 
-    init_drumpad();
-
     /////////////////////////////////////////////////////////
     //                  Add pages to Console
     /////////////////////////////////////////////////////////
@@ -112,6 +110,13 @@ int main(void){
                             uartmsg_drawinput,
                             portMAX_DELAY,
                             true));
+
+    init_drumpad(add_page("Slope",
+                              slope_drawpage,
+                              slope_drawdata,
+                              slope_drawinput,
+                              portMAX_DELAY,
+                              true));
 
     ///////////////////////////////////////////////////////
     //                Create Tasks

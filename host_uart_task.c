@@ -38,9 +38,9 @@ void init_host_uart(uint32_t page_number) {
     set_gpo(blue_debug, 0);
 
     MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+
     // Enable the peripherals used by UART
     MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART1);
-
 
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART1));
 
@@ -79,21 +79,30 @@ void host_uart_task(void* parm) {
                 for(loop_index=0; loop_index<3; loop_index++) {
                     MAP_UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[loop_index]);
                 }
+
+                if (is_on_screen(page_num)) {
+                    UARTprintf("%d %d %d\n", uart_msg.bitfield.message_type,
+                                             uart_msg.bitfield.pad_num,
+                                             uart_msg.bitfield.value);
+                }
+
                 break;
 
             case NOTE_OFF:
                 MAP_UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[0]);
+
+                if (is_on_screen(page_num)) {
+                    UARTprintf("%d %d\n", uart_msg.bitfield.message_type,
+                                             uart_msg.bitfield.pad_num);
+                }
+
                 break;
 
             default:
                 break;
         }
 
-        if (is_on_screen(page_num)) {
-            UARTprintf("%d %d %d\n", uart_msg.bitfield.message_type,
-                                     uart_msg.bitfield.pad_num,
-                                     uart_msg.bitfield.value);
-        }
+
 
         set_gpo(blue_debug, 0);
 
