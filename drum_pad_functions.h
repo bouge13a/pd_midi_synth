@@ -12,7 +12,10 @@
 
 void init_drumpad(uint32_t page_number);
 
-void process_drumpad(uint32_t* adc00values, uint32_t* adc11values);
+void process_drumpad(uint32_t* adc00values,
+                     uint32_t* adc11values,
+                     uint32_t adc00time,
+                     uint32_t adc11time);
 
 void slope_drawpage(void);
 void slope_drawdata(void);

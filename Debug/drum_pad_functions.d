@@ -31,9 +31,6 @@ drum_pad_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/q
 drum_pad_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h
 drum_pad_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h
 drum_pad_functions.obj: ../console_task.h
-drum_pad_functions.obj: ../driverlib/timer.h
-drum_pad_functions.obj: ../driverlib/inc/hw_ints.h
-drum_pad_functions.obj: ../driverlib/inc/hw_memmap.h
 drum_pad_functions.obj: ../driverlib/sysctl.h
 
 ../drum_pad_functions.c: 
@@ -67,7 +64,4 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h:
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h: 
 ../console_task.h: 
-../driverlib/timer.h: 
-../driverlib/inc/hw_ints.h: 
-../driverlib/inc/hw_memmap.h: 
 ../driverlib/sysctl.h: 

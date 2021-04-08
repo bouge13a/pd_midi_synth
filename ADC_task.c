@@ -17,6 +17,7 @@
 #include "task.h"
 #include "event_groups.h"
 
+#include "driverlib/timer.h"
 #include "driverlib/inc/hw_ints.h"
 #include "driverlib/inc/hw_memmap.h"
 #include "driverlib/adc.h"
@@ -42,6 +43,8 @@ static EventGroupHandle_t adc_event = NULL;
 
 static const uint32_t BIT_0 = 1;
 static const uint32_t BIT_1 = 1 << 1;
+static uint32_t adc00time;
+static uint32_t adc11time;
 
 void init_adc(void) {
 
@@ -111,6 +114,20 @@ void init_adc(void) {
     IntEnable(INT_ADC0SS0);
     IntEnable(INT_ADC1SS1);
 
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER1);
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_TIMER1));
+
+    TimerClockSourceSet(TIMER1_BASE, TIMER_CLOCK_PIOSC);
+
+    TimerDisable(TIMER1_BASE, TIMER_BOTH);
+
+    TimerConfigure(TIMER1_BASE, TIMER_CFG_PERIODIC);
+
+    //TimerPrescaleSet(TIMER1_BASE, TIMER_BOTH, 10);
+
+    TimerEnable(TIMER1_BASE, TIMER_BOTH);
+
+
 } // End init_adc
 
 adc_pin_t* get_adc_config(const char* name) {
@@ -153,6 +170,8 @@ void ADCSeq0Handler(void) {
     // xHigherPriorityTaskWoken must be initialised to pdFALSE.
     xHigherPriorityTaskWoken = pdFALSE;
 
+    adc00time = TimerValueGet(TIMER1_BASE, TIMER_A);
+
     // Clear the Interrupt Flag.
     ADCIntClear(ADC0_BASE, 0);
 
@@ -174,6 +193,8 @@ void ADCSeq0Handler(void) {
 void ADCSeq1Handler(void) {
 
     BaseType_t xHigherPriorityTaskWoken, xResult;
+
+    adc11time = TimerValueGet(TIMER1_BASE, TIMER_A);
 
     // xHigherPriorityTaskWoken must be initialised to pdFALSE.
     xHigherPriorityTaskWoken = pdFALSE;
@@ -213,7 +234,10 @@ void adc_task(void* parm) {
         ADCSequenceDataGet(ADC0_BASE, 0, adc00_step_values);
         ADCSequenceDataGet(ADC1_BASE, 1, adc11_step_values);
 
-        process_drumpad(adc00_step_values, adc11_step_values);
+        process_drumpad(adc00_step_values,
+                        adc11_step_values,
+                        adc00time,
+                        adc11time);
 
         vTaskDelay(0);
     }

@@ -35,6 +35,7 @@ ADC_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h
 ADC_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h
 ADC_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/event_groups.h
 ADC_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/timers.h
+ADC_task.obj: ../driverlib/timer.h
 ADC_task.obj: ../driverlib/inc/hw_ints.h
 ADC_task.obj: ../driverlib/interrupt.h
 ADC_task.obj: ../drum_pad_functions.h
@@ -74,6 +75,7 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h:
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/event_groups.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/timers.h: 
+../driverlib/timer.h: 
 ../driverlib/inc/hw_ints.h: 
 ../driverlib/interrupt.h: 
 ../drum_pad_functions.h: 
