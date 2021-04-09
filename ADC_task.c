@@ -167,15 +167,13 @@ void ADCSeq0Handler(void) {
 
     BaseType_t xHigherPriorityTaskWoken, xResult;
 
+    adc00time = TimerValueGet(TIMER1_BASE, TIMER_A);
+
     // xHigherPriorityTaskWoken must be initialised to pdFALSE.
     xHigherPriorityTaskWoken = pdFALSE;
 
     // Clear the Interrupt Flag.
     ADCIntClear(ADC0_BASE, 0);
-
-    ADCSequenceDataGet(ADC0_BASE, 0, adc00_step_values);
-
-    adc00time = TimerValueGet(TIMER1_BASE, TIMER_A);
 
     xResult = xEventGroupSetBitsFromISR(adc_event,
                               BIT_0,
@@ -196,15 +194,13 @@ void ADCSeq1Handler(void) {
 
     BaseType_t xHigherPriorityTaskWoken, xResult;
 
+    adc11time = TimerValueGet(TIMER1_BASE, TIMER_A);
+
     // xHigherPriorityTaskWoken must be initialised to pdFALSE.
     xHigherPriorityTaskWoken = pdFALSE;
 
     //Clear the Interrupt Flag.
     ADCIntClear(ADC1_BASE, 1);
-
-    ADCSequenceDataGet(ADC1_BASE, 1, adc11_step_values);
-
-    adc11time = TimerValueGet(TIMER1_BASE, TIMER_A);
 
     xResult = xEventGroupSetBitsFromISR(adc_event,
                                BIT_1,
@@ -234,6 +230,9 @@ void adc_task(void* parm) {
                             pdTRUE,
                             pdTRUE,
                             portMAX_DELAY);
+
+        ADCSequenceDataGet(ADC0_BASE, 0, adc00_step_values);
+        ADCSequenceDataGet(ADC1_BASE, 1, adc11_step_values);
 
         process_drumpad(adc00_step_values,
                         adc11_step_values,

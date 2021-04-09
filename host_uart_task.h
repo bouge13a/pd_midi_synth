@@ -18,13 +18,17 @@ typedef enum {
     NOTE_ON,
     NOTE_OFF,
     OVERDRIVE,
+    PITCH,
+    MODULATION,
+    KNOB,
 }uart_msg_type_e;
 
 typedef struct {
     uint8_t  message_type : 4;
     uint8_t  pad_num      : 4;
     uint16_t value        :16;
-    uint8_t  reserved     : 8;
+    uint8_t  channel      : 4;
+    uint8_t  reserved     : 4;
 }uart_msg_t;
 
 typedef union {
