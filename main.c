@@ -30,6 +30,7 @@
 #include "host_uart_task.h"
 #include "drum_pad_functions.h"
 #include "rotary_enc_task.h"
+#include "joystick_task.h"
 
 
 int main(void){
@@ -74,6 +75,8 @@ int main(void){
     init_logger();
 
     init_rotary_enc();
+
+    init_joystick();
 
     /////////////////////////////////////////////////////////
     //                  Add pages to Console
@@ -121,6 +124,13 @@ int main(void){
                               portMAX_DELAY,
                               true));
 
+    add_page("Joystick",
+             joystick_drawpage,
+             joystick_drawdata,
+             joystick_drawinput,
+             500,
+             false);
+
     ///////////////////////////////////////////////////////
     //                Create Tasks
     ///////////////////////////////////////////////////////
@@ -156,6 +166,14 @@ int main(void){
 
     xTaskCreate(rotary_enc_task,               /* Function that implements the task. */
                 "Encoder",                  /* Text name for the task. */
+                configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
+                NULL,                       /* Parameter passed into the task. */
+                3,                          /* Priority at which the task is created. */
+                NULL );                     /* Used to pass out the created task's handle. */
+
+
+    xTaskCreate(joystick_task,               /* Function that implements the task. */
+                "Joystick",                  /* Text name for the task. */
                 configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
                 NULL,                       /* Parameter passed into the task. */
                 3,                          /* Priority at which the task is created. */

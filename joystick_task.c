@@ -102,10 +102,20 @@ void joystick_task(void* parm) {
 
 
 void joystick_drawpage(void) {
-
+    cursor_pos(5, 0);
+    UARTprintf("Joystick Y:\r\n");
+    UARTprintf("JoyStick X:\r\n");
 }
 void joystick_drawdata(void) {
+    cursor_pos(5, 16);
+    UARTprintf("        ");
+    cursor_pos(5, 16);
+    UARTprintf("%d", joy_y_data.value);
 
+    cursor_pos(6, 16);
+    UARTprintf("        ");
+    cursor_pos(6, 16);
+    UARTprintf("%d", joy_x_data.value);
 }
 void joystick_drawinput(int character) {
 

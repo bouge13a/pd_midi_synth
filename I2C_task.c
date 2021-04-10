@@ -54,7 +54,7 @@ void init_i2c(void) {
 
     I2CMasterInitExpClk(I2C1_BASE, SysCtlClockGet(), false);
 
-    i2c_msg_queue = xQueueCreate(10, sizeof(i2c_msg_t*));
+    i2c_msg_queue = xQueueCreate(20, sizeof(i2c_msg_t*));
 
     addr_ack_err = create_error("I2C1", "No ack from address");
     data_ack_err = create_error("I2C1", "No ack from data");
@@ -123,6 +123,12 @@ void i2c_task(void* parm) {
                 i2c_state = I2C_RECEIVE_START;
 
             }
+
+            if(log_errors()){
+                i2c_state = I2C_FINISH;
+                break;
+            }
+
 
             break;
 
@@ -235,7 +241,7 @@ void i2c_task(void* parm) {
             break;
         }
 
-        vTaskDelay(0);
+        vTaskDelay(1);
 
     }
 
@@ -243,7 +249,9 @@ void i2c_task(void* parm) {
 
 static bool log_errors(void) {
 
-    switch(I2CMasterErr(I2C1_BASE)) {
+    uint32_t status = I2CMasterErr(I2C1_BASE);
+
+    switch(status) {
     case I2C_MASTER_ERR_ADDR_ACK :
         set_error(addr_ack_err);
         return true;
