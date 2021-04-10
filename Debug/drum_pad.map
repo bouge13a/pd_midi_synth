@@ -1,7 +1,7 @@
 ******************************************************************************
                   TI ARM Linker PC v20.2.2                     
 ******************************************************************************
->> Linked Fri Apr  9 16:30:37 2021
+>> Linked Fri Apr  9 21:03:12 2021
 
 OUTPUT FILE NAME:   <drum_pad.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 0000cb11
@@ -11,25 +11,25 @@ MEMORY CONFIGURATION
 
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
-  FLASH                 00000000   00040000  0000d7e2  0003281e  R  X
-  SRAM                  20000000   00008000  000074e0  00000b20  RW X
+  FLASH                 00000000   00040000  0000d86a  00032796  R  X
+  SRAM                  20000000   00008000  00007588  00000a78  RW X
 
 
 SEGMENT ALLOCATION MAP
 
 run origin  load origin   length   init length attrs members
 ----------  ----------- ---------- ----------- ----- -------
-00000000    00000000    0000d7e8   0000d7e8    r-x
+00000000    00000000    0000d870   0000d870    r-x
   00000000    00000000    0000026c   0000026c    r-- .intvecs
   0000026c    0000026c    0000cb66   0000cb66    r-x .text
-  0000cdd4    0000cdd4    00000848   00000848    r-- .const
-  0000d620    0000d620    000001c8   000001c8    r-- .cinit
-20000000    20000000    000074e0   00000000    rw-
+  0000cdd4    0000cdd4    00000888   00000888    r-- .const
+  0000d660    0000d660    00000210   00000210    r-- .cinit
+20000000    20000000    00007588   00000000    rw-
   20000000    20000000    0000026c   00000000    rw- .vtable
   2000026c    2000026c    00006b18   00000000    rw- .bss
-  20006d84    20006d84    0000054c   00000000    rw- .data
-  200072d0    200072d0    00000200   00000000    rw- .stack
-  200074d0    200074d0    00000010   00000000    rw- .sysmem
+  20006d84    20006d84    000005f4   00000000    rw- .data
+  20007378    20007378    00000200   00000000    rw- .stack
+  20007578    20007578    00000010   00000000    rw- .sysmem
 
 
 SECTION ALLOCATION MAP
@@ -170,7 +170,7 @@ section   page    origin      length       input sections
                   0000cdca    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
                   0000cdce    00000004                                   : exit.c.obj (.text:abort:abort)
 
-.const     0    0000cdd4    00000848     
+.const     0    0000cdd4    00000888     
                   0000cdd4    00000120     sysctl.obj (.const:g_pppui32XTALtoVCO)
                   0000cef4    00000101     rtsv7M4_T_le_v4SPD16_eabi.lib : ctype.c.obj (.const:.string:_ctypes_)
                   0000cff5    00000003     --HOLE-- [fill = 0]
@@ -182,35 +182,35 @@ section   page    origin      length       input sections
                   0000d310    00000060     ADC_task.obj (.const:.string)
                   0000d370    00000060     timer.obj (.const:g_ppui32TimerIntMap)
                   0000d3d0    00000050     i2c.obj (.const:g_ppui32I2CIntMapSnowflake)
-                  0000d420    00000040     timer.obj (.const:g_ppui32TimerIntMapSnowflake)
-                  0000d460    00000040     uart.obj (.const:g_ppui32UARTIntMap)
-                  0000d4a0    00000040     uart.obj (.const:g_ppui32UARTIntMapSnowflake)
-                  0000d4e0    00000030     i2c.obj (.const:g_ppui32I2CIntMap)
-                  0000d510    00000030     sysctl.obj (.const:g_sXTALtoMEMTIM)
-                  0000d540    00000022     GPOs.obj (.const:.string)
-                  0000d562    00000002     --HOLE-- [fill = 0]
-                  0000d564    00000020     interrupt.obj (.const:g_pui32Priority)
-                  0000d584    00000014     interrupt.obj (.const:g_pui32Dii16Regs)
-                  0000d598    00000014     interrupt.obj (.const:g_pui32EnRegs)
-                  0000d5ac    00000014     interrupt.obj (.const:g_pui32PendRegs)
-                  0000d5c0    00000014     interrupt.obj (.const:g_pui32UnpendRegs)
-                  0000d5d4    00000012     uartstdio.obj (.const:.string)
-                  0000d5e6    00000002     --HOLE-- [fill = 0]
-                  0000d5e8    0000000c     uartstdio.obj (.const:g_ui32UARTBase)
-                  0000d5f4    0000000c     uartstdio.obj (.const:g_ui32UARTPeriph)
-                  0000d600    00000008     sysctl.obj (.const:g_pui32VCOFrequencies)
-                  0000d608    00000008     GPOs.obj (.const:gpo_info)
-                  0000d610    00000008     port.obj (.const)
-                  0000d618    00000004     uartstdio.obj (.const)
+                  0000d420    00000040     GPIs.obj (.const:.string)
+                  0000d460    00000040     timer.obj (.const:g_ppui32TimerIntMapSnowflake)
+                  0000d4a0    00000040     uart.obj (.const:g_ppui32UARTIntMap)
+                  0000d4e0    00000040     uart.obj (.const:g_ppui32UARTIntMapSnowflake)
+                  0000d520    00000030     i2c.obj (.const:g_ppui32I2CIntMap)
+                  0000d550    00000030     sysctl.obj (.const:g_sXTALtoMEMTIM)
+                  0000d580    00000022     GPOs.obj (.const:.string)
+                  0000d5a2    00000002     --HOLE-- [fill = 0]
+                  0000d5a4    00000020     interrupt.obj (.const:g_pui32Priority)
+                  0000d5c4    00000014     interrupt.obj (.const:g_pui32Dii16Regs)
+                  0000d5d8    00000014     interrupt.obj (.const:g_pui32EnRegs)
+                  0000d5ec    00000014     interrupt.obj (.const:g_pui32PendRegs)
+                  0000d600    00000014     interrupt.obj (.const:g_pui32UnpendRegs)
+                  0000d614    00000012     uartstdio.obj (.const:.string)
+                  0000d626    00000002     --HOLE-- [fill = 0]
+                  0000d628    0000000c     uartstdio.obj (.const:g_ui32UARTBase)
+                  0000d634    0000000c     uartstdio.obj (.const:g_ui32UARTPeriph)
+                  0000d640    00000008     sysctl.obj (.const:g_pui32VCOFrequencies)
+                  0000d648    00000008     GPOs.obj (.const:gpo_info)
+                  0000d650    00000008     port.obj (.const)
+                  0000d658    00000004     uartstdio.obj (.const)
 
-.cinit     0    0000d620    000001c8     
-                  0000d620    0000018e     (.cinit..data.load) [load image, compression = lzss]
-                  0000d7ae    00000002     --HOLE-- [fill = 0]
-                  0000d7b0    0000000c     (__TI_handler_table)
-                  0000d7bc    00000004     --HOLE-- [fill = 0]
-                  0000d7c0    00000008     (.cinit..bss.load) [load image, compression = zero_init]
-                  0000d7c8    00000008     (.cinit..vtable.load) [load image, compression = zero_init]
-                  0000d7d0    00000018     (__TI_cinit_table)
+.cinit     0    0000d660    00000210     
+                  0000d660    000001db     (.cinit..data.load) [load image, compression = lzss]
+                  0000d83b    00000001     --HOLE-- [fill = 0]
+                  0000d83c    0000000c     (__TI_handler_table)
+                  0000d848    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  0000d850    00000008     (.cinit..vtable.load) [load image, compression = zero_init]
+                  0000d858    00000018     (__TI_cinit_table)
 
 .init_array 
 *          0    00000000    00000000     UNINITIALIZED
@@ -258,7 +258,7 @@ section   page    origin      length       input sections
                   20006d7c    00000004     (.common:green_debug)
                   20006d80    00000004     (.common:red_debug)
 
-.data      0    20006d84    0000054c     UNINITIALIZED
+.data      0    20006d84    000005f4     UNINITIALIZED
                   20006d84    000000f0     rtsv7M4_T_le_v4SPD16_eabi.lib : defs.c.obj (.data:_ftable)
                   20006e74    000000a8     console_task.obj (.data:console_pages)
                   20006f1c    00000078     rtsv7M4_T_le_v4SPD16_eabi.lib : host_device.c.obj (.data:_device)
@@ -277,36 +277,44 @@ section   page    origin      length       input sections
                   2000718c    00000024     ADC_task.obj (.data:pad7)
                   200071b0    00000024     ADC_task.obj (.data:pad8)
                   200071d4    00000024     ADC_task.obj (.data:pad9)
-                  200071f8    00000014     GPOs.obj (.data:blue_led)
-                  2000720c    00000014     GPOs.obj (.data:green_led)
-                  20007220    00000014     GPOs.obj (.data:red_led)
-                  20007234    00000011     console_task.obj (.data)
-                  20007245    00000003     --HOLE--
-                  20007248    00000010     rtsv7M4_T_le_v4SPD16_eabi.lib : defs.c.obj (.data)
-                  20007258    0000000c                                   : exit.c.obj (.data:$O1$$)
-                  20007264    0000000c     GPOs.obj (.data:gpos)
-                  20007270    0000000c     port.obj (.data)
-                  2000727c    0000000c     timers.obj (.data)
-                  20007288    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.c.obj (.data:$O1$$)
-                  20007290    00000008                                   : memory.c.obj (.data:$O1$$)
-                  20007298    00000008     ADC_task.obj (.data:adc_pin_struct)
-                  200072a0    00000008     GPIs.obj (.data:gpi_info)
-                  200072a8    00000008     heap_2.obj (.data)
-                  200072b0    00000005     I2C_task.obj (.data)
-                  200072b5    00000003     --HOLE--
-                  200072b8    00000005     uartstdio.obj (.data)
-                  200072bd    00000003     --HOLE--
-                  200072c0    00000004     ADC_task.obj (.data)
-                  200072c4    00000004     host_uart_task.obj (.data)
-                  200072c8    00000004     logger.obj (.data)
-                  200072cc    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : errno.c.obj (.data)
+                  200071f8    0000001c     GPIs.obj (.data:gpi_pins)
+                  20007214    00000014     GPOs.obj (.data:blue_led)
+                  20007228    00000014     GPIs.obj (.data:enc_bit_0)
+                  2000723c    00000014     GPIs.obj (.data:enc_bit_1)
+                  20007250    00000014     GPIs.obj (.data:enc_bit_2)
+                  20007264    00000014     GPIs.obj (.data:enc_bit_3)
+                  20007278    00000014     GPOs.obj (.data:green_led)
+                  2000728c    00000014     GPIs.obj (.data:octave_down)
+                  200072a0    00000014     GPIs.obj (.data:octave_up)
+                  200072b4    00000014     GPIs.obj (.data:pressure_sense)
+                  200072c8    00000014     GPOs.obj (.data:red_led)
+                  200072dc    00000011     console_task.obj (.data)
+                  200072ed    00000003     --HOLE--
+                  200072f0    00000010     rtsv7M4_T_le_v4SPD16_eabi.lib : defs.c.obj (.data)
+                  20007300    0000000c                                   : exit.c.obj (.data:$O1$$)
+                  2000730c    0000000c     GPOs.obj (.data:gpos)
+                  20007318    0000000c     port.obj (.data)
+                  20007324    0000000c     timers.obj (.data)
+                  20007330    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.c.obj (.data:$O1$$)
+                  20007338    00000008                                   : memory.c.obj (.data:$O1$$)
+                  20007340    00000008     ADC_task.obj (.data:adc_pin_struct)
+                  20007348    00000008     GPIs.obj (.data:gpi_info)
+                  20007350    00000008     heap_2.obj (.data)
+                  20007358    00000005     I2C_task.obj (.data)
+                  2000735d    00000003     --HOLE--
+                  20007360    00000005     uartstdio.obj (.data)
+                  20007365    00000003     --HOLE--
+                  20007368    00000004     ADC_task.obj (.data)
+                  2000736c    00000004     host_uart_task.obj (.data)
+                  20007370    00000004     logger.obj (.data)
+                  20007374    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : errno.c.obj (.data)
 
-.stack     0    200072d0    00000200     UNINITIALIZED
-                  200072d0    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
-                  200072d4    000001fc     --HOLE--
+.stack     0    20007378    00000200     UNINITIALIZED
+                  20007378    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
+                  2000737c    000001fc     --HOLE--
 
-.sysmem    0    200074d0    00000010     UNINITIALIZED
-                  200074d0    00000010     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.c.obj (.sysmem)
+.sysmem    0    20007578    00000010     UNINITIALIZED
+                  20007578    00000010     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.c.obj (.sysmem)
 
 __llvm_prf_cnts 
 *          0    20000000    00000000     UNINITIALIZED
@@ -321,20 +329,20 @@ MODULE SUMMARY
        I2C_task.obj                   1340    0         25     
        console_task.obj               1172    0         185    
        logger.obj                     560     0         256    
+       GPIs.obj                       396     64        176    
        tm4c123gh6pm_startup_ccs.obj   12      620       0      
        main.obj                       484     0         0      
        task_manager_page.obj          76      0         400    
        heap_2.obj                     448     0         24     
        host_uart_task.obj             436     0         12     
        GPOs.obj                       324     42        72     
-       GPIs.obj                       396     0         8      
        control_page.obj               376     0         16     
        homepage.obj                   304     0         0      
        console_uart.obj               240     0         4      
        text_controls.obj              210     0         0      
        hooks.obj                      42      0         0      
     +--+------------------------------+-------+---------+---------+
-       Total:                         8536    758       27414  
+       Total:                         8536    822       27582  
                                                                
     .\FreeRTOS\
        tasks.obj                      7768    0         260    
@@ -436,22 +444,22 @@ MODULE SUMMARY
                                                                
        Heap:                          0       0         16     
        Stack:                         0       0         512    
-       Linker Generated:              0       450       0      
+       Linker Generated:              0       527       0      
     +--+------------------------------+-------+---------+---------+
-       Grand Total:                   52043   3183      29911  
+       Grand Total:                   52043   3324      30079  
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 0000d7d0 records: 3, size/record: 8, table size: 24
-	.data: load addr=0000d620, load size=0000018e bytes, run addr=20006d84, run size=0000054c bytes, compression=lzss
-	.bss: load addr=0000d7c0, load size=00000008 bytes, run addr=2000026c, run size=00006b18 bytes, compression=zero_init
-	.vtable: load addr=0000d7c8, load size=00000008 bytes, run addr=20000000, run size=0000026c bytes, compression=zero_init
+__TI_cinit_table @ 0000d858 records: 3, size/record: 8, table size: 24
+	.data: load addr=0000d660, load size=000001db bytes, run addr=20006d84, run size=000005f4 bytes, compression=lzss
+	.bss: load addr=0000d848, load size=00000008 bytes, run addr=2000026c, run size=00006b18 bytes, compression=zero_init
+	.vtable: load addr=0000d850, load size=00000008 bytes, run addr=20000000, run size=0000026c bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 0000d7b0 records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 0000d83c records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_zero_init
 	index: 1, handler: __TI_decompress_lzss
 	index: 2, handler: __TI_decompress_none
@@ -791,24 +799,24 @@ address   name
 00008525  UARTvprintf                        
 000083f3  UARTwrite                          
 200067fc  __CIOBUF_                          
-200074d0  __STACK_END                        
+20007578  __STACK_END                        
 00000200  __STACK_SIZE                       
-200074d0  __STACK_TOP                        
+20007578  __STACK_TOP                        
 00000010  __SYSMEM_SIZE                      
-0000d7d0  __TI_CINIT_Base                    
-0000d7e8  __TI_CINIT_Limit                   
-0000d7b0  __TI_Handler_Table_Base            
-0000d7bc  __TI_Handler_Table_Limit           
+0000d858  __TI_CINIT_Base                    
+0000d870  __TI_CINIT_Limit                   
+0000d83c  __TI_Handler_Table_Base            
+0000d848  __TI_Handler_Table_Limit           
 0000c87d  __TI_auto_init_nobinit_nopinit     
 0000caa9  __TI_cleanup                       
-20007258  __TI_cleanup_ptr                   
+20007300  __TI_cleanup_ptr                   
 0000c05d  __TI_closefile                     
 0000c285  __TI_decompress_lzss               
 0000cd83  __TI_decompress_none               
 0000c681  __TI_doflush                       
-2000725c  __TI_dtors_ptr                     
-20007260  __TI_enable_exit_profile_output    
-20007248  __TI_ft_end                        
+20007304  __TI_dtors_ptr                     
+20007308  __TI_enable_exit_profile_output    
+200072f0  __TI_ft_end                        
 0000c5db  __TI_ltoa                          
 ffffffff  __TI_pprof_out_hndl                
 00004bd9  __TI_printfi                       
@@ -842,16 +850,16 @@ ffffffff  __TI_prof_data_start
 0000bfe3  __aeabi_memset                     
 0000bfe3  __aeabi_memset4                    
 0000bfe3  __aeabi_memset8                    
-20007254  __aeabi_stderr                     
-2000724c  __aeabi_stdin                      
-20007250  __aeabi_stdout                     
+200072fc  __aeabi_stderr                     
+200072f4  __aeabi_stdin                      
+200072f8  __aeabi_stdout                     
 0000c905  __aeabi_uidiv                      
 0000c905  __aeabi_uidivmod                   
 0000bdc3  __aeabi_uldivmod                   
 ffffffff  __binit__                          
 ffffffff  __c_args__                         
 UNDEFED   __mpu_init                         
-200072d0  __stack                            
+20007378  __stack                            
 20000000  __start___llvm_prf_cnts            
 20000000  __stop___llvm_prf_cnts             
 0000cc95  _abort_msg                         
@@ -859,16 +867,16 @@ UNDEFED   __mpu_init
 0000cef4  _ctypes_                           
 20006f1c  _device                            
 20006d84  _ftable                            
-20007288  _lock                              
+20007330  _lock                              
 00005627  _nop                               
 20006f94  _stream                            
-200074d0  _sys_memory                        
+20007578  _sys_memory                        
 UNDEFED   _system_post_cinit                 
 0000cdcb  _system_pre_init                   
-2000728c  _unlock                            
+20007334  _unlock                            
 0000cdcf  abort                              
 20006d40  adc_info                           
-20007298  adc_pin_struct                     
+20007340  adc_pin_struct                     
 000097fd  adc_task                           
 00007efb  add_i2c_msg                        
 00008d01  add_page                           
@@ -896,7 +904,7 @@ ffffffff  binit
 0000bb19  cursor_pos                         
 20006d78  data_ack_err                       
 000006a5  eTaskGetState                      
-200072cc  errno                              
+20007374  errno                              
 0000c765  exit                               
 0000bf65  fflush                             
 0000cb45  finddevice                         
@@ -916,15 +924,15 @@ ffffffff  binit
 0000acef  get_gpo                            
 0000ac7f  get_gpo_config                     
 0000c8c1  getdevice                          
-200072a0  gpi_info                           
+20007348  gpi_info                           
 20006d48  gpis_info                          
-0000d608  gpo_info                           
+0000d648  gpo_info                           
 20006d7c  green_debug                        
 0000b007  homepage_drawdata                  
 0000b009  homepage_drawinput                 
 0000afb5  homepage_drawpage                  
 0000a7bf  host_uart_task                     
-200072b0  i2c_msg_queue                      
+20007358  i2c_msg_queue                      
 00007f85  i2c_task                           
 00009545  init_adc                           
 00008cf1  init_console                       
@@ -991,7 +999,7 @@ ffffffff  binit
 0000a8ab  uartmsg_drawpage                   
 2000026c  ucHeap                             
 00002da5  ucQueueGetQueueType                
-0000d610  ulMaxSyscallInterruptPriority      
+0000d650  ulMaxSyscallInterruptPriority      
 0000ba15  ulPortGetIPSR                      
 00001b19  ulTaskNotifyTake                   
 0000cba5  unlink                             
@@ -1718,12 +1726,12 @@ address   name
 0000cdcf  C$$EXIT                            
 0000cdcf  abort                              
 0000cef4  _ctypes_                           
-0000d608  gpo_info                           
-0000d610  ulMaxSyscallInterruptPriority      
-0000d7b0  __TI_Handler_Table_Base            
-0000d7bc  __TI_Handler_Table_Limit           
-0000d7d0  __TI_CINIT_Base                    
-0000d7e8  __TI_CINIT_Limit                   
+0000d648  gpo_info                           
+0000d650  ulMaxSyscallInterruptPriority      
+0000d83c  __TI_Handler_Table_Base            
+0000d848  __TI_Handler_Table_Limit           
+0000d858  __TI_CINIT_Base                    
+0000d870  __TI_CINIT_Limit                   
 20000000  __start___llvm_prf_cnts            
 20000000  __stop___llvm_prf_cnts             
 20000000  g_pfnRAMVectors                    
@@ -1746,23 +1754,23 @@ address   name
 20006f1c  _device                            
 20006f94  _stream                            
 20006fe4  pxCurrentTCB                       
-20007248  __TI_ft_end                        
-2000724c  __aeabi_stdin                      
-20007250  __aeabi_stdout                     
-20007254  __aeabi_stderr                     
-20007258  __TI_cleanup_ptr                   
-2000725c  __TI_dtors_ptr                     
-20007260  __TI_enable_exit_profile_output    
-20007288  _lock                              
-2000728c  _unlock                            
-20007298  adc_pin_struct                     
-200072a0  gpi_info                           
-200072b0  i2c_msg_queue                      
-200072cc  errno                              
-200072d0  __stack                            
-200074d0  __STACK_END                        
-200074d0  __STACK_TOP                        
-200074d0  _sys_memory                        
+200072f0  __TI_ft_end                        
+200072f4  __aeabi_stdin                      
+200072f8  __aeabi_stdout                     
+200072fc  __aeabi_stderr                     
+20007300  __TI_cleanup_ptr                   
+20007304  __TI_dtors_ptr                     
+20007308  __TI_enable_exit_profile_output    
+20007330  _lock                              
+20007334  _unlock                            
+20007340  adc_pin_struct                     
+20007348  gpi_info                           
+20007358  i2c_msg_queue                      
+20007374  errno                              
+20007378  __stack                            
+20007578  __STACK_END                        
+20007578  __STACK_TOP                        
+20007578  _sys_memory                        
 ffffffff  __TI_pprof_out_hndl                
 ffffffff  __TI_prof_data_size                
 ffffffff  __TI_prof_data_start               

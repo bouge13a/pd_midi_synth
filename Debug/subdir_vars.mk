@@ -10,7 +10,6 @@ CMD_SRCS += \
 
 C_SRCS += \
 ../ADC_task.c \
-../ADS1015.c \
 ../GPIs.c \
 ../GPOs.c \
 ../I2C_task.c \
@@ -24,6 +23,7 @@ C_SRCS += \
 ../host_uart_task.c \
 ../logger.c \
 ../main.c \
+../rotary_enc_task.c \
 ../task_manager_page.c \
 ../text_controls.c \
 ../tm4c123gh6pm_startup_ccs.c \
@@ -31,7 +31,6 @@ C_SRCS += \
 
 C_DEPS += \
 ./ADC_task.d \
-./ADS1015.d \
 ./GPIs.d \
 ./GPOs.d \
 ./I2C_task.d \
@@ -45,6 +44,7 @@ C_DEPS += \
 ./host_uart_task.d \
 ./logger.d \
 ./main.d \
+./rotary_enc_task.d \
 ./task_manager_page.d \
 ./text_controls.d \
 ./tm4c123gh6pm_startup_ccs.d \
@@ -52,7 +52,6 @@ C_DEPS += \
 
 OBJS += \
 ./ADC_task.obj \
-./ADS1015.obj \
 ./GPIs.obj \
 ./GPOs.obj \
 ./I2C_task.obj \
@@ -66,6 +65,7 @@ OBJS += \
 ./host_uart_task.obj \
 ./logger.obj \
 ./main.obj \
+./rotary_enc_task.obj \
 ./task_manager_page.obj \
 ./text_controls.obj \
 ./tm4c123gh6pm_startup_ccs.obj \
@@ -73,7 +73,6 @@ OBJS += \
 
 OBJS__QUOTED += \
 "ADC_task.obj" \
-"ADS1015.obj" \
 "GPIs.obj" \
 "GPOs.obj" \
 "I2C_task.obj" \
@@ -87,6 +86,7 @@ OBJS__QUOTED += \
 "host_uart_task.obj" \
 "logger.obj" \
 "main.obj" \
+"rotary_enc_task.obj" \
 "task_manager_page.obj" \
 "text_controls.obj" \
 "tm4c123gh6pm_startup_ccs.obj" \
@@ -94,7 +94,6 @@ OBJS__QUOTED += \
 
 C_DEPS__QUOTED += \
 "ADC_task.d" \
-"ADS1015.d" \
 "GPIs.d" \
 "GPOs.d" \
 "I2C_task.d" \
@@ -108,6 +107,7 @@ C_DEPS__QUOTED += \
 "host_uart_task.d" \
 "logger.d" \
 "main.d" \
+"rotary_enc_task.d" \
 "task_manager_page.d" \
 "text_controls.d" \
 "tm4c123gh6pm_startup_ccs.d" \
@@ -115,7 +115,6 @@ C_DEPS__QUOTED += \
 
 C_SRCS__QUOTED += \
 "../ADC_task.c" \
-"../ADS1015.c" \
 "../GPIs.c" \
 "../GPOs.c" \
 "../I2C_task.c" \
@@ -129,6 +128,7 @@ C_SRCS__QUOTED += \
 "../host_uart_task.c" \
 "../logger.c" \
 "../main.c" \
+"../rotary_enc_task.c" \
 "../task_manager_page.c" \
 "../text_controls.c" \
 "../tm4c123gh6pm_startup_ccs.c" \
