@@ -26,17 +26,17 @@ static gpio_pin_t* enc_bit_1;
 static gpio_pin_t* enc_bit_2;
 static gpio_pin_t* enc_bit_3;
 
-static const uint8_t BLANK_SEG = 0b00000000;
-static const uint8_t ZERO_SEG = 0b01111110;
-static const uint8_t ONE_SEG  = 0b00001010;
-static const uint8_t TWO_SEG  = 0b10110110;
-static const uint8_t THREE_SEG = 0b10011110;
-static const uint8_t FOUR_SEG = 0b11001010;
-static const uint8_t FIVE_SEG = 0b11011100;
-static const uint8_t SIX_SEG = 0b11111100;
+static const uint8_t BLANK_SEG  = 0b00000000;
+static const uint8_t ZERO_SEG   = 0b01111110;
+static const uint8_t ONE_SEG    = 0b00001010;
+static const uint8_t TWO_SEG    = 0b10110110;
+static const uint8_t THREE_SEG  = 0b10011110;
+static const uint8_t FOUR_SEG   = 0b11001010;
+static const uint8_t FIVE_SEG   = 0b11011100;
+static const uint8_t SIX_SEG    = 0b11111100;
 static const uint8_t SEVEN_SEG  = 0b00001110;
 static const uint8_t EIGHT_SEG  = 0b11111110;
-static const uint8_t NINE_SEG  = 0b11011110;
+static const uint8_t NINE_SEG   = 0b11011110;
 
 static uint32_t bits;
 
@@ -90,43 +90,43 @@ void rotary_enc_task(void* parm) {
         switch (bits) {
         case 0 :
             SSIDataPut(SSI0_BASE, ZERO_SEG);
-            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            SSIDataPut(SSI0_BASE, ZERO_SEG);
             break;
         case 1 :
             SSIDataPut(SSI0_BASE, ONE_SEG);
-            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            SSIDataPut(SSI0_BASE, ZERO_SEG);
             break;
         case 2:
             SSIDataPut(SSI0_BASE, TWO_SEG);
-            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            SSIDataPut(SSI0_BASE, ZERO_SEG);
             break;
         case 3 :
             SSIDataPut(SSI0_BASE, THREE_SEG);
-            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            SSIDataPut(SSI0_BASE, ZERO_SEG);
             break;
         case 4 :
             SSIDataPut(SSI0_BASE, FOUR_SEG);
-            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            SSIDataPut(SSI0_BASE, ZERO_SEG);
             break;
         case 5 :
             SSIDataPut(SSI0_BASE, FIVE_SEG);
-            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            SSIDataPut(SSI0_BASE, ZERO_SEG);
             break;
         case 6 :
             SSIDataPut(SSI0_BASE, SIX_SEG);
-            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            SSIDataPut(SSI0_BASE, ZERO_SEG);
             break;
         case 7 :
             SSIDataPut(SSI0_BASE, SEVEN_SEG);
-            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            SSIDataPut(SSI0_BASE, ZERO_SEG);
             break;
         case 8 :
             SSIDataPut(SSI0_BASE, EIGHT_SEG);
-            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            SSIDataPut(SSI0_BASE, ZERO_SEG);
             break;
         case 9 :
             SSIDataPut(SSI0_BASE, NINE_SEG);
-            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            SSIDataPut(SSI0_BASE, ZERO_SEG);
             break;
         case 10 :
             SSIDataPut(SSI0_BASE, ZERO_SEG);

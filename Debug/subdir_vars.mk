@@ -21,6 +21,7 @@ C_SRCS += \
 ../homepage.c \
 ../hooks.c \
 ../host_uart_task.c \
+../joystick_task.c \
 ../logger.c \
 ../main.c \
 ../rotary_enc_task.c \
@@ -42,6 +43,7 @@ C_DEPS += \
 ./homepage.d \
 ./hooks.d \
 ./host_uart_task.d \
+./joystick_task.d \
 ./logger.d \
 ./main.d \
 ./rotary_enc_task.d \
@@ -63,6 +65,7 @@ OBJS += \
 ./homepage.obj \
 ./hooks.obj \
 ./host_uart_task.obj \
+./joystick_task.obj \
 ./logger.obj \
 ./main.obj \
 ./rotary_enc_task.obj \
@@ -84,6 +87,7 @@ OBJS__QUOTED += \
 "homepage.obj" \
 "hooks.obj" \
 "host_uart_task.obj" \
+"joystick_task.obj" \
 "logger.obj" \
 "main.obj" \
 "rotary_enc_task.obj" \
@@ -105,6 +109,7 @@ C_DEPS__QUOTED += \
 "homepage.d" \
 "hooks.d" \
 "host_uart_task.d" \
+"joystick_task.d" \
 "logger.d" \
 "main.d" \
 "rotary_enc_task.d" \
@@ -126,6 +131,7 @@ C_SRCS__QUOTED += \
 "../homepage.c" \
 "../hooks.c" \
 "../host_uart_task.c" \
+"../joystick_task.c" \
 "../logger.c" \
 "../main.c" \
 "../rotary_enc_task.c" \

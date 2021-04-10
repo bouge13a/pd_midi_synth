@@ -31,8 +31,6 @@
 #define COMP_LOW_REF   300
 #define COMP_HIGH_REF 1000
 
-static const uint32_t ADC_PERIOD_MS = 10;
-
 void ADCSeq0Handler(void);
 void ADCSeq1Handler(void);
 
@@ -123,8 +121,6 @@ void init_adc(void) {
 
     TimerConfigure(TIMER1_BASE, TIMER_CFG_PERIODIC);
 
-    //TimerPrescaleSet(TIMER1_BASE, TIMER_BOTH, 10);
-
     TimerEnable(TIMER1_BASE, TIMER_BOTH);
 
 
@@ -139,7 +135,6 @@ adc_pin_t* get_adc_config(const char* name) {
         if(0 == strcmp(name, adc_pin_struct.adc_pins[idx]->name)){
             return adc_pin_struct.adc_pins[idx];
         }
-
     }
 
     assert(0);
@@ -219,11 +214,11 @@ void ADCSeq1Handler(void) {
 
 void adc_task(void* parm) {
 
-    while(1) {
+    // Trigger the ADC conversion.
+    ADCProcessorTrigger(ADC0_BASE, 0);
+    ADCProcessorTrigger(ADC1_BASE, 1);
 
-        // Trigger the ADC conversion.
-        ADCProcessorTrigger(ADC0_BASE, 0);
-        ADCProcessorTrigger(ADC1_BASE, 1);
+    while(1) {
 
         xEventGroupWaitBits(adc_event,
                             BIT_0 | BIT_1,
@@ -232,12 +227,16 @@ void adc_task(void* parm) {
                             portMAX_DELAY);
 
         ADCSequenceDataGet(ADC0_BASE, 0, adc00_step_values);
-        ADCSequenceDataGet(ADC1_BASE, 1, adc11_step_values);
+        ADCSequenceDataGet(ADC1_BASE, 1, &adc11_step_values[1]);
 
         process_drumpad(adc00_step_values,
                         adc11_step_values,
                         adc00time,
                         adc11time);
+
+        // Trigger the ADC conversion.
+        ADCProcessorTrigger(ADC0_BASE, 0);
+        ADCProcessorTrigger(ADC1_BASE, 1);
 
         vTaskDelay(0);
     }
