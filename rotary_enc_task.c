@@ -26,6 +26,19 @@ static gpio_pin_t* enc_bit_1;
 static gpio_pin_t* enc_bit_2;
 static gpio_pin_t* enc_bit_3;
 
+static const uint8_t BLANK_SEG = 0b00000000;
+static const uint8_t ZERO_SEG = 0b01111110;
+static const uint8_t ONE_SEG  = 0b00001010;
+static const uint8_t TWO_SEG  = 0b10110110;
+static const uint8_t THREE_SEG = 0b10011110;
+static const uint8_t FOUR_SEG = 0b11001010;
+static const uint8_t FIVE_SEG = 0b11011100;
+static const uint8_t SIX_SEG = 0b11111100;
+static const uint8_t SEVEN_SEG  = 0b00001110;
+static const uint8_t EIGHT_SEG  = 0b11111110;
+static const uint8_t NINE_SEG  = 0b11011110;
+
+
 typedef struct {
     uint8_t reserved : 4;
     uint8_t bit0 : 1;
@@ -58,6 +71,14 @@ void init_rotary_enc(void) {
     GPIOPinConfigure(GPIO_PA4_SSI0RX);
     GPIOPinConfigure(GPIO_PA5_SSI0TX);
 
+    // Configure the GPIO settings for the SSI pins.  This function also gives
+    // control of these pins to the SSI hardware.  Consult the data sheet to
+    // see which functions are allocated per pin.
+    // The pins are assigned as follows:
+    //      PA5 - SSI0Tx (TM4C123x) / SSI0XDAT1 (TM4C129x)
+    //      PA4 - SSI0Rx (TM4C123x) / SSI0XDAT0 (TM4C129x)
+    //      PA3 - SSI0Fss
+    //      PA2 - SSI0CLK
     GPIOPinTypeSSI(GPIO_PORTA_BASE, GPIO_PIN_5 | GPIO_PIN_4 | GPIO_PIN_3 |
                    GPIO_PIN_2);
 
@@ -78,6 +99,79 @@ void rotary_enc_task(void* parm) {
         enc_bits.enc_bits.bit1 = read_gpi(enc_bit_1);
         enc_bits.enc_bits.bit2 = read_gpi(enc_bit_2);
         enc_bits.enc_bits.bit3 = read_gpi(enc_bit_3);
+
+        switch (enc_bits.number) {
+        case 0 :
+            SSIDataPut(SSI0_BASE, ZERO_SEG);
+            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            break;
+        case 1 :
+            SSIDataPut(SSI0_BASE, ONE_SEG);
+            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            break;
+        case 2:
+            SSIDataPut(SSI0_BASE, TWO_SEG);
+            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            break;
+        case 3 :
+            SSIDataPut(SSI0_BASE, THREE_SEG);
+            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            break;
+        case 4 :
+            SSIDataPut(SSI0_BASE, FOUR_SEG);
+            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            break;
+        case 5 :
+            SSIDataPut(SSI0_BASE, FIVE_SEG);
+            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            break;
+        case 6 :
+            SSIDataPut(SSI0_BASE, SIX_SEG);
+            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            break;
+        case 7 :
+            SSIDataPut(SSI0_BASE, SEVEN_SEG);
+            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            break;
+        case 8 :
+            SSIDataPut(SSI0_BASE, EIGHT_SEG);
+            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            break;
+        case 9 :
+            SSIDataPut(SSI0_BASE, NINE_SEG);
+            SSIDataPut(SSI0_BASE, BLANK_SEG);
+            break;
+        case 10 :
+            SSIDataPut(SSI0_BASE, ZERO_SEG);
+            SSIDataPut(SSI0_BASE, ONE_SEG);
+            break;
+        case 11 :
+            SSIDataPut(SSI0_BASE, ONE_SEG);
+            SSIDataPut(SSI0_BASE, ONE_SEG);
+            break;
+        case 12 :
+            SSIDataPut(SSI0_BASE, TWO_SEG);
+            SSIDataPut(SSI0_BASE, ONE_SEG);
+            break;
+        case 13 :
+            SSIDataPut(SSI0_BASE, THREE_SEG);
+            SSIDataPut(SSI0_BASE, ONE_SEG);
+            break;
+        case 14 :
+            SSIDataPut(SSI0_BASE, FOUR_SEG);
+            SSIDataPut(SSI0_BASE, ONE_SEG);
+            break;
+        case 15 :
+            SSIDataPut(SSI0_BASE, FIVE_SEG);
+            SSIDataPut(SSI0_BASE, ONE_SEG);
+            break;
+        case 16 :
+            SSIDataPut(SSI0_BASE, SIX_SEG);
+            SSIDataPut(SSI0_BASE, ONE_SEG);
+            break;
+        default :
+            break;
+        }
 
         vTaskDelay(200);
     }

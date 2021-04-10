@@ -29,6 +29,7 @@
 #include "GPOs.h"
 #include "host_uart_task.h"
 #include "drum_pad_functions.h"
+#include "rotary_enc_task.h"
 
 
 int main(void){
@@ -71,6 +72,8 @@ int main(void){
     init_console(console_uart_rx_q);
 
     init_logger();
+
+    init_rotary_enc();
 
     /////////////////////////////////////////////////////////
     //                  Add pages to Console
@@ -146,6 +149,13 @@ int main(void){
 
     xTaskCreate(host_uart_task,               /* Function that implements the task. */
                 "UART1",                  /* Text name for the task. */
+                configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
+                NULL,                       /* Parameter passed into the task. */
+                3,                          /* Priority at which the task is created. */
+                NULL );                     /* Used to pass out the created task's handle. */
+
+    xTaskCreate(rotary_enc_task,               /* Function that implements the task. */
+                "Encoder",                  /* Text name for the task. */
                 configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
                 NULL,                       /* Parameter passed into the task. */
                 3,                          /* Priority at which the task is created. */
