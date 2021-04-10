@@ -17,7 +17,7 @@
 
 static gpio_pin_t enc_bit_0 = {
     .name       = "bit 0",
-    .pin        = GPIO_PIN_2,
+    .pin        = GPIO_PIN_4,
     .peripheral = SYSCTL_PERIPH_GPIOF,
     .port       = GPIO_PORTF_AHB_BASE,
     .direction  = GPIO_DIR_MODE_IN
@@ -25,9 +25,9 @@ static gpio_pin_t enc_bit_0 = {
 
 static gpio_pin_t enc_bit_1 = {
     .name       = "bit 1",
-    .pin        = GPIO_PIN_3,
-    .peripheral = SYSCTL_PERIPH_GPIOF,
-    .port       = GPIO_PORTF_AHB_BASE,
+    .pin        = GPIO_PIN_7,
+    .peripheral = SYSCTL_PERIPH_GPIOD,
+    .port       = GPIO_PORTD_AHB_BASE,
     .direction  = GPIO_DIR_MODE_IN
 };
 

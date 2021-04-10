@@ -38,21 +38,8 @@ static const uint8_t SEVEN_SEG  = 0b00001110;
 static const uint8_t EIGHT_SEG  = 0b11111110;
 static const uint8_t NINE_SEG  = 0b11011110;
 
+static uint32_t bits;
 
-typedef struct {
-    uint8_t reserved : 4;
-    uint8_t bit0 : 1;
-    uint8_t bit1 : 1;
-    uint8_t bit2 : 1;
-    uint8_t bit3 : 1;
-}enc_bits_t;
-
-typedef union {
-    enc_bits_t enc_bits;
-    uint8_t number;
-}enc_bits_u;
-
-enc_bits_u enc_bits;
 
 void init_rotary_enc(void) {
 
@@ -95,12 +82,12 @@ void rotary_enc_task(void* parm) {
 
     while(1) {
 
-        enc_bits.enc_bits.bit0 = read_gpi(enc_bit_0);
-        enc_bits.enc_bits.bit1 = read_gpi(enc_bit_1);
-        enc_bits.enc_bits.bit2 = read_gpi(enc_bit_2);
-        enc_bits.enc_bits.bit3 = read_gpi(enc_bit_3);
+        bits = read_gpi(enc_bit_0);
+        bits = bits | (read_gpi(enc_bit_1) << 1);
+        bits = bits | (read_gpi(enc_bit_2) << 2);
+        bits = bits | (read_gpi(enc_bit_3) << 3);
 
-        switch (enc_bits.number) {
+        switch (bits) {
         case 0 :
             SSIDataPut(SSI0_BASE, ZERO_SEG);
             SSIDataPut(SSI0_BASE, BLANK_SEG);
@@ -178,6 +165,6 @@ void rotary_enc_task(void* parm) {
 } // End rotary_enc_task
 
 uint32_t get_channel(void) {
-    return enc_bits.number;
+    return bits;
 }
 
