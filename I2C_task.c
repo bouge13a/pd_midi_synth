@@ -241,7 +241,7 @@ void i2c_task(void* parm) {
             break;
         }
 
-        vTaskDelay(1);
+        vTaskDelay(0);
 
     }
 

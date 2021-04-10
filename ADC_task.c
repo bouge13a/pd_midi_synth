@@ -15,7 +15,7 @@
 
 #include "FreeRTOS.h"
 #include "task.h"
-#include "event_groups.h"
+#include "semphr.h"
 
 #include "driverlib/timer.h"
 #include "driverlib/inc/hw_ints.h"
@@ -37,7 +37,8 @@ void ADCSeq1Handler(void);
 static uint32_t adc00_step_values[8];
 static uint32_t adc11_step_values[4];
 
-static EventGroupHandle_t adc_event = NULL;
+static SemaphoreHandle_t adc0_smphr = NULL;
+static SemaphoreHandle_t adc1_smphr = NULL;
 
 static const uint32_t BIT_0 = 1;
 static const uint32_t BIT_1 = 1 << 1;
@@ -48,7 +49,8 @@ void init_adc(void) {
 
     int idx;
 
-    adc_event = xEventGroupCreate();
+    adc0_smphr = xSemaphoreCreateBinary();
+    adc1_smphr = xSemaphoreCreateBinary();
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC1);
@@ -170,9 +172,7 @@ void ADCSeq0Handler(void) {
     // Clear the Interrupt Flag.
     ADCIntClear(ADC0_BASE, 0);
 
-    xResult = xEventGroupSetBitsFromISR(adc_event,
-                              BIT_0,
-                              &xHigherPriorityTaskWoken);
+    xResult = xSemaphoreGiveFromISR( adc0_smphr, &xHigherPriorityTaskWoken );
 
     // Was the message posted successfully?
     if( xResult != pdFAIL ) {
@@ -197,9 +197,7 @@ void ADCSeq1Handler(void) {
     //Clear the Interrupt Flag.
     ADCIntClear(ADC1_BASE, 1);
 
-    xResult = xEventGroupSetBitsFromISR(adc_event,
-                               BIT_1,
-                               &xHigherPriorityTaskWoken);
+    xResult = xSemaphoreGiveFromISR( adc1_smphr, &xHigherPriorityTaskWoken );
 
     // Was the message posted successfully?
     if( xResult != pdFAIL ) {
@@ -220,11 +218,8 @@ void adc_task(void* parm) {
 
     while(1) {
 
-        xEventGroupWaitBits(adc_event,
-                            BIT_0 | BIT_1,
-                            pdTRUE,
-                            pdTRUE,
-                            portMAX_DELAY);
+        xSemaphoreTake(adc0_smphr, portMAX_DELAY);
+        xSemaphoreTake(adc1_smphr, portMAX_DELAY);
 
         ADCSequenceDataGet(ADC0_BASE, 0, adc00_step_values);
         ADCSequenceDataGet(ADC1_BASE, 1, adc11_step_values);

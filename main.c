@@ -146,7 +146,7 @@ int main(void){
                 "ADC",                  /* Text name for the task. */
                 220,                        /* Stack size in words, not bytes. */
                 NULL,                       /* Parameter passed into the task. */
-                4,                          /* Priority at which the task is created. */
+                3,                          /* Priority at which the task is created. */
                 NULL );                     /* Used to pass out the created task's handle. */
 
     xTaskCreate(i2c_task,               /* Function that implements the task. */
