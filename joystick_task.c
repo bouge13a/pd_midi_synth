@@ -28,7 +28,7 @@ static uint8_t JOY_Y_SEL[] = {
 };
 
 static i2c_msg_t joy_y_sel = {
-    .address      = 0x44,
+    .address      = 0x48,
     .bytes_rxed   = 0,
     .bytes_txed   = 0,
     .num_rx_bytes = 0,
@@ -45,7 +45,7 @@ static uint8_t JOY_X_SEL[] = {
 };
 
 static i2c_msg_t joy_x_sel = {
-    .address      = 0x44,
+    .address      = 0x48,
     .bytes_rxed   = 0,
     .bytes_txed   = 0,
     .num_rx_bytes = 0,
@@ -60,7 +60,7 @@ static uint8_t CONV_REG = 0b00000000;
 static value16_t joy_y_data;
 
 static i2c_msg_t joy_y_read = {
-    .address      = 0x90,
+    .address      = 0x48,
     .bytes_rxed   = 0,
     .bytes_txed   = 0,
     .num_rx_bytes = 2,
@@ -73,7 +73,7 @@ static i2c_msg_t joy_y_read = {
 static value16_t joy_x_data;
 
 static i2c_msg_t joy_x_read = {
-    .address      = 0x90,
+    .address      = 0x48,
     .bytes_rxed   = 0,
     .bytes_txed   = 0,
     .num_rx_bytes = 2,
@@ -92,11 +92,8 @@ void joystick_task(void* parm) {
 
     while(1) {
         add_i2c_msg(&joy_y_sel);
-//        vTaskDelay(1);
 //        add_i2c_msg(&joy_y_read);
-//        vTaskDelay(1);
 //        add_i2c_msg(&joy_x_sel);
-//        vTaskDelay(1);
 //        add_i2c_msg(&joy_x_read);
 
         vTaskDelay(50);

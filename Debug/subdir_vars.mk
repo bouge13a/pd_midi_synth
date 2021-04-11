@@ -13,6 +13,7 @@ C_SRCS += \
 ../GPIs.c \
 ../GPOs.c \
 ../I2C_task.c \
+../board_select.c \
 ../console_task.c \
 ../console_uart.c \
 ../control_page.c \
@@ -23,7 +24,9 @@ C_SRCS += \
 ../host_uart_task.c \
 ../joystick_task.c \
 ../logger.c \
+../looper_board.c \
 ../main.c \
+../midi_ctrl_board.c \
 ../rotary_enc_task.c \
 ../task_manager_page.c \
 ../text_controls.c \
@@ -35,6 +38,7 @@ C_DEPS += \
 ./GPIs.d \
 ./GPOs.d \
 ./I2C_task.d \
+./board_select.d \
 ./console_task.d \
 ./console_uart.d \
 ./control_page.d \
@@ -45,7 +49,9 @@ C_DEPS += \
 ./host_uart_task.d \
 ./joystick_task.d \
 ./logger.d \
+./looper_board.d \
 ./main.d \
+./midi_ctrl_board.d \
 ./rotary_enc_task.d \
 ./task_manager_page.d \
 ./text_controls.d \
@@ -57,6 +63,7 @@ OBJS += \
 ./GPIs.obj \
 ./GPOs.obj \
 ./I2C_task.obj \
+./board_select.obj \
 ./console_task.obj \
 ./console_uart.obj \
 ./control_page.obj \
@@ -67,7 +74,9 @@ OBJS += \
 ./host_uart_task.obj \
 ./joystick_task.obj \
 ./logger.obj \
+./looper_board.obj \
 ./main.obj \
+./midi_ctrl_board.obj \
 ./rotary_enc_task.obj \
 ./task_manager_page.obj \
 ./text_controls.obj \
@@ -79,6 +88,7 @@ OBJS__QUOTED += \
 "GPIs.obj" \
 "GPOs.obj" \
 "I2C_task.obj" \
+"board_select.obj" \
 "console_task.obj" \
 "console_uart.obj" \
 "control_page.obj" \
@@ -89,7 +99,9 @@ OBJS__QUOTED += \
 "host_uart_task.obj" \
 "joystick_task.obj" \
 "logger.obj" \
+"looper_board.obj" \
 "main.obj" \
+"midi_ctrl_board.obj" \
 "rotary_enc_task.obj" \
 "task_manager_page.obj" \
 "text_controls.obj" \
@@ -101,6 +113,7 @@ C_DEPS__QUOTED += \
 "GPIs.d" \
 "GPOs.d" \
 "I2C_task.d" \
+"board_select.d" \
 "console_task.d" \
 "console_uart.d" \
 "control_page.d" \
@@ -111,7 +124,9 @@ C_DEPS__QUOTED += \
 "host_uart_task.d" \
 "joystick_task.d" \
 "logger.d" \
+"looper_board.d" \
 "main.d" \
+"midi_ctrl_board.d" \
 "rotary_enc_task.d" \
 "task_manager_page.d" \
 "text_controls.d" \
@@ -123,6 +138,7 @@ C_SRCS__QUOTED += \
 "../GPIs.c" \
 "../GPOs.c" \
 "../I2C_task.c" \
+"../board_select.c" \
 "../console_task.c" \
 "../console_uart.c" \
 "../control_page.c" \
@@ -133,7 +149,9 @@ C_SRCS__QUOTED += \
 "../host_uart_task.c" \
 "../joystick_task.c" \
 "../logger.c" \
+"../looper_board.c" \
 "../main.c" \
+"../midi_ctrl_board.c" \
 "../rotary_enc_task.c" \
 "../task_manager_page.c" \
 "../text_controls.c" \

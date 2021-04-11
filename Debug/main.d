@@ -29,21 +29,9 @@ main.obj: ../driverlib/fpu.h
 main.obj: ../driverlib/rom_map.h
 main.obj: ../driverlib/sysctl.h
 main.obj: ../driverlib/interrupt.h
-main.obj: ../console_task.h
-main.obj: ../homepage.h
-main.obj: ../console_uart.h
-main.obj: ../control_page.h
-main.obj: ../ADC_task.h
-main.obj: ../board_pin_defs.h
-main.obj: ../I2C_task.h
-main.obj: ../logger.h
-main.obj: ../task_manager_page.h
-main.obj: ../GPIs.h
-main.obj: ../GPOs.h
-main.obj: ../host_uart_task.h
-main.obj: ../drum_pad_functions.h
-main.obj: ../rotary_enc_task.h
-main.obj: ../joystick_task.h
+main.obj: ../board_select.h
+main.obj: ../midi_ctrl_board.h
+main.obj: ../looper_board.h
 
 ../main.c: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h: 
@@ -74,18 +62,6 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h:
 ../driverlib/rom_map.h: 
 ../driverlib/sysctl.h: 
 ../driverlib/interrupt.h: 
-../console_task.h: 
-../homepage.h: 
-../console_uart.h: 
-../control_page.h: 
-../ADC_task.h: 
-../board_pin_defs.h: 
-../I2C_task.h: 
-../logger.h: 
-../task_manager_page.h: 
-../GPIs.h: 
-../GPOs.h: 
-../host_uart_task.h: 
-../drum_pad_functions.h: 
-../rotary_enc_task.h: 
-../joystick_task.h: 
+../board_select.h: 
+../midi_ctrl_board.h: 
+../looper_board.h: 

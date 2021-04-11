@@ -135,10 +135,6 @@ void i2c_task(void* parm) {
 
             if (I2CMasterBusy(I2C1_BASE)) break;
 
-            if(0x3 != I2CMasterLineStateGet(I2C1_BASE)) {
-                break;
-            }
-
             if(log_errors()){
                 i2c_state = I2C_FINISH;
                 break;
@@ -175,8 +171,6 @@ void i2c_task(void* parm) {
 
             if (I2CMasterBusy(I2C1_BASE)) break;
 
-            line_state = I2CMasterLineStateGet(I2C1_BASE);
-
             if(log_errors()){
                 i2c_state = I2C_FINISH;
                 break;
@@ -205,8 +199,6 @@ void i2c_task(void* parm) {
         case I2C_RECEIVE :
 
             if (I2CMasterBusy(I2C1_BASE)) break;
-
-            line_state = I2CMasterLineStateGet(I2C1_BASE);
 
             if(log_errors()){
                 i2c_state = I2C_FINISH;

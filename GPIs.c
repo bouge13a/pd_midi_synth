@@ -11,11 +11,14 @@
 #include <stdint.h>
 #include <string.h>
 #include <assert.h>
-#include <GPI_pins.h>
+#include <GPI_pins_midi.h>
+#include <GPI_pins_looper.h>
 #include <GPIs.h>
 #include <uartstdio.h>
 
 #include "text_controls.h"
+#include "board_select.h"
+
 #include "driverlib/inc/hw_gpio.h"
 #include "driverlib/inc/hw_types.h"
 #include "driverlib/inc/hw_memmap.h"
@@ -26,6 +29,7 @@
 #include "driverlib/sysctl.h"
 
 
+static gpis_t gpi_info;
 
 ///////////////////////////////////////////////////////////////////
 //                      Buttons
@@ -34,6 +38,13 @@
 void init_gpis(void) {
 
     uint32_t idx;
+
+
+    if(MIDI_CONTROLLER == get_board_type()) {
+        gpi_info = midi_gpi_info;
+    } else {
+        gpi_info = looper_gpi_info;
+    }
 
     if (0 !=gpi_info.num_gpis) {
 

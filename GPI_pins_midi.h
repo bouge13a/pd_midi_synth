@@ -72,7 +72,7 @@ static gpio_pin_t octave_down = {
 };
 
 
-static gpio_pin_t* gpi_pins[] = {
+static gpio_pin_t* midi_gpi_pins[] = {
     &enc_bit_0,
     &enc_bit_1,
     &enc_bit_2,
@@ -82,9 +82,10 @@ static gpio_pin_t* gpi_pins[] = {
     &octave_down,
 };
 
-gpis_t gpi_info = {
-    .gpis     = gpi_pins,
-    .num_gpis = sizeof(gpi_pins)/sizeof(gpi_pins[0])
+gpis_t midi_gpi_info = {
+    .gpis     = midi_gpi_pins,
+    .num_gpis = sizeof(midi_gpi_pins)/sizeof(midi_gpi_pins[0])
 };
+
 
 

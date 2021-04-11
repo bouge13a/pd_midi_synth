@@ -8,16 +8,27 @@
 #include <string.h>
 #include <assert.h>
 #include <GPOs.h>
-#include "GPO_pins.h"
+#include "GPO_pins_midi.h"
+#include "GPO_pins_looper.h"
 
 #include "driverlib/gpio.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/rom.h"
 #include "driverlib/rom_map.h"
+#include "board_select.h"
+
+gpos_t gpo_info;
 
 void init_gpos(void) {
 
     uint32_t idx;
+
+    if(MIDI_CONTROLLER == get_board_type()) {
+        gpo_info = midi_gpo_info;
+    } else {
+        gpo_info = looper_gpo_info;
+    }
+
 
     for(idx=0; idx<gpo_info.num_gpos; idx++) {
 
