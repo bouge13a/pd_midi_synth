@@ -224,8 +224,8 @@ void adc_task(void* parm) {
         ADCSequenceDataGet(ADC0_BASE, 0, adc00_step_values);
         ADCSequenceDataGet(ADC1_BASE, 1, adc11_step_values);
 
-        process_drumpad(adc00_step_values,
-                        adc11_step_values,
+        process_drumpad(&adc00_step_values[0],
+                        &adc11_step_values[0],
                         adc00time,
                         adc11time);
 

@@ -17,9 +17,9 @@
 
 static const uint32_t NUM_OF_PADS = 12;
 static const uint32_t LOW_REF = 10;
-static const uint32_t HIGH_REF = 2000;
+static const uint32_t HIGH_REF = 3000;
 static const uint32_t SAMPLES_TO_WAIT = 50;
-static const uint32_t IDLE_CYCLES = 1000;
+static const uint32_t IDLE_CYCLES = 10;
 
 typedef enum {
     IDLE_STATE,
@@ -150,6 +150,10 @@ void process_drumpad(uint32_t* adc00values,
                             uart_msg.bitfield.message_type = NOTE_ON;
                             uart_msg.bitfield.pad_num = idx;
                             uart_msg.bitfield.value = 63;
+
+                            if (slope > 0) {
+                                send_to_host(uart_msg);
+                            }
 
                             break;
                         }

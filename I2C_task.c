@@ -54,6 +54,8 @@ void init_i2c(void) {
 
     I2CMasterInitExpClk(I2C1_BASE, SysCtlClockGet(), false);
 
+    I2CMasterTimeoutSet(I2C1_BASE, 0x7d);
+
     i2c_msg_queue = xQueueCreate(20, sizeof(i2c_msg_t*));
 
     addr_ack_err = create_error("I2C1", "No ack from address");
@@ -69,6 +71,8 @@ bool add_i2c_msg(i2c_msg_t* i2c_msg) {
 }
 
 void i2c_task(void* parm) {
+
+    uint32_t line_state;
 
     while(1) {
 
@@ -124,17 +128,16 @@ void i2c_task(void* parm) {
 
             }
 
-            if(log_errors()){
-                i2c_state = I2C_FINISH;
-                break;
-            }
-
 
             break;
 
         case I2C_SEND:
 
             if (I2CMasterBusy(I2C1_BASE)) break;
+
+            if(0x3 != I2CMasterLineStateGet(I2C1_BASE)) {
+                break;
+            }
 
             if(log_errors()){
                 i2c_state = I2C_FINISH;
@@ -172,6 +175,8 @@ void i2c_task(void* parm) {
 
             if (I2CMasterBusy(I2C1_BASE)) break;
 
+            line_state = I2CMasterLineStateGet(I2C1_BASE);
+
             if(log_errors()){
                 i2c_state = I2C_FINISH;
                 break;
@@ -193,11 +198,15 @@ void i2c_task(void* parm) {
 
             }
 
+            line_state = I2CMasterLineStateGet(I2C1_BASE);
+
             break;
 
         case I2C_RECEIVE :
 
             if (I2CMasterBusy(I2C1_BASE)) break;
+
+            line_state = I2CMasterLineStateGet(I2C1_BASE);
 
             if(log_errors()){
                 i2c_state = I2C_FINISH;
@@ -251,20 +260,25 @@ static bool log_errors(void) {
 
     uint32_t status = I2CMasterErr(I2C1_BASE);
 
-    switch(status) {
-    case I2C_MASTER_ERR_ADDR_ACK :
+    if(I2C_MASTER_ERR_ADDR_ACK == (status & I2C_MASTER_ERR_ADDR_ACK)) {
         set_error(addr_ack_err);
-        return true;
-    case I2C_MASTER_ERR_DATA_ACK :
+    }
+
+    if( I2C_MASTER_ERR_DATA_ACK  == (status &  I2C_MASTER_ERR_DATA_ACK )) {
         set_error(data_ack_err);
-        return true;
-    case I2C_MASTER_ERR_ARB_LOST :
+    }
+
+    if(I2C_MASTER_ERR_ARB_LOST == (status & I2C_MASTER_ERR_ARB_LOST)) {
         set_error(arb_lost_err);
-        return true;
-    case I2C_MASTER_ERR_CLK_TOUT :
+    }
+
+    if(I2C_MASTER_ERR_CLK_TOUT == (status & I2C_MASTER_ERR_CLK_TOUT)) {
         set_error(clk_tout_err);
+    }
+
+    if (status) {
         return true;
-    default :
+    } else {
         return false;
     }
 
