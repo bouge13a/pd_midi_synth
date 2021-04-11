@@ -35,6 +35,8 @@ error_t* clk_tout_err;
 static i2c_state_e i2c_state = I2C_IDLE;
 static i2c_msg_t* i2c_msg;
 
+static const uint32_t STOP_CONDITION = 0x03;
+
 static bool log_errors(void);
 
 void init_i2c(void) {
@@ -135,6 +137,10 @@ void i2c_task(void* parm) {
 
             if (I2CMasterBusy(I2C1_BASE)) break;
 
+//            if( STOP_CONDITION != I2CMasterLineStateGet(I2C1_BASE)) {
+//                break;
+//            }
+
             if(log_errors()){
                 i2c_state = I2C_FINISH;
                 break;
@@ -171,6 +177,10 @@ void i2c_task(void* parm) {
 
             if (I2CMasterBusy(I2C1_BASE)) break;
 
+//            if( STOP_CONDITION != I2CMasterLineStateGet(I2C1_BASE)) {
+//                break;
+//            }
+
             if(log_errors()){
                 i2c_state = I2C_FINISH;
                 break;
@@ -192,13 +202,17 @@ void i2c_task(void* parm) {
 
             }
 
-            line_state = I2CMasterLineStateGet(I2C1_BASE);
+
 
             break;
 
         case I2C_RECEIVE :
 
             if (I2CMasterBusy(I2C1_BASE)) break;
+
+//            if( STOP_CONDITION != I2CMasterLineStateGet(I2C1_BASE)) {
+//                break;
+//            }
 
             if(log_errors()){
                 i2c_state = I2C_FINISH;
@@ -233,6 +247,8 @@ void i2c_task(void* parm) {
 
             i2c_state = I2C_IDLE;
             i2c_msg->state = i2c_ready;
+            i2c_msg->bytes_rxed = 0;
+            i2c_msg->bytes_txed = 0;
 
             break;
 

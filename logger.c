@@ -42,6 +42,9 @@ void set_error(error_t* error) {
 
     error->occurences++;
 
+    set_gpo(green_debug, 0);
+    set_gpo(red_debug, 1);
+
 } // End set_error
 
 void init_logger(void) {
@@ -94,9 +97,6 @@ void logger_drawdata(void){
             cursor_pos(6+printed_errors,OCCUR_COL);
             UARTprintf("%d", errors[idx].occurences);
             printed_errors++;
-
-            set_gpo(green_debug, 0);
-            set_gpo(red_debug, 1);
 
         }
     }

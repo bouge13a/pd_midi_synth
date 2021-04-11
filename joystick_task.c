@@ -92,9 +92,9 @@ void joystick_task(void* parm) {
 
     while(1) {
         add_i2c_msg(&joy_y_sel);
-//        add_i2c_msg(&joy_y_read);
-//        add_i2c_msg(&joy_x_sel);
-//        add_i2c_msg(&joy_x_read);
+        add_i2c_msg(&joy_y_read);
+        add_i2c_msg(&joy_x_sel);
+        add_i2c_msg(&joy_x_read);
 
         vTaskDelay(50);
     }
