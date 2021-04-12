@@ -40,8 +40,6 @@ static uint32_t adc11_step_values[4];
 static SemaphoreHandle_t adc0_smphr = NULL;
 static SemaphoreHandle_t adc1_smphr = NULL;
 
-static const uint32_t BIT_0 = 1;
-static const uint32_t BIT_1 = 1 << 1;
 static volatile uint32_t adc00time;
 static volatile uint32_t adc11time;
 

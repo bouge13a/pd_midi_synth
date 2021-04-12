@@ -47,6 +47,10 @@ static console_page_t console_pages[] = {
     {NULL, NULL, NULL, NULL, 0},
     {NULL, NULL, NULL, NULL, 0},
     {NULL, NULL, NULL, NULL, 0},
+    {NULL, NULL, NULL, NULL, 0},
+    {NULL, NULL, NULL, NULL, 0},
+    {NULL, NULL, NULL, NULL, 0},
+    {NULL, NULL, NULL, NULL, 0},
 };
 
 void init_console(QueueHandle_t uart_rx_queue) {

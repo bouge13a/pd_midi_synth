@@ -27,10 +27,10 @@ typedef enum {
 
 typedef struct {
     uint8_t address;
-    uint8_t* tx_data;
+    const uint8_t* tx_data;
     uint32_t num_tx_bytes;
     uint32_t bytes_txed;
-    uint8_t* rx_data;
+    volatile uint8_t* rx_data;
     uint32_t num_rx_bytes;
     uint32_t bytes_rxed;
     i2c_msg_state_e state;

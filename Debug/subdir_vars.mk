@@ -13,6 +13,7 @@ C_SRCS += \
 ../GPIs.c \
 ../GPOs.c \
 ../I2C_task.c \
+../ads1x15_task.c \
 ../board_select.c \
 ../console_task.c \
 ../console_uart.c \
@@ -22,7 +23,7 @@ C_SRCS += \
 ../homepage.c \
 ../hooks.c \
 ../host_uart_task.c \
-../joystick_task.c \
+../joystick_functions.c \
 ../logger.c \
 ../looper_board.c \
 ../main.c \
@@ -38,6 +39,7 @@ C_DEPS += \
 ./GPIs.d \
 ./GPOs.d \
 ./I2C_task.d \
+./ads1x15_task.d \
 ./board_select.d \
 ./console_task.d \
 ./console_uart.d \
@@ -47,7 +49,7 @@ C_DEPS += \
 ./homepage.d \
 ./hooks.d \
 ./host_uart_task.d \
-./joystick_task.d \
+./joystick_functions.d \
 ./logger.d \
 ./looper_board.d \
 ./main.d \
@@ -63,6 +65,7 @@ OBJS += \
 ./GPIs.obj \
 ./GPOs.obj \
 ./I2C_task.obj \
+./ads1x15_task.obj \
 ./board_select.obj \
 ./console_task.obj \
 ./console_uart.obj \
@@ -72,7 +75,7 @@ OBJS += \
 ./homepage.obj \
 ./hooks.obj \
 ./host_uart_task.obj \
-./joystick_task.obj \
+./joystick_functions.obj \
 ./logger.obj \
 ./looper_board.obj \
 ./main.obj \
@@ -88,6 +91,7 @@ OBJS__QUOTED += \
 "GPIs.obj" \
 "GPOs.obj" \
 "I2C_task.obj" \
+"ads1x15_task.obj" \
 "board_select.obj" \
 "console_task.obj" \
 "console_uart.obj" \
@@ -97,7 +101,7 @@ OBJS__QUOTED += \
 "homepage.obj" \
 "hooks.obj" \
 "host_uart_task.obj" \
-"joystick_task.obj" \
+"joystick_functions.obj" \
 "logger.obj" \
 "looper_board.obj" \
 "main.obj" \
@@ -113,6 +117,7 @@ C_DEPS__QUOTED += \
 "GPIs.d" \
 "GPOs.d" \
 "I2C_task.d" \
+"ads1x15_task.d" \
 "board_select.d" \
 "console_task.d" \
 "console_uart.d" \
@@ -122,7 +127,7 @@ C_DEPS__QUOTED += \
 "homepage.d" \
 "hooks.d" \
 "host_uart_task.d" \
-"joystick_task.d" \
+"joystick_functions.d" \
 "logger.d" \
 "looper_board.d" \
 "main.d" \
@@ -138,6 +143,7 @@ C_SRCS__QUOTED += \
 "../GPIs.c" \
 "../GPOs.c" \
 "../I2C_task.c" \
+"../ads1x15_task.c" \
 "../board_select.c" \
 "../console_task.c" \
 "../console_uart.c" \
@@ -147,7 +153,7 @@ C_SRCS__QUOTED += \
 "../homepage.c" \
 "../hooks.c" \
 "../host_uart_task.c" \
-"../joystick_task.c" \
+"../joystick_functions.c" \
 "../logger.c" \
 "../looper_board.c" \
 "../main.c" \

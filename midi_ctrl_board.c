@@ -26,7 +26,7 @@
 #include "host_uart_task.h"
 #include "drum_pad_functions.h"
 #include "rotary_enc_task.h"
-#include "joystick_task.h"
+#include "ads1x15_task.h"
 
 static QueueHandle_t console_uart_rx_q = NULL;
 
@@ -58,7 +58,7 @@ void init_midi_ctrl_board(void){
 
     init_rotary_enc();
 
-    init_joystick();
+    init_ads1x15();
 
     /////////////////////////////////////////////////////////
     //                  Add pages to Console
@@ -106,10 +106,10 @@ void init_midi_ctrl_board(void){
                               portMAX_DELAY,
                               true));
 
-    add_page("Joystick",
-             joystick_drawpage,
-             joystick_drawdata,
-             joystick_drawinput,
+    add_page("ads1x15",
+             ads1x15_drawpage,
+             ads1x15_drawdata,
+             ads1x15_drawinput,
              500,
              false);
 
@@ -154,8 +154,8 @@ void init_midi_ctrl_board(void){
                 NULL );                     /* Used to pass out the created task's handle. */
 
 
-    xTaskCreate(joystick_task,               /* Function that implements the task. */
-                "Joystick",                  /* Text name for the task. */
+    xTaskCreate(ads1x15_midi_task,               /* Function that implements the task. */
+                "ADS1X15",                  /* Text name for the task. */
                 configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
                 NULL,                       /* Parameter passed into the task. */
                 3,                          /* Priority at which the task is created. */

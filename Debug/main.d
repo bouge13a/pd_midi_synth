@@ -24,6 +24,7 @@ main.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h
 main.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h
 main.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h
 main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h
+main.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/assert.h
 main.obj: ../driverlib/debug.h
 main.obj: ../driverlib/fpu.h
 main.obj: ../driverlib/rom_map.h
@@ -57,6 +58,7 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h:
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h: 
+C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/assert.h: 
 ../driverlib/debug.h: 
 ../driverlib/fpu.h: 
 ../driverlib/rom_map.h: 

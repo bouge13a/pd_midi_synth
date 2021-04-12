@@ -8,6 +8,10 @@
 #ifndef UTILS_H_
 #define UTILS_H_
 
+typedef union {
+    uint16_t value;
+    uint8_t bytes[2];
+}value16_t;
 
 
 #endif /* UTILS_H_ */

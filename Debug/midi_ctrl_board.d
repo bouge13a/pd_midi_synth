@@ -39,7 +39,7 @@ midi_ctrl_board.obj: ../GPOs.h
 midi_ctrl_board.obj: ../host_uart_task.h
 midi_ctrl_board.obj: ../drum_pad_functions.h
 midi_ctrl_board.obj: ../rotary_enc_task.h
-midi_ctrl_board.obj: ../joystick_task.h
+midi_ctrl_board.obj: ../ads1x15_task.h
 
 ../midi_ctrl_board.c: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h: 
@@ -80,4 +80,4 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h:
 ../host_uart_task.h: 
 ../drum_pad_functions.h: 
 ../rotary_enc_task.h: 
-../joystick_task.h: 
+../ads1x15_task.h: 

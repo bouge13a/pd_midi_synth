@@ -12,10 +12,10 @@
 
 typedef struct  {
     const char* name;
-    uint32_t    pin;
-    uint32_t    peripheral;
-    uint32_t    port;
-    uint32_t    direction;
+    const uint32_t pin;
+    const uint32_t peripheral;
+    const uint32_t port;
+    const uint32_t direction;
 } gpio_pin_t;
 
 typedef struct {
@@ -30,14 +30,14 @@ typedef struct {
 
 typedef struct {
     const char* name;
-    uint32_t gpio_peripheral;
-    uint32_t gpio_base;
-    uint32_t gpio_pin;
-    uint32_t sequencer;
-    uint32_t channel;
-    uint32_t step;
-    uint32_t adc_base;
-    uint32_t comparator;
+    const uint32_t gpio_peripheral;
+    const uint32_t gpio_base;
+    const uint32_t gpio_pin;
+    const uint32_t sequencer;
+    const uint32_t channel;
+    const uint32_t step;
+    const uint32_t adc_base;
+    const uint32_t comparator;
 }adc_pin_t;
 
 typedef struct {

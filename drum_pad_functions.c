@@ -18,7 +18,6 @@
 static const uint32_t NUM_OF_PADS = 12;
 static const uint32_t LOW_REF = 10;
 static const uint32_t HIGH_REF = 3000;
-static const uint32_t SAMPLES_TO_WAIT = 50;
 static const uint32_t IDLE_CYCLES = 10;
 
 typedef enum {
@@ -42,7 +41,6 @@ static uint32_t page_num;
 
 static char float_string[20];
 
-
 void init_drumpad(uint32_t page_number) {
 
     page_num = page_number;
@@ -54,7 +52,7 @@ void init_drumpad(uint32_t page_number) {
         pad_states[idx].value_idx = 0;
     }
 
-}
+} // End init_drumpad
 
 void process_drumpad(uint32_t* adc00values,
                      uint32_t* adc11values,

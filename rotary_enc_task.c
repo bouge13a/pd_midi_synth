@@ -26,7 +26,6 @@ static gpio_pin_t* enc_bit_1;
 static gpio_pin_t* enc_bit_2;
 static gpio_pin_t* enc_bit_3;
 
-static const uint8_t BLANK_SEG  = 0b00000000;
 static const uint8_t ZERO_SEG   = 0b01111110;
 static const uint8_t ONE_SEG    = 0b00001010;
 static const uint8_t TWO_SEG    = 0b10110110;

@@ -10,6 +10,7 @@
 #include "queue.h"
 
 #include <stdbool.h>
+#include "assert.h"
 
 #include "driverlib/debug.h"
 #include "driverlib/fpu.h"
@@ -41,8 +42,10 @@ int main(void){
 
     if (MIDI_CONTROLLER == get_board_type()) {
         init_midi_ctrl_board();
-    } else {
+    } else if (LOOPER == get_board_type()) {
         init_looper_board();
+    } else {
+        assert(0);
     }
 
 
