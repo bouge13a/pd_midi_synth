@@ -272,26 +272,26 @@ void ads1x15_midi_task(void* parm) {
     while(1) {
 
         add_i2c_msg(&joy_y_sel);
-        vTaskDelay(1);
+        vTaskDelay(2);
         add_i2c_msg(&joy_y_read);
-        vTaskDelay(1);
+        vTaskDelay(2);
         add_i2c_msg(&joy_x_sel);
-        vTaskDelay(1);
+        vTaskDelay(2);
         add_i2c_msg(&joy_x_read);
-        vTaskDelay(1);
+        vTaskDelay(2);
 
         process_joystick(joy_x_data.value, joy_y_data.value);
 
         if (index % 10 == 0) {
 
-//            add_i2c_msg(&sense_sel);
-//            vTaskDelay(1);
-//            add_i2c_msg(&sense_read);
-//            vTaskDelay(1);
-//            add_i2c_msg(&volume_sel);
-//            vTaskDelay(1);
-//            add_i2c_msg(&volume_read);
-//            vTaskDelay(1);
+            add_i2c_msg(&sense_sel);
+            vTaskDelay(2);
+            add_i2c_msg(&sense_read);
+            vTaskDelay(2);
+            add_i2c_msg(&volume_sel);
+            vTaskDelay(2);
+            add_i2c_msg(&volume_read);
+            vTaskDelay(2);
 
             add_i2c_msg(&ads1015_adc10_sel);
             vTaskDelay(1);
