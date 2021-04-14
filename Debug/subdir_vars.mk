@@ -28,6 +28,7 @@ C_SRCS += \
 ../looper_board.c \
 ../main.c \
 ../midi_ctrl_board.c \
+../midi_knobs_functions.c \
 ../rotary_enc_task.c \
 ../task_manager_page.c \
 ../text_controls.c \
@@ -54,6 +55,7 @@ C_DEPS += \
 ./looper_board.d \
 ./main.d \
 ./midi_ctrl_board.d \
+./midi_knobs_functions.d \
 ./rotary_enc_task.d \
 ./task_manager_page.d \
 ./text_controls.d \
@@ -80,6 +82,7 @@ OBJS += \
 ./looper_board.obj \
 ./main.obj \
 ./midi_ctrl_board.obj \
+./midi_knobs_functions.obj \
 ./rotary_enc_task.obj \
 ./task_manager_page.obj \
 ./text_controls.obj \
@@ -106,6 +109,7 @@ OBJS__QUOTED += \
 "looper_board.obj" \
 "main.obj" \
 "midi_ctrl_board.obj" \
+"midi_knobs_functions.obj" \
 "rotary_enc_task.obj" \
 "task_manager_page.obj" \
 "text_controls.obj" \
@@ -132,6 +136,7 @@ C_DEPS__QUOTED += \
 "looper_board.d" \
 "main.d" \
 "midi_ctrl_board.d" \
+"midi_knobs_functions.d" \
 "rotary_enc_task.d" \
 "task_manager_page.d" \
 "text_controls.d" \
@@ -158,6 +163,7 @@ C_SRCS__QUOTED += \
 "../looper_board.c" \
 "../main.c" \
 "../midi_ctrl_board.c" \
+"../midi_knobs_functions.c" \
 "../rotary_enc_task.c" \
 "../task_manager_page.c" \
 "../text_controls.c" \

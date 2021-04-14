@@ -76,6 +76,7 @@ void host_uart_task(void* parm) {
         switch(uart_msg.bitfield.message_type) {
             case NOTE_ON:
             case MODULATION:
+            case PITCH:
             case OVERDRIVE:
                 for(loop_index=0; loop_index<4; loop_index++) {
                     UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[loop_index]);

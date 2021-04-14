@@ -8,6 +8,8 @@
 #ifndef UTILS_H_
 #define UTILS_H_
 
+#include <stdint.h>
+
 typedef union {
     uint16_t value;
     uint8_t bytes[2];
