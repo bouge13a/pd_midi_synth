@@ -53,9 +53,9 @@ void init_host_uart(uint32_t page_number) {
     // Use the internal 16MHz oscillator as the UART clock source.
     MAP_UARTClockSourceSet(UART1_BASE, UART_CLOCK_PIOSC);
 
-    UARTFIFOEnable(UART1_BASE);
+    //UARTFIFOEnable(UART1_BASE);
 
-    MAP_UARTConfigSetExpClk(UART1_BASE, MAP_SysCtlClockGet(), 115200,
+    MAP_UARTConfigSetExpClk(UART1_BASE, MAP_SysCtlClockGet(), 9600,
                             (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
                              UART_CONFIG_PAR_NONE));
 
@@ -75,21 +75,34 @@ void host_uart_task(void* parm) {
 
         switch(uart_msg.bitfield.message_type) {
             case NOTE_ON:
+            case MODULATION:
             case OVERDRIVE:
-                for(loop_index=0; loop_index<3; loop_index++) {
-                    MAP_UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[loop_index]);
+                for(loop_index=0; loop_index<4; loop_index++) {
+                    UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[loop_index]);
                 }
 
+
                 if (is_on_screen(page_num)) {
-                    UARTprintf("%d %d %d\n", uart_msg.bitfield.message_type,
+                    UARTprintf("%d %d %d %d\n", uart_msg.bitfield.message_type,
                                              uart_msg.bitfield.pad_num,
-                                             uart_msg.bitfield.value);
+                                             uart_msg.bitfield.value,
+                                             uart_msg.bitfield.channel);
                 }
+
+//                if (is_on_screen(page_num)) {
+//                    UARTprintf("%x %x %x %x\n", uart_msg.bytes[0],
+//                               uart_msg.bytes[1],
+//                               uart_msg.bytes[2],
+//                               uart_msg.bytes[3]);
+//                }
 
                 break;
 
             case NOTE_OFF:
-                MAP_UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[0]);
+
+                for(loop_index=0; loop_index<4; loop_index++) {
+                    MAP_UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[loop_index]);
+                }
 
                 if (is_on_screen(page_num)) {
                     UARTprintf("%d %d\n", uart_msg.bitfield.message_type,

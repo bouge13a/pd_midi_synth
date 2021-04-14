@@ -206,21 +206,18 @@ void i2c_task(void* parm) {
             if (1 == i2c_msg->num_rx_bytes - i2c_msg->bytes_rxed) {
 
                 i2c_msg->rx_data[i2c_msg->num_rx_bytes - ++i2c_msg->bytes_rxed ] = I2CMasterDataGet(I2C1_BASE);
-                //i2c_msg->bytes_rxed++;
                 i2c_state = I2C_FINISH;
 
             } else if (2 == i2c_msg->num_rx_bytes - i2c_msg->bytes_rxed) {
 
                 i2c_msg->rx_data[i2c_msg->num_rx_bytes - ++i2c_msg->bytes_rxed] = I2CMasterDataGet(I2C1_BASE);
                 I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_BURST_RECEIVE_FINISH);
-                //i2c_msg->bytes_rxed++;
                 i2c_state = I2C_RECEIVE;
 
             } else if (i2c_msg->num_rx_bytes - i2c_msg->bytes_rxed > 2 ) {
 
                 i2c_msg->rx_data[i2c_msg->num_rx_bytes - ++i2c_msg->bytes_rxed] = I2CMasterDataGet(I2C1_BASE);
                 I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_BURST_RECEIVE_CONT);
-                //i2c_msg->bytes_rxed++;
                 i2c_state = I2C_RECEIVE;
 
             }

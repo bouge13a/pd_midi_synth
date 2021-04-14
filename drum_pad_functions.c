@@ -14,6 +14,7 @@
 #include "host_uart_task.h"
 #include "console_task.h"
 #include "driverlib/sysctl.h"
+#include "rotary_enc_task.h"
 
 static const uint32_t NUM_OF_PADS = 12;
 static const uint32_t LOW_REF = 10;
@@ -52,7 +53,7 @@ void init_drumpad(uint32_t page_number) {
         pad_states[idx].value_idx = 0;
     }
 
-} // End init_drumpad
+} // End init
 
 void process_drumpad(uint32_t* adc00values,
                      uint32_t* adc11values,
@@ -114,6 +115,7 @@ void process_drumpad(uint32_t* adc00values,
                             uart_msg.bitfield.message_type = NOTE_ON;
                             uart_msg.bitfield.pad_num = idx;
                             uart_msg.bitfield.value = 63;
+                            uart_msg.bitfield.channel = get_channel();
 
                             if (slope > 0) {
                                 if((idx == 0) && (is_on_screen(page_num))) {
@@ -148,6 +150,7 @@ void process_drumpad(uint32_t* adc00values,
                             uart_msg.bitfield.message_type = NOTE_ON;
                             uart_msg.bitfield.pad_num = idx;
                             uart_msg.bitfield.value = 63;
+                            uart_msg.bitfield.channel = get_channel();
 
                             if (slope > 0) {
                                 send_to_host(uart_msg);

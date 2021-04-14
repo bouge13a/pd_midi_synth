@@ -37,7 +37,7 @@ static const uint8_t SEVEN_SEG  = 0b00001110;
 static const uint8_t EIGHT_SEG  = 0b11111110;
 static const uint8_t NINE_SEG   = 0b11011110;
 
-static uint32_t bits;
+static uint32_t bits = 0;
 
 
 void init_rotary_enc(void) {
