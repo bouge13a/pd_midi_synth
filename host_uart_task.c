@@ -78,6 +78,10 @@ void host_uart_task(void* parm) {
             case MODULATION:
             case PITCH:
             case OVERDRIVE:
+            case KNOB1:
+            case KNOB2:
+            case KNOB3:
+            case KNOB4:
                 for(loop_index=0; loop_index<4; loop_index++) {
                     UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[loop_index]);
                 }

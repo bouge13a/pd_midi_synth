@@ -20,7 +20,10 @@ typedef enum {
     OVERDRIVE,
     PITCH,
     MODULATION,
-    KNOB,
+    KNOB1,
+    KNOB2,
+    KNOB3,
+    KNOB4,
 }uart_msg_type_e;
 
 typedef struct {

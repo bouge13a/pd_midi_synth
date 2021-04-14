@@ -33,6 +33,7 @@ ads1x15_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h
 ads1x15_task.obj: ../rotary_enc_task.h
 ads1x15_task.obj: ../joystick_functions.h
 ads1x15_task.obj: ../utils.h
+ads1x15_task.obj: ../midi_knobs_functions.h
 
 ../ads1x15_task.c: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdint.h: 
@@ -67,3 +68,4 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h:
 ../rotary_enc_task.h: 
 ../joystick_functions.h: 
 ../utils.h: 
+../midi_knobs_functions.h: 

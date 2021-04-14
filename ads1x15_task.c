@@ -17,6 +17,7 @@
 #include "host_uart_task.h"
 #include "rotary_enc_task.h"
 #include "joystick_functions.h"
+#include "midi_knobs_functions.h"
 #include "utils.h"
 
 
@@ -310,8 +311,10 @@ void ads1x15_midi_task(void* parm) {
             add_i2c_msg(&adc13_read);
             vTaskDelay(1);
 
+            process_midi_knobs(adc1_data);
+
         } else {
-            //vTaskDelay(12);
+            vTaskDelay(16);
         }
 
         index++;

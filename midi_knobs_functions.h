@@ -12,6 +12,6 @@
 
 void init_midi_knobs(void);
 
-void process_midi_knobs(value16_t* midi_knobs);
+void process_midi_knobs(volatile value16_t* knobs);
 
 #endif /* MIDI_KNOBS_FUNCTIONS_H_ */
