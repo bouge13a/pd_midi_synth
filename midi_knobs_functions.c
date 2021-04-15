@@ -40,7 +40,7 @@ void process_midi_knobs(volatile value16_t* knobs) {
     for(index=0; index<4; index++) {
         switch(midi_knobs[index].knob_state) {
         case KNOB_IDLE:
-            if (midi_knobs[index].last_value - knobs[index].value > 5 || midi_knobs[index].last_value - knobs[index].value < -5 ) {
+            if (midi_knobs[index].last_value - knobs[index].value > 20 || midi_knobs[index].last_value - knobs[index].value < -20 ) {
                 midi_knobs[index].knob_state = KNOB_SEND;
             }
             break;

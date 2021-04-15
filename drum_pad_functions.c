@@ -15,11 +15,19 @@
 #include "console_task.h"
 #include "driverlib/sysctl.h"
 #include "rotary_enc_task.h"
+#include "ads1x15_task.h"
+#include "midi_buttons_task.h"
 
 static const uint32_t NUM_OF_PADS = 12;
-static const uint32_t LOW_REF = 10;
-static const uint32_t HIGH_REF = 3000;
+static const uint32_t LOW_REF     = 10;
+static const uint32_t HIGH_REF    = 3000;
 static const uint32_t IDLE_CYCLES = 10;
+
+static const float    VOLUME100   = 0.040;
+static const float    VOLUME75    = 0.010;
+static const float    VOLUME50    = 0.001;
+static const float    VOLUME25    = 0.0005;
+
 
 typedef enum {
     IDLE_STATE,
@@ -54,6 +62,25 @@ void init_drumpad(uint32_t page_number) {
     }
 
 } // End init
+
+static uint32_t get_value(float slope) {
+
+    if (pressure_sense_is_on()){
+        return (uint32_t)(get_volume() * 127);
+    } else {
+        if (slope > VOLUME100) {
+            return (uint32_t)(get_volume()*127);
+        } else if (slope > VOLUME75) {
+            return (uint32_t)(get_volume()*127*0.75);
+        } else if (slope > VOLUME50) {
+            return (uint32_t)(get_volume()*127*0.50);
+        } else if (slope > VOLUME25) {
+            return (uint32_t)(get_volume()*127*0.25);
+        } else {
+            assert(0);
+        }
+    }
+}
 
 void process_drumpad(uint32_t* adc00values,
                      uint32_t* adc11values,
@@ -114,7 +141,7 @@ void process_drumpad(uint32_t* adc00values,
 
                             uart_msg.bitfield.message_type = NOTE_ON;
                             uart_msg.bitfield.pad_num = idx;
-                            uart_msg.bitfield.value = 63;
+                            uart_msg.bitfield.value = get_value(slope);
                             uart_msg.bitfield.channel = get_channel();
 
                             if (slope > 0) {
@@ -149,7 +176,7 @@ void process_drumpad(uint32_t* adc00values,
 
                             uart_msg.bitfield.message_type = NOTE_ON;
                             uart_msg.bitfield.pad_num = idx;
-                            uart_msg.bitfield.value = 63;
+                            uart_msg.bitfield.value = get_value(slope);
                             uart_msg.bitfield.channel = get_channel();
 
                             if (slope > 0) {

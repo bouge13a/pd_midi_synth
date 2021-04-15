@@ -27,6 +27,7 @@
 #include "drum_pad_functions.h"
 #include "rotary_enc_task.h"
 #include "ads1x15_task.h"
+#include "midi_buttons_task.h"
 
 static QueueHandle_t console_uart_rx_q = NULL;
 
@@ -59,6 +60,8 @@ void init_midi_ctrl_board(void){
     init_rotary_enc();
 
     init_ads1x15();
+
+    init_midi_buttons();
 
     /////////////////////////////////////////////////////////
     //                  Add pages to Console
@@ -156,6 +159,13 @@ void init_midi_ctrl_board(void){
 
     xTaskCreate(ads1x15_midi_task,               /* Function that implements the task. */
                 "ADS1X15",                  /* Text name for the task. */
+                configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
+                NULL,                       /* Parameter passed into the task. */
+                3,                          /* Priority at which the task is created. */
+                NULL );                     /* Used to pass out the created task's handle. */
+
+    xTaskCreate(midi_buttons_task,               /* Function that implements the task. */
+                "MIDI buttons",                  /* Text name for the task. */
                 configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
                 NULL,                       /* Parameter passed into the task. */
                 3,                          /* Priority at which the task is created. */

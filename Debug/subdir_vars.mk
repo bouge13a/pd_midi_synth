@@ -27,6 +27,7 @@ C_SRCS += \
 ../logger.c \
 ../looper_board.c \
 ../main.c \
+../midi_buttons_task.c \
 ../midi_ctrl_board.c \
 ../midi_knobs_functions.c \
 ../rotary_enc_task.c \
@@ -54,6 +55,7 @@ C_DEPS += \
 ./logger.d \
 ./looper_board.d \
 ./main.d \
+./midi_buttons_task.d \
 ./midi_ctrl_board.d \
 ./midi_knobs_functions.d \
 ./rotary_enc_task.d \
@@ -81,6 +83,7 @@ OBJS += \
 ./logger.obj \
 ./looper_board.obj \
 ./main.obj \
+./midi_buttons_task.obj \
 ./midi_ctrl_board.obj \
 ./midi_knobs_functions.obj \
 ./rotary_enc_task.obj \
@@ -108,6 +111,7 @@ OBJS__QUOTED += \
 "logger.obj" \
 "looper_board.obj" \
 "main.obj" \
+"midi_buttons_task.obj" \
 "midi_ctrl_board.obj" \
 "midi_knobs_functions.obj" \
 "rotary_enc_task.obj" \
@@ -135,6 +139,7 @@ C_DEPS__QUOTED += \
 "logger.d" \
 "looper_board.d" \
 "main.d" \
+"midi_buttons_task.d" \
 "midi_ctrl_board.d" \
 "midi_knobs_functions.d" \
 "rotary_enc_task.d" \
@@ -162,6 +167,7 @@ C_SRCS__QUOTED += \
 "../logger.c" \
 "../looper_board.c" \
 "../main.c" \
+"../midi_buttons_task.c" \
 "../midi_ctrl_board.c" \
 "../midi_knobs_functions.c" \
 "../rotary_enc_task.c" \

@@ -93,7 +93,13 @@ gpio_pin_t* get_gpi_config(const char* name) {
 } // End get_button_config
 
 uint32_t read_gpi(gpio_pin_t* config) {
-    return  MAP_GPIOPinRead(config->port, config->pin);
+    if (MAP_GPIOPinRead(config->port, config->pin)) {
+        return 1;
+    } else {
+        return 0;
+    }
+
+    return 0;
 }
 
 gpis_t get_gpi_struct(void) {

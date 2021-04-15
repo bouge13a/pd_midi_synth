@@ -42,9 +42,7 @@ usb_task.obj: C:/Users/steph/workspace_v10/drum_pad/usb/usbdhid.h
 usb_task.obj: C:/ti/TivaWare_C_Series-2.2.0.295/usblib/usbhid.h
 usb_task.obj: C:/Users/steph/workspace_v10/drum_pad/usb/usbhid.h
 usb_task.obj: ../usb_structs.h
-usb_task.obj: ../buttons.h
 usb_task.obj: ../board_pin_defs.h
-usb_task.obj: ../ADC_task.h
 usb_task.obj: ../logger.h
 
 ../usb_task.c: 
@@ -89,7 +87,5 @@ C:/Users/steph/workspace_v10/drum_pad/usb/usbdhid.h:
 C:/ti/TivaWare_C_Series-2.2.0.295/usblib/usbhid.h: 
 C:/Users/steph/workspace_v10/drum_pad/usb/usbhid.h: 
 ../usb_structs.h: 
-../buttons.h: 
 ../board_pin_defs.h: 
-../ADC_task.h: 
 ../logger.h: 

@@ -20,6 +20,11 @@ usb_structs.obj: C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdevice.h
 usb_structs.obj: C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdevicepriv.h
 usb_structs.obj: C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdcomp.h
 usb_structs.obj: C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdhid.h
+usb_structs.obj: ../usb/usbdhidgamepad.h
+usb_structs.obj: C:/Users/steph/workspace_v10/drum_pad/usb/usbdevice.h
+usb_structs.obj: C:/Users/steph/workspace_v10/drum_pad/usb/usbdhid.h
+usb_structs.obj: C:/Users/steph/workspace_v10/drum_pad/usb/usbhid.h
+usb_structs.obj: ../usb_structs.h
 
 ../usb_structs.c: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdint.h: 
@@ -41,3 +46,8 @@ C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdevice.h:
 C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdevicepriv.h: 
 C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdcomp.h: 
 C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdhid.h: 
+../usb/usbdhidgamepad.h: 
+C:/Users/steph/workspace_v10/drum_pad/usb/usbdevice.h: 
+C:/Users/steph/workspace_v10/drum_pad/usb/usbdhid.h: 
+C:/Users/steph/workspace_v10/drum_pad/usb/usbhid.h: 
+../usb_structs.h: 
