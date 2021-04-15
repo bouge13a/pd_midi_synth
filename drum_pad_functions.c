@@ -25,8 +25,8 @@ static const uint32_t IDLE_CYCLES = 10;
 
 static const float    VOLUME100   = 0.040;
 static const float    VOLUME75    = 0.010;
-static const float    VOLUME50    = 0.001;
-static const float    VOLUME25    = 0.0005;
+static const float    VOLUME50    = 0.005;
+static const float    VOLUME25    = 0.001;
 
 
 typedef enum {
@@ -77,7 +77,7 @@ static uint32_t get_value(float slope) {
         } else if (slope > VOLUME25) {
             return (uint32_t)(get_volume()*127*0.25);
         } else {
-            assert(0);
+            return (uint32_t)(get_volume()*127*0.10);
         }
     }
 }

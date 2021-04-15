@@ -32,28 +32,28 @@ static volatile value16_t adc1_data[4];
 // See ADS1115 data sheet for explanation
 static const uint8_t ADC0_SEL[] = {
     0b00000001,
-    0b11000001,
+    0b11000000,
     0b11100011,
 };
 
 // See ADS1115 data sheet for explanation
 static const uint8_t ADC1_SEL[] = {
     0b00000001,
-    0b11010001,
+    0b11010000,
     0b11100011,
 };
 
 // See ADS1115 data sheet for explanation
 static const uint8_t ADC2_SEL[] = {
     0b00000001,
-    0b11100001,
+    0b11100000,
     0b11100011,
 };
 
 // See ADS1115 data sheet for explanation
 static const uint8_t ADC3_SEL[] = {
     0b00000001,
-    0b11110001,
+    0b11110000,
     0b11100011,
 };
 
@@ -273,26 +273,26 @@ void ads1x15_midi_task(void* parm) {
     while(1) {
 
         add_i2c_msg(&joy_y_sel);
-        vTaskDelay(3);
+        vTaskDelay(1);
         add_i2c_msg(&joy_y_read);
-        vTaskDelay(3);
+        vTaskDelay(1);
         add_i2c_msg(&joy_x_sel);
-        vTaskDelay(3);
+        vTaskDelay(1);
         add_i2c_msg(&joy_x_read);
-        vTaskDelay(3);
+        vTaskDelay(1);
 
         process_joystick(joy_x_data.value, joy_y_data.value);
 
         if (index % 10 == 0) {
 
             add_i2c_msg(&sense_sel);
-            vTaskDelay(3);
+            vTaskDelay(1);
             add_i2c_msg(&sense_read);
-            vTaskDelay(3);
+            vTaskDelay(1);
             add_i2c_msg(&volume_sel);
-            vTaskDelay(3);
+            vTaskDelay(1);
             add_i2c_msg(&volume_read);
-            vTaskDelay(3);
+            vTaskDelay(1);
 
             add_i2c_msg(&ads1015_adc10_sel);
             vTaskDelay(1);
@@ -322,11 +322,11 @@ void ads1x15_midi_task(void* parm) {
 } // End joystick_task
 
 float get_volume(void) {
-    return volume_data.value/17536.0;
+    return volume_data.value/17537.0;
 }// End get_volume
 
 float get_sensitivity(void) {
-    return sense_data.value/17536.0;
+    return sense_data.value/17537.0;
 } // End get_Sensitivity
 
 

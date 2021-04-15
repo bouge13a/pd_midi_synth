@@ -6,9 +6,13 @@
  */
 
 #include <assert.h>
+#include <stdlib.h>
+
 #include "midi_knobs_functions.h"
 #include "host_uart_task.h"
 #include "rotary_enc_task.h"
+
+static const uint32_t CAPTURE_WINDOW = 50;
 
 typedef enum {
     KNOB_SEND,
@@ -40,7 +44,7 @@ void process_midi_knobs(volatile value16_t* knobs) {
     for(index=0; index<4; index++) {
         switch(midi_knobs[index].knob_state) {
         case KNOB_IDLE:
-            if (midi_knobs[index].last_value - knobs[index].value > 20 || midi_knobs[index].last_value - knobs[index].value < -20 ) {
+            if (abs(midi_knobs[index].last_value - knobs[index].value) > CAPTURE_WINDOW ) {
                 midi_knobs[index].knob_state = KNOB_SEND;
             }
             break;

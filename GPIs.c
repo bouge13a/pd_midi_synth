@@ -99,7 +99,6 @@ uint32_t read_gpi(gpio_pin_t* config) {
         return 0;
     }
 
-    return 0;
 }
 
 gpis_t get_gpi_struct(void) {
