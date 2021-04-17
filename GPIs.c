@@ -70,7 +70,7 @@ void init_gpis(void) {
             MAP_GPIOPadConfigSet(gpi_info.gpis[idx]->port,
                                  gpi_info.gpis[idx]->pin,
                                  GPIO_STRENGTH_2MA,
-                                 GPIO_PIN_TYPE_STD_WPU);
+                                 GPIO_PIN_TYPE_STD_WPD);
         }
     }
 

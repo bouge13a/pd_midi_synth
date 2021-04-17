@@ -10,6 +10,12 @@
 
 #include <stdint.h>
 
+typedef enum {
+    RECORD_MSG,
+    PLAY_MSG,
+    STOP_MSG,
+}msg_type_e;
+
 typedef struct {
     uint8_t message_type : 8;
     uint8_t ctrl_num     : 8;

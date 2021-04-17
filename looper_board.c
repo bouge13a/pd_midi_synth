@@ -19,6 +19,7 @@
 #include "GPIs.h"
 #include "GPOs.h"
 #include "usb_hid_task.h"
+#include "looper_buttons_task.h"
 
 static QueueHandle_t console_uart_rx_q_looper = NULL;
 
@@ -50,6 +51,7 @@ void init_looper_board(void) {
 
     init_logger();
 
+    init_looper_buttons();
 
 
     /////////////////////////////////////////////////////////
@@ -118,6 +120,13 @@ void init_looper_board(void) {
 
     xTaskCreate(usb_hid_task,               /* Function that implements the task. */
                 "USB0",                  /* Text name for the task. */
+                configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
+                NULL,                       /* Parameter passed into the task. */
+                3,                          /* Priority at which the task is created. */
+                NULL );                     /* Used to pass out the created task's handle. */
+
+    xTaskCreate(looper_buttons_task,               /* Function that implements the task. */
+                "Buttons",                  /* Text name for the task. */
                 configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
                 NULL,                       /* Parameter passed into the task. */
                 3,                          /* Priority at which the task is created. */
