@@ -24,6 +24,7 @@ host_uart_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/mpu_w
 host_uart_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h
 host_uart_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h
 host_uart_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h
+host_uart_task.obj: C:/Users/steph/workspace_v10/drum_pad/midi_uart_functions.h
 host_uart_task.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h
 host_uart_task.obj: ../GPOs.h
 host_uart_task.obj: ../board_pin_defs.h
@@ -66,6 +67,7 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/mpu_wrappers.h:
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h: 
+C:/Users/steph/workspace_v10/drum_pad/midi_uart_functions.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h: 
 ../GPOs.h: 
 ../board_pin_defs.h: 

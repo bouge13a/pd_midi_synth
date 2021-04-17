@@ -6,11 +6,11 @@
  */
 
 #include <host_uart_task.h>
+#include <midi_uart_functions.h>
 #include <stdbool.h>
 
 #include "GPOs.h"
 #include "console_task.h"
-
 #include "driverlib/rom.h"
 #include "driverlib/rom_map.h"
 #include "driverlib/sysctl.h"
@@ -55,7 +55,7 @@ void init_host_uart(uint32_t page_number) {
 
     //UARTFIFOEnable(UART1_BASE);
 
-    MAP_UARTConfigSetExpClk(UART1_BASE, MAP_SysCtlClockGet(), 115200,
+    MAP_UARTConfigSetExpClk(UART1_BASE, MAP_SysCtlClockGet(), 31250,
                             (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
                              UART_CONFIG_PAR_NONE));
 
@@ -73,54 +73,15 @@ void host_uart_task(void* parm) {
 
         set_gpo(blue_debug, 1);
 
-        switch(uart_msg.bitfield.message_type) {
-            case NOTE_ON:
-            case MODULATION:
-            case PITCH:
-            case OVERDRIVE:
-            case KNOB1:
-            case KNOB2:
-            case KNOB3:
-            case KNOB4:
-                for(loop_index=0; loop_index<4; loop_index++) {
-                    UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[loop_index]);
-                }
+        send_midi_message(uart_msg);
 
 
-                if (is_on_screen(page_num)) {
-                    UARTprintf("%d %d %d %d\n", uart_msg.bitfield.message_type,
-                                             uart_msg.bitfield.pad_num,
-                                             uart_msg.bitfield.value,
-                                             uart_msg.bitfield.channel);
-                }
-
-//                if (is_on_screen(page_num)) {
-//                    UARTprintf("%x %x %x %x\n", uart_msg.bytes[0],
-//                               uart_msg.bytes[1],
-//                               uart_msg.bytes[2],
-//                               uart_msg.bytes[3]);
-//                }
-
-                break;
-
-            case NOTE_OFF:
-
-                for(loop_index=0; loop_index<4; loop_index++) {
-                    MAP_UARTCharPutNonBlocking(UART1_BASE, uart_msg.bytes[loop_index]);
-                }
-
-                if (is_on_screen(page_num)) {
-                    UARTprintf("%d %d\n", uart_msg.bitfield.message_type,
-                                             uart_msg.bitfield.pad_num);
-                }
-
-                break;
-
-            default:
-                break;
+        if (is_on_screen(page_num)) {
+            UARTprintf("%d %d %d %d\n", uart_msg.bitfield.message_type,
+                                        uart_msg.bitfield.pad_num,
+                                        uart_msg.bitfield.value,
+                                        uart_msg.bitfield.channel);
         }
-
-
 
         set_gpo(blue_debug, 0);
 

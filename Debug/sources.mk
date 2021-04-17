@@ -115,5 +115,6 @@ SUBDIRS := \
 FreeRTOS \
 FreeRTOS/portable/CCS/ARM_CM4F \
 driverlib \
+usb \
 utils \
 

@@ -44,7 +44,7 @@ void process_joystick(uint16_t x_raw, uint16_t y_raw) {
             js_uart_msg.bitfield.channel = get_channel();
             js_uart_msg.bitfield.pad_num = 0;
             js_uart_msg.bitfield.message_type = MODULATION;
-            js_uart_msg.bitfield.value = x_raw;
+            js_uart_msg.bitfield.value = (x_raw/17356.0)*127;
 
             send_to_host(js_uart_msg);
 
@@ -55,7 +55,7 @@ void process_joystick(uint16_t x_raw, uint16_t y_raw) {
             js_uart_msg.bitfield.channel = get_channel();
             js_uart_msg.bitfield.pad_num = 0;
             js_uart_msg.bitfield.message_type = MODULATION;
-            js_uart_msg.bitfield.value = x_raw;
+            js_uart_msg.bitfield.value = (x_raw/17356.0)*127;
 
             send_to_host(js_uart_msg);
 

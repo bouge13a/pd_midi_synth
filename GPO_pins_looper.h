@@ -41,10 +41,82 @@ static gpio_pin_t redled = {
     .direction  = GPIO_DIR_MODE_OUT,
 };
 
+static gpio_pin_t led_0 = {
+    .name       = "led 0",
+    .pin        = GPIO_PIN_7,
+    .peripheral = SYSCTL_PERIPH_GPIOD,
+    .port       = GPIO_PORTD_AHB_BASE,
+    .direction  = GPIO_DIR_MODE_OUT,
+};
+
+static gpio_pin_t led_1 = {
+    .name       = "led 1",
+    .pin        = GPIO_PIN_4,
+    .peripheral = SYSCTL_PERIPH_GPIOF,
+    .port       = GPIO_PORTF_AHB_BASE,
+    .direction  = GPIO_DIR_MODE_OUT,
+};
+
+static gpio_pin_t led_2 = {
+    .name       = "led 2",
+    .pin        = GPIO_PIN_4,
+    .peripheral = SYSCTL_PERIPH_GPIOA,
+    .port       = GPIO_PORTA_AHB_BASE,
+    .direction  = GPIO_DIR_MODE_OUT,
+};
+
+static gpio_pin_t led_3 = {
+    .name       = "led 3",
+    .pin        = GPIO_PIN_3,
+    .peripheral = SYSCTL_PERIPH_GPIOA,
+    .port       = GPIO_PORTA_AHB_BASE,
+    .direction  = GPIO_DIR_MODE_OUT,
+};
+
+static gpio_pin_t led_4 = {
+    .name       = "led 4",
+    .pin        = GPIO_PIN_2,
+    .peripheral = SYSCTL_PERIPH_GPIOA,
+    .port       = GPIO_PORTA_AHB_BASE,
+    .direction  = GPIO_DIR_MODE_OUT,
+};
+
+static gpio_pin_t led_5 = {
+    .name       = "led 5",
+    .pin        = GPIO_PIN_2,
+    .peripheral = SYSCTL_PERIPH_GPIOB,
+    .port       = GPIO_PORTB_AHB_BASE,
+    .direction  = GPIO_DIR_MODE_OUT,
+};
+
+static gpio_pin_t led_6 = {
+    .name       = "led 6",
+    .pin        = GPIO_PIN_0,
+    .peripheral = SYSCTL_PERIPH_GPIOF,
+    .port       = GPIO_PORTF_AHB_BASE,
+    .direction  = GPIO_DIR_MODE_OUT,
+};
+
+static gpio_pin_t led_7 = {
+    .name       = "led 7",
+    .pin        = GPIO_PIN_7,
+    .peripheral = SYSCTL_PERIPH_GPIOB,
+    .port       = GPIO_PORTB_AHB_BASE,
+    .direction  = GPIO_DIR_MODE_OUT,
+};
+
 static gpio_pin_t* looper_gpos[] = {
     &greenled,
     &redled,
     &blueled,
+    &led_0,
+    &led_1,
+    &led_2,
+    &led_3,
+    &led_4,
+    &led_5,
+    &led_6,
+    &led_7,
 };
 
 const gpos_t looper_gpo_info = {

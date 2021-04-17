@@ -36,6 +36,7 @@ looper_board.obj: ../logger.h
 looper_board.obj: ../task_manager_page.h
 looper_board.obj: ../GPIs.h
 looper_board.obj: ../GPOs.h
+looper_board.obj: ../usb_hid_task.h
 
 ../looper_board.c: 
 ../looper_board.h: 
@@ -73,3 +74,4 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h:
 ../task_manager_page.h: 
 ../GPIs.h: 
 ../GPOs.h: 
+../usb_hid_task.h: 

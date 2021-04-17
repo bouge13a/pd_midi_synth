@@ -140,7 +140,7 @@ void process_drumpad(uint32_t* adc00values,
                             pad_states[idx].value_idx = 0;
 
                             uart_msg.bitfield.message_type = NOTE_ON;
-                            uart_msg.bitfield.pad_num = idx;
+                            uart_msg.bitfield.pad_num = get_octave() + idx;
                             uart_msg.bitfield.value = get_value(slope);
                             uart_msg.bitfield.channel = get_channel();
 
@@ -175,7 +175,7 @@ void process_drumpad(uint32_t* adc00values,
                             pad_states[idx].value_idx = 0;
 
                             uart_msg.bitfield.message_type = NOTE_ON;
-                            uart_msg.bitfield.pad_num = idx;
+                            uart_msg.bitfield.pad_num = get_octave() + idx;
                             uart_msg.bitfield.value = get_value(slope);
                             uart_msg.bitfield.channel = get_channel();
 

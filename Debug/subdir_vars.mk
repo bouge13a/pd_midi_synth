@@ -26,14 +26,18 @@ C_SRCS += \
 ../joystick_functions.c \
 ../logger.c \
 ../looper_board.c \
+../looper_buttons_task.c \
 ../main.c \
 ../midi_buttons_task.c \
 ../midi_ctrl_board.c \
 ../midi_knobs_functions.c \
+../midi_uart_functions.c \
 ../rotary_enc_task.c \
 ../task_manager_page.c \
 ../text_controls.c \
 ../tm4c123gh6pm_startup_ccs.c \
+../usb_hid_task.c \
+../usb_structs.c \
 ../watchdog_task.c 
 
 C_DEPS += \
@@ -54,14 +58,18 @@ C_DEPS += \
 ./joystick_functions.d \
 ./logger.d \
 ./looper_board.d \
+./looper_buttons_task.d \
 ./main.d \
 ./midi_buttons_task.d \
 ./midi_ctrl_board.d \
 ./midi_knobs_functions.d \
+./midi_uart_functions.d \
 ./rotary_enc_task.d \
 ./task_manager_page.d \
 ./text_controls.d \
 ./tm4c123gh6pm_startup_ccs.d \
+./usb_hid_task.d \
+./usb_structs.d \
 ./watchdog_task.d 
 
 OBJS += \
@@ -82,14 +90,18 @@ OBJS += \
 ./joystick_functions.obj \
 ./logger.obj \
 ./looper_board.obj \
+./looper_buttons_task.obj \
 ./main.obj \
 ./midi_buttons_task.obj \
 ./midi_ctrl_board.obj \
 ./midi_knobs_functions.obj \
+./midi_uart_functions.obj \
 ./rotary_enc_task.obj \
 ./task_manager_page.obj \
 ./text_controls.obj \
 ./tm4c123gh6pm_startup_ccs.obj \
+./usb_hid_task.obj \
+./usb_structs.obj \
 ./watchdog_task.obj 
 
 OBJS__QUOTED += \
@@ -110,14 +122,18 @@ OBJS__QUOTED += \
 "joystick_functions.obj" \
 "logger.obj" \
 "looper_board.obj" \
+"looper_buttons_task.obj" \
 "main.obj" \
 "midi_buttons_task.obj" \
 "midi_ctrl_board.obj" \
 "midi_knobs_functions.obj" \
+"midi_uart_functions.obj" \
 "rotary_enc_task.obj" \
 "task_manager_page.obj" \
 "text_controls.obj" \
 "tm4c123gh6pm_startup_ccs.obj" \
+"usb_hid_task.obj" \
+"usb_structs.obj" \
 "watchdog_task.obj" 
 
 C_DEPS__QUOTED += \
@@ -138,14 +154,18 @@ C_DEPS__QUOTED += \
 "joystick_functions.d" \
 "logger.d" \
 "looper_board.d" \
+"looper_buttons_task.d" \
 "main.d" \
 "midi_buttons_task.d" \
 "midi_ctrl_board.d" \
 "midi_knobs_functions.d" \
+"midi_uart_functions.d" \
 "rotary_enc_task.d" \
 "task_manager_page.d" \
 "text_controls.d" \
 "tm4c123gh6pm_startup_ccs.d" \
+"usb_hid_task.d" \
+"usb_structs.d" \
 "watchdog_task.d" 
 
 C_SRCS__QUOTED += \
@@ -166,14 +186,18 @@ C_SRCS__QUOTED += \
 "../joystick_functions.c" \
 "../logger.c" \
 "../looper_board.c" \
+"../looper_buttons_task.c" \
 "../main.c" \
 "../midi_buttons_task.c" \
 "../midi_ctrl_board.c" \
 "../midi_knobs_functions.c" \
+"../midi_uart_functions.c" \
 "../rotary_enc_task.c" \
 "../task_manager_page.c" \
 "../text_controls.c" \
 "../tm4c123gh6pm_startup_ccs.c" \
+"../usb_hid_task.c" \
+"../usb_structs.c" \
 "../watchdog_task.c" 
 
 
