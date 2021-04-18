@@ -17,11 +17,12 @@ usb/usbdhidgamepad.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/debug.h
 usb/usbdhidgamepad.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/usb.h
 usb/usbdhidgamepad.obj: C:/ti/TivaWare_C_Series-2.2.0.295/usblib/usblib.h
 usb/usbdhidgamepad.obj: C:/ti/TivaWare_C_Series-2.2.0.295/usblib/usblibpriv.h
-usb/usbdhidgamepad.obj: C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdevice.h
-usb/usbdhidgamepad.obj: C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdevicepriv.h
+usb/usbdhidgamepad.obj: C:/Users/steph/workspace_v10/drum_pad/usb/usbdevice.h
+usb/usbdhidgamepad.obj: C:/Users/steph/workspace_v10/drum_pad/usb/usbdevicepriv.h
+usb/usbdhidgamepad.obj: C:/Users/steph/workspace_v10/drum_pad/usb/usbhid.h
+usb/usbdhidgamepad.obj: C:/Users/steph/workspace_v10/drum_pad/usb/usbdhid.h
 usb/usbdhidgamepad.obj: C:/ti/TivaWare_C_Series-2.2.0.295/usblib/usbhid.h
-usb/usbdhidgamepad.obj: C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdhid.h
-usb/usbdhidgamepad.obj: C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdhidgamepad.h
+usb/usbdhidgamepad.obj: C:/Users/steph/workspace_v10/drum_pad/usb/usbdhidgamepad.h
 
 ../usb/usbdhidgamepad.c: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h: 
@@ -40,8 +41,9 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/debug.h:
 C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/usb.h: 
 C:/ti/TivaWare_C_Series-2.2.0.295/usblib/usblib.h: 
 C:/ti/TivaWare_C_Series-2.2.0.295/usblib/usblibpriv.h: 
-C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdevice.h: 
-C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdevicepriv.h: 
+C:/Users/steph/workspace_v10/drum_pad/usb/usbdevice.h: 
+C:/Users/steph/workspace_v10/drum_pad/usb/usbdevicepriv.h: 
+C:/Users/steph/workspace_v10/drum_pad/usb/usbhid.h: 
+C:/Users/steph/workspace_v10/drum_pad/usb/usbdhid.h: 
 C:/ti/TivaWare_C_Series-2.2.0.295/usblib/usbhid.h: 
-C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdhid.h: 
-C:/ti/TivaWare_C_Series-2.2.0.295/usblib/device/usbdhidgamepad.h: 
+C:/Users/steph/workspace_v10/drum_pad/usb/usbdhidgamepad.h: 

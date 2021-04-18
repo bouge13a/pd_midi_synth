@@ -72,6 +72,7 @@ void init_console_uart(QueueHandle_t uart_rx_queue) {
     MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
 
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_UART0));
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOA));
 
     // Set GPIO A0 and A1 as UART pins.
     MAP_GPIOPinConfigure(GPIO_PA0_U0RX);

@@ -5,6 +5,8 @@
  *      Author: steph
  */
 
+
+
 #include "usb_hid_task.h"
 
 #include "FreeRTOS.h"
@@ -24,15 +26,13 @@
 #include "driverlib/rom.h"
 #include "driverlib/rom_map.h"
 #include "driverlib/sysctl.h"
-#include "driverlib/usb.h"
+//#include "driverlib/usb.h"
 #include "usb/usbdhidgamepad.h"
 #include "usb_structs.h"
 
 #include "logger.h"
 #include "board_pin_defs.h"
 #include "console_task.h"
-
-extern void USB0DeviceIntHandler(void);
 
 static error_t* usb_reconnected_err;
 static error_t* usb_suspended_err;
@@ -168,6 +168,8 @@ void init_usb_hid(uint32_t page_index) {
     SysCtlGPIOAHBEnable(SYSCTL_PERIPH_GPIOD);
     MAP_GPIOPinTypeUSBAnalog(GPIO_PORTD_AHB_BASE, GPIO_PIN_4 | GPIO_PIN_5);
 
+    //USBIntRegister(USB0_BASE, USB0DeviceIntHandler);
+
     // Set the USB stack mode to Device mode.
     USBStackModeSet(0, eUSBModeForceDevice, 0);
 
@@ -175,7 +177,7 @@ void init_usb_hid(uint32_t page_index) {
     // on the bus.
     USBDHIDGamepadInit(0, &g_sGamepadDevice);
 
-    USBIntRegister(USB0_BASE, USB0DeviceIntHandler);
+
 
     usb_reconnected_err = create_error("USB0",
                                        "USB has reconnected");
@@ -201,7 +203,7 @@ void usb_hid_task(void* parm) {
 
             sReport.msg_type = usb_hid_msg.bitfield.message_type;
             sReport.ctrl_num = usb_hid_msg.bitfield.ctrl_num;
-            sReport.value    = usb_hid_msg.bitfield.value;
+            //sReport.value    = usb_hid_msg.bitfield.value;
 
             // Send sReport
             USBDHIDGamepadSendReport(&g_sGamepadDevice,
@@ -215,7 +217,7 @@ void usb_hid_task(void* parm) {
             if (is_on_screen(page_idx)) {
                 UARTprintf("%d %d %d", sReport.msg_type,
                                        sReport.ctrl_num,
-                                       sReport.value);
+                                       sReport.value_msb);
             }
         }
 

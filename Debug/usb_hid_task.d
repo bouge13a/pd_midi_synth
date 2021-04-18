@@ -37,7 +37,6 @@ usb_hid_task.obj: ../driverlib/pin_map.h
 usb_hid_task.obj: ../driverlib/rom.h
 usb_hid_task.obj: ../driverlib/rom_map.h
 usb_hid_task.obj: ../driverlib/sysctl.h
-usb_hid_task.obj: ../driverlib/usb.h
 usb_hid_task.obj: ../usb/usbdhidgamepad.h
 usb_hid_task.obj: C:/Users/steph/workspace_v10/drum_pad/usb/usbdevice.h
 usb_hid_task.obj: C:/Users/steph/workspace_v10/drum_pad/usb/usbdevicepriv.h
@@ -87,7 +86,6 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdarg.h:
 ../driverlib/rom.h: 
 ../driverlib/rom_map.h: 
 ../driverlib/sysctl.h: 
-../driverlib/usb.h: 
 ../usb/usbdhidgamepad.h: 
 C:/Users/steph/workspace_v10/drum_pad/usb/usbdevice.h: 
 C:/Users/steph/workspace_v10/drum_pad/usb/usbdevicepriv.h: 

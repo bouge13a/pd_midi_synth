@@ -226,7 +226,8 @@ typedef struct
 
     uint8_t ctrl_num;
 
-    uint16_t value;
+    uint8_t value_msb;
+
 }
 PACKED tGamepadReport;
 

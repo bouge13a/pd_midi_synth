@@ -59,25 +59,25 @@ static gpio_pin_t led_1 = {
 
 static gpio_pin_t led_2 = {
     .name       = "led 2",
-    .pin        = GPIO_PIN_4,
-    .peripheral = SYSCTL_PERIPH_GPIOA,
-    .port       = GPIO_PORTA_AHB_BASE,
+    .pin        = GPIO_PIN_6,
+    .peripheral = SYSCTL_PERIPH_GPIOB,
+    .port       = GPIO_PORTB_AHB_BASE,
     .direction  = GPIO_DIR_MODE_OUT,
 };
 
 static gpio_pin_t led_3 = {
     .name       = "led 3",
-    .pin        = GPIO_PIN_3,
-    .peripheral = SYSCTL_PERIPH_GPIOA,
-    .port       = GPIO_PORTA_AHB_BASE,
+    .pin        = GPIO_PIN_7,
+    .peripheral = SYSCTL_PERIPH_GPIOB,
+    .port       = GPIO_PORTB_AHB_BASE,
     .direction  = GPIO_DIR_MODE_OUT,
 };
 
 static gpio_pin_t led_4 = {
     .name       = "led 4",
-    .pin        = GPIO_PIN_2,
-    .peripheral = SYSCTL_PERIPH_GPIOA,
-    .port       = GPIO_PORTA_AHB_BASE,
+    .pin        = GPIO_PIN_0,
+    .peripheral = SYSCTL_PERIPH_GPIOF,
+    .port       = GPIO_PORTF_AHB_BASE,
     .direction  = GPIO_DIR_MODE_OUT,
 };
 

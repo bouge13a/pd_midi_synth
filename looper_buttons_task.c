@@ -49,8 +49,8 @@ void init_looper_buttons(void) {
     for (index=0; index<8; index++) {
         sprintf(string, "loop %d", index);
         looper_pins[index].loop_pin = get_gpi_config(string);
-        sprintf(string, "led %d\0", index);
-        looper_pins[index].led = get_gpi_config(string);
+        sprintf(string, "led %d", index);
+        looper_pins[index].led = get_gpo_config(string);
         looper_pins[index].loop_state = BUTTON_UP_IDLE;
     }
 

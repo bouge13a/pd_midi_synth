@@ -45,6 +45,7 @@ void init_i2c(void) {
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
 
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_I2C1));
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOA));
 
     GPIOPinConfigure(GPIO_PA6_I2C1SCL);
     GPIOPinConfigure(GPIO_PA7_I2C1SDA);

@@ -29,10 +29,10 @@
 #include "driverlib/usb.h"
 #include "usblib/usblib.h"
 #include "usblib/usblibpriv.h"
-#include "usblib/device/usbdevice.h"
-#include "usblib/usbhid.h"
-#include "usblib/device/usbdhid.h"
-#include "usblib/device/usbdhidgamepad.h"
+#include "usb/usbdevice.h"
+#include "usb/usbhid.h"
+#include "usb/usbdhid.h"
+#include "usb/usbdhidgamepad.h"
 
 //*****************************************************************************
 //
@@ -146,7 +146,7 @@ static const uint8_t g_pui8GameReportDescriptor[] =
             //1 16 bit value
             Usage (USB_HID_RX),
 
-            ReportSize(16),
+            ReportSize(8),
             ReportCount(1),
             Input(USB_HID_INPUT_DATA | USB_HID_INPUT_VARIABLE |
                         USB_HID_INPUT_ABS),

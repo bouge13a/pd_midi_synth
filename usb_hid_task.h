@@ -14,6 +14,9 @@ typedef enum {
     RECORD_MSG,
     PLAY_MSG,
     STOP_MSG,
+    EffECT_MSG,
+    TRACK_VOL_MSG,
+    EQ_MSG,
 }msg_type_e;
 
 typedef struct {
