@@ -127,7 +127,7 @@ void init_midi_ctrl_board(void){
                 3,                          /* Priority at which the task is created. */
                 NULL );                     /* Used to pass out the created task's handle. */
 
-    xTaskCreate(adc_task,               /* Function that implements the task. */
+    xTaskCreate(midi_adc_task,               /* Function that implements the task. */
                 "ADC",                  /* Text name for the task. */
                 400,                        /* Stack size in words, not bytes. */
                 NULL,                       /* Parameter passed into the task. */

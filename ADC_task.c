@@ -27,6 +27,7 @@
 #include "driverlib/interrupt.h"
 
 #include "drum_pad_functions.h"
+#include "looper_effects.h"
 
 #define COMP_LOW_REF   300
 #define COMP_HIGH_REF 1000
@@ -208,7 +209,7 @@ void ADCSeq1Handler(void) {
 
 } // End ADCSeq1Handler
 
-void adc_task(void* parm) {
+void midi_adc_task(void* parm) {
 
     // Trigger the ADC conversion.
     ADCProcessorTrigger(ADC0_BASE, 0);
@@ -232,6 +233,31 @@ void adc_task(void* parm) {
         ADCProcessorTrigger(ADC1_BASE, 1);
 
         vTaskDelay(0);
+    }
+
+} // End task
+
+void looper_adc_task(void* parm) {
+
+    // Trigger the ADC conversion.
+    ADCProcessorTrigger(ADC0_BASE, 0);
+    ADCProcessorTrigger(ADC1_BASE, 1);
+
+    while(1) {
+
+        xSemaphoreTake(adc0_smphr, portMAX_DELAY);
+        xSemaphoreTake(adc1_smphr, portMAX_DELAY);
+
+        ADCSequenceDataGet(ADC0_BASE, 0, adc00_step_values);
+        ADCSequenceDataGet(ADC1_BASE, 1, adc11_step_values);
+
+        process_effects(adc00_step_values, adc11_step_values);
+
+        // Trigger the ADC conversion.
+        ADCProcessorTrigger(ADC0_BASE, 0);
+        ADCProcessorTrigger(ADC1_BASE, 1);
+
+        vTaskDelay(20);
     }
 
 } // End task

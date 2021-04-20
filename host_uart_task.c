@@ -77,7 +77,7 @@ void host_uart_task(void* parm) {
 
 
         if (is_on_screen(page_num)) {
-            UARTprintf("%d %d %d %d\n", uart_msg.bitfield.message_type,
+            UARTprintf("%d %d %d %d\n\r", uart_msg.bitfield.message_type,
                                         uart_msg.bitfield.pad_num,
                                         uart_msg.bitfield.value,
                                         uart_msg.bitfield.channel);

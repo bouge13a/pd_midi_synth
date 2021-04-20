@@ -27,6 +27,8 @@ C_SRCS += \
 ../logger.c \
 ../looper_board.c \
 ../looper_buttons_task.c \
+../looper_effects.c \
+../looper_volume_functions.c \
 ../main.c \
 ../midi_buttons_task.c \
 ../midi_ctrl_board.c \
@@ -59,6 +61,8 @@ C_DEPS += \
 ./logger.d \
 ./looper_board.d \
 ./looper_buttons_task.d \
+./looper_effects.d \
+./looper_volume_functions.d \
 ./main.d \
 ./midi_buttons_task.d \
 ./midi_ctrl_board.d \
@@ -91,6 +95,8 @@ OBJS += \
 ./logger.obj \
 ./looper_board.obj \
 ./looper_buttons_task.obj \
+./looper_effects.obj \
+./looper_volume_functions.obj \
 ./main.obj \
 ./midi_buttons_task.obj \
 ./midi_ctrl_board.obj \
@@ -123,6 +129,8 @@ OBJS__QUOTED += \
 "logger.obj" \
 "looper_board.obj" \
 "looper_buttons_task.obj" \
+"looper_effects.obj" \
+"looper_volume_functions.obj" \
 "main.obj" \
 "midi_buttons_task.obj" \
 "midi_ctrl_board.obj" \
@@ -155,6 +163,8 @@ C_DEPS__QUOTED += \
 "logger.d" \
 "looper_board.d" \
 "looper_buttons_task.d" \
+"looper_effects.d" \
+"looper_volume_functions.d" \
 "main.d" \
 "midi_buttons_task.d" \
 "midi_ctrl_board.d" \
@@ -187,6 +197,8 @@ C_SRCS__QUOTED += \
 "../logger.c" \
 "../looper_board.c" \
 "../looper_buttons_task.c" \
+"../looper_effects.c" \
+"../looper_volume_functions.c" \
 "../main.c" \
 "../midi_buttons_task.c" \
 "../midi_ctrl_board.c" \

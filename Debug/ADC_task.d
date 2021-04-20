@@ -39,6 +39,7 @@ ADC_task.obj: ../driverlib/timer.h
 ADC_task.obj: ../driverlib/inc/hw_ints.h
 ADC_task.obj: ../driverlib/interrupt.h
 ADC_task.obj: ../drum_pad_functions.h
+ADC_task.obj: ../looper_effects.h
 
 ../ADC_task.c: 
 ../ADC_task.h: 
@@ -79,3 +80,4 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h:
 ../driverlib/inc/hw_ints.h: 
 ../driverlib/interrupt.h: 
 ../drum_pad_functions.h: 
+../looper_effects.h: 

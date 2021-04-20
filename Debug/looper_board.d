@@ -38,6 +38,8 @@ looper_board.obj: ../GPIs.h
 looper_board.obj: ../GPOs.h
 looper_board.obj: ../usb_hid_task.h
 looper_board.obj: ../looper_buttons_task.h
+looper_board.obj: ../looper_effects.h
+looper_board.obj: ../looper_volume_functions.h
 
 ../looper_board.c: 
 ../looper_board.h: 
@@ -77,3 +79,5 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h:
 ../GPOs.h: 
 ../usb_hid_task.h: 
 ../looper_buttons_task.h: 
+../looper_effects.h: 
+../looper_volume_functions.h: 

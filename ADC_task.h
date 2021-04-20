@@ -18,7 +18,9 @@ uint32_t get_adc_val(adc_pin_t* config);
 
 adc_pins_t get_adc_struct(void);
 
-void adc_task(void* parm);
+void midi_adc_task(void* parm);
+
+void looper_adc_task(void* parm);
 
 
 #endif /* ADC_TASK_H_ */

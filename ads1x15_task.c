@@ -65,7 +65,7 @@ static const uint8_t CONV_REG = 0b00000000;
 //         Analog Select MSGS
 ////////////////////////////////////////////////////////
 
-static i2c_msg_t joy_y_sel = {
+static i2c_msg_t ads1015_adc00_sel = {
     .address      = 0x48,
     .bytes_rxed   = 0,
     .bytes_txed   = 0,
@@ -76,7 +76,7 @@ static i2c_msg_t joy_y_sel = {
     .num_tx_bytes = 3,
 };
 
-static i2c_msg_t joy_x_sel = {
+static i2c_msg_t ads1015_adc01_sel = {
     .address      = 0x48,
     .bytes_rxed   = 0,
     .bytes_txed   = 0,
@@ -87,7 +87,7 @@ static i2c_msg_t joy_x_sel = {
     .num_tx_bytes = 3,
 };
 
-static i2c_msg_t sense_sel = {
+static i2c_msg_t ads1015_adc02_sel = {
     .address      = 0x48,
     .bytes_rxed   = 0,
     .bytes_txed   = 0,
@@ -98,7 +98,7 @@ static i2c_msg_t sense_sel = {
     .num_tx_bytes = 3,
 };
 
-static i2c_msg_t volume_sel = {
+static i2c_msg_t ads1015_adc03_sel = {
     .address      = 0x48,
     .bytes_rxed   = 0,
     .bytes_txed   = 0,
@@ -108,6 +108,7 @@ static i2c_msg_t volume_sel = {
     .tx_data      = ADC3_SEL,
     .num_tx_bytes = 3,
 };
+
 
 static i2c_msg_t ads1015_adc10_sel = {
     .address      = 0x49,
@@ -157,45 +158,45 @@ static i2c_msg_t ads1015_adc13_sel = {
 //            Analog read MSGS
 ///////////////////////////////////////////////////////
 
-static i2c_msg_t joy_y_read = {
+static i2c_msg_t adc00_read = {
     .address      = 0x48,
     .bytes_rxed   = 0,
     .bytes_txed   = 0,
     .num_rx_bytes = 2,
-    .rx_data      = joy_y_data.bytes,
+    .rx_data      = adc0_data[0].bytes,
     .state        = i2c_ready,
     .tx_data      = &CONV_REG,
     .num_tx_bytes = 1,
 };
 
-static i2c_msg_t joy_x_read = {
+static i2c_msg_t adc01_read = {
     .address      = 0x48,
     .bytes_rxed   = 0,
     .bytes_txed   = 0,
     .num_rx_bytes = 2,
-    .rx_data      = joy_x_data.bytes,
+    .rx_data      = adc0_data[1].bytes,
     .state        = i2c_ready,
     .tx_data      = &CONV_REG,
     .num_tx_bytes = 1,
 };
 
-static i2c_msg_t sense_read = {
+static i2c_msg_t adc02_read = {
     .address      = 0x48,
     .bytes_rxed   = 0,
     .bytes_txed   = 0,
     .num_rx_bytes = 2,
-    .rx_data      = sense_data.bytes,
+    .rx_data      = adc0_data[2].bytes,
     .state        = i2c_ready,
     .tx_data      = &CONV_REG,
     .num_tx_bytes = 1,
 };
 
-static i2c_msg_t volume_read = {
+static i2c_msg_t adc03_read = {
     .address      = 0x48,
     .bytes_rxed   = 0,
     .bytes_txed   = 0,
     .num_rx_bytes = 2,
-    .rx_data      = volume_data.bytes,
+    .rx_data      = adc0_data[3].bytes,
     .state        = i2c_ready,
     .tx_data      = &CONV_REG,
     .num_tx_bytes = 1,
@@ -266,32 +267,73 @@ void init_ads1x15(void) {
     }
 }
 
+void ad1x15_looper_task(void* parm) {
+
+    while (1) {
+
+        add_i2c_msg(&ads1015_adc00_sel);
+        vTaskDelay(1);
+        add_i2c_msg(&adc00_read);
+        vTaskDelay(1);
+        add_i2c_msg(&ads1015_adc01_sel);
+        vTaskDelay(1);
+        add_i2c_msg(&adc01_read);
+        vTaskDelay(1);
+        add_i2c_msg(&ads1015_adc02_sel);
+        vTaskDelay(1);
+        add_i2c_msg(&adc02_read);
+        vTaskDelay(1);
+        add_i2c_msg(&ads1015_adc03_sel);
+        vTaskDelay(1);
+        add_i2c_msg(&adc03_read);
+        vTaskDelay(1);
+        add_i2c_msg(&ads1015_adc10_sel);
+        vTaskDelay(1);
+        add_i2c_msg(&adc10_read);
+        vTaskDelay(1);
+        add_i2c_msg(&ads1015_adc11_sel);
+        vTaskDelay(1);
+        add_i2c_msg(&adc11_read);
+        vTaskDelay(1);
+        add_i2c_msg(&ads1015_adc12_sel);
+        vTaskDelay(1);
+        add_i2c_msg(&adc12_read);
+        vTaskDelay(1);
+        add_i2c_msg(&ads1015_adc13_sel);
+        vTaskDelay(1);
+        add_i2c_msg(&adc13_read);
+        vTaskDelay(1);
+
+    }
+
+} // End ad1x15_looper_task
+
 void ads1x15_midi_task(void* parm) {
 
     uint32_t index = 0;
 
     while(1) {
 
-        add_i2c_msg(&joy_y_sel);
+        add_i2c_msg(&ads1015_adc00_sel);
         vTaskDelay(1);
-        add_i2c_msg(&joy_y_read);
+        add_i2c_msg(&adc00_read);
         vTaskDelay(1);
-        add_i2c_msg(&joy_x_sel);
+        add_i2c_msg(&ads1015_adc01_sel);
         vTaskDelay(1);
-        add_i2c_msg(&joy_x_read);
+        add_i2c_msg(&adc01_read);
         vTaskDelay(1);
 
-        process_joystick(joy_x_data.value, joy_y_data.value);
+        process_joystick(adc0_data[0].value, adc0_data[1].value);
 
         if (index % 10 == 0) {
 
-            add_i2c_msg(&sense_sel);
+            add_i2c_msg(&ads1015_adc02_sel);
             vTaskDelay(1);
-            add_i2c_msg(&sense_read);
+            add_i2c_msg(&adc02_read);
             vTaskDelay(1);
-            add_i2c_msg(&volume_sel);
+            add_i2c_msg(&ads1015_adc03_sel);
             vTaskDelay(1);
-            add_i2c_msg(&volume_read);
+            add_i2c_msg(&adc03_read);
             vTaskDelay(1);
 
             add_i2c_msg(&ads1015_adc10_sel);
@@ -335,37 +377,41 @@ float get_sensitivity(void) {
 ///////////////////////////////////////////////////////
 
 void ads1x15_drawpage(void) {
+
     cursor_pos(5, 0);
-    UARTprintf("Joystick Y:\r\n");
-    UARTprintf("JoyStick X:\r\n");
-    UARTprintf("Volume:\r\n");
-    UARTprintf("Sensitivity:\r\n\n");
-    UARTprintf("Effect 0:\r\n");
-    UARTprintf("Effect 1:\r\n");
-    UARTprintf("Effect 2:\r\n");
-    UARTprintf("Effect 3:\r\n");
+
+    UARTprintf("adc 0:\r\n");
+    UARTprintf("adc 1:\r\n");
+    UARTprintf("adc 2:\r\n");
+    UARTprintf("adc 3:\r\n\n");
+
+    UARTprintf("adc 0:\r\n");
+    UARTprintf("adc 1:\r\n");
+    UARTprintf("adc 2:\r\n");
+    UARTprintf("adc 3:\r\n\n");
+
 }
 void ads1x15_drawdata(void) {
 
     cursor_pos(5, 16);
     UARTprintf("        ");
     cursor_pos(5, 16);
-    UARTprintf("%d", joy_y_data.value);
+    UARTprintf("%d", adc0_data[0].value);
 
     cursor_pos(6, 16);
     UARTprintf("        ");
     cursor_pos(6, 16);
-    UARTprintf("%d", joy_x_data.value);
+    UARTprintf("%d", adc0_data[1].value);
 
     cursor_pos(7, 16);
     UARTprintf("        ");
     cursor_pos(7, 16);
-    UARTprintf("%d", volume_data.value);
+    UARTprintf("%d", adc0_data[2].value);
 
     cursor_pos(8, 16);
     UARTprintf("        ");
     cursor_pos(8, 16);
-    UARTprintf("%d", sense_data.value);
+    UARTprintf("%d", adc0_data[3].value);
 
     cursor_pos(10, 16);
     UARTprintf("        ");
