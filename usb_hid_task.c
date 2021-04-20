@@ -26,7 +26,6 @@
 #include "driverlib/rom.h"
 #include "driverlib/rom_map.h"
 #include "driverlib/sysctl.h"
-//#include "driverlib/usb.h"
 #include "usb/usbdhidgamepad.h"
 #include "usb_structs.h"
 
@@ -201,9 +200,9 @@ void usb_hid_task(void* parm) {
 
             xQueueReceive(usb_hid_q, &usb_hid_msg, portMAX_DELAY);
 
-            sReport.msg_type = usb_hid_msg.bitfield.message_type;
-            sReport.ctrl_num = usb_hid_msg.bitfield.ctrl_num;
-            //sReport.value    = usb_hid_msg.bitfield.value;
+            sReport.msg_type     = usb_hid_msg.bitfield.message_type;
+            sReport.ctrl_num     = usb_hid_msg.bitfield.ctrl_num;
+            sReport.value_msb    = usb_hid_msg.bitfield.value;
 
             // Send sReport
             USBDHIDGamepadSendReport(&g_sGamepadDevice,

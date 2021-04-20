@@ -92,14 +92,17 @@
 // changed at runtime based on the client's requirements.
 //
 //*****************************************************************************
+
+static const uint8_t MIDISTREAMING = 0x03;
+
 uint8_t g_pui8BulkDeviceDescriptor[] =
 {
     18,                         // Size of this structure.
     USB_DTYPE_DEVICE,           // Type of this structure.
     USBShort(0x110),            // USB version 1.1 (if we say 2.0, hosts assume
                                 // high-speed - see USB 2.0 spec 9.2.6.6)
-    USB_CLASS_VEND_SPECIFIC,    // USB Device Class
-    0,                          // USB Device Sub-class
+    USB_CLASS_AUDIO,             // USB Device Class
+    MIDISTREAMING,                          // USB Device Sub-class
     0,                          // USB Device protocol
     64,                         // Maximum packet size for default pipe.
     USBShort(0),                // Vendor ID (VID).
@@ -160,8 +163,8 @@ const uint8_t g_pui8BulkInterface[BULKINTERFACE_SIZE] =
                                     // interface.
     2,                              // The number of endpoints used by this
                                     // interface.
-    USB_CLASS_VEND_SPECIFIC,        // The interface class
-    0,                              // The interface sub-class.
+    USB_CLASS_AUDIO,        // The interface class
+    MIDISTREAMING,                              // The interface sub-class.
     0,                              // The interface protocol for the sub-class
                                     // specified above.
     4,                              // The string index for this interface.
@@ -199,8 +202,8 @@ const uint8_t g_pui8BulkInterfaceHS[BULKINTERFACE_SIZE] =
                                     // interface.
     2,                              // The number of endpoints used by this
                                     // interface.
-    USB_CLASS_VEND_SPECIFIC,        // The interface class
-    0,                              // The interface sub-class.
+    USB_CLASS_AUDIO,                // The interface class
+    MIDISTREAMING,                              // The interface sub-class.
     0,                              // The interface protocol for the sub-class
                                     // specified above.
     4,                              // The string index for this interface.

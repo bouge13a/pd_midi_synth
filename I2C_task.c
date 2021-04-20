@@ -27,10 +27,10 @@
 
 QueueHandle_t i2c_msg_queue = NULL;
 
-error_t* addr_ack_err;
-error_t* data_ack_err;
-error_t* arb_lost_err;
-error_t* clk_tout_err;
+static error_t* addr_ack_err;
+static error_t* data_ack_err;
+static error_t* arb_lost_err;
+static error_t* clk_tout_err;
 
 static i2c_state_e i2c_state = I2C_IDLE;
 static i2c_msg_t* i2c_msg;

@@ -222,6 +222,7 @@ tUSBDHIDGamepadDevice;
 //*****************************************************************************
 typedef struct
 {
+
     uint8_t msg_type;
 
     uint8_t ctrl_num;

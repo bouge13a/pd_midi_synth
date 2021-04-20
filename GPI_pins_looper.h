@@ -20,8 +20,8 @@
 static gpio_pin_t loop_0 = {
     .name       = "loop 0",
     .pin        = GPIO_PIN_0,
-    .peripheral = SYSCTL_PERIPH_GPIOE,
-    .port       = GPIO_PORTE_AHB_BASE,
+    .peripheral = SYSCTL_PERIPH_GPIOB,
+    .port       = GPIO_PORTB_AHB_BASE,
     .direction  = GPIO_DIR_MODE_IN
 };
 

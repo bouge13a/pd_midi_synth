@@ -99,7 +99,6 @@ void looper_buttons_task(void* parm) {
 
                     if (1 == read_gpi(looper_pins[index].loop_pin)) {
                         looper_pins[index].loop_state = BUTTON_DOWN_PLAY;
-                        set_gpo(looper_pins[index].led, 1);
                         recording = false;
 
                         usb_hid_msg.bitfield.message_type = PLAY_MSG;
@@ -122,7 +121,7 @@ void looper_buttons_task(void* parm) {
 
                     if (0 == read_gpi(looper_pins[index].loop_pin)) {
                         looper_pins[index].loop_state = BUTTON_UP_PLAY;
-                        set_gpo(looper_pins[index].led, 0);
+                        set_gpo(looper_pins[index].led, 1);
                     }
 
                     break;
@@ -145,6 +144,7 @@ void looper_buttons_task(void* parm) {
 
                     if (0 == read_gpi(looper_pins[index].loop_pin)) {
                         looper_pins[index].loop_state = BUTTON_UP_IDLE;
+                        set_gpo(looper_pins[index].led, 0);
                     }
                     break;
                 default :

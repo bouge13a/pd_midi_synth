@@ -172,6 +172,7 @@ void console_task(void* parm) {
 
         xQueueReceive(uart_rx_q, &rx_char, console_pages[current_page].refresh_rate);
 
+        // 9 = TAB
         if (9 == rx_char) {
 
             console_pages[last_page].on_screen = false;
