@@ -13,7 +13,7 @@
 #include "board_pin_defs.h"
 #include "assert.h"
 
-static uint32_t octave = 63;
+static uint32_t octave;
 
 static gpio_pin_t* pressure_sense;
 
@@ -35,6 +35,8 @@ typedef struct {
 button_states_t button_states[2];
 
 void init_midi_buttons(void) {
+
+    octave = 63;
 
     pressure_sense = get_gpi_config("p sense");
 

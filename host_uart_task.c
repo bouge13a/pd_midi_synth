@@ -25,7 +25,6 @@
 #include "driverlib/inc/hw_types.h"
 
 static QueueHandle_t uart_tx_q = NULL;
-static gpio_pin_t* blue_debug;
 static uint32_t page_num;
 
 void init_host_uart(uint32_t page_number) {
@@ -33,9 +32,6 @@ void init_host_uart(uint32_t page_number) {
     page_num = page_number;
 
     uart_tx_q = xQueueCreate(12, sizeof(uart_msg_u));
-    blue_debug = get_gpo_config("blue debug");
-
-    set_gpo(blue_debug, 0);
 
     MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
 
@@ -55,23 +51,21 @@ void init_host_uart(uint32_t page_number) {
 
     //UARTFIFOEnable(UART1_BASE);
 
-    MAP_UARTConfigSetExpClk(UART1_BASE, MAP_SysCtlClockGet(), 31250,
+    MAP_UARTConfigSetExpClk(UART1_BASE, 16000000, 115200,
                             (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
                              UART_CONFIG_PAR_NONE));
+
+
 
 } // End init_host_uart
 
 void host_uart_task(void* parm) {
-
-    uint32_t loop_index;
 
     uart_msg_u uart_msg;
 
     while(1){
 
         xQueueReceive(uart_tx_q, &uart_msg, portMAX_DELAY);
-
-        set_gpo(blue_debug, 1);
 
         send_midi_message(uart_msg);
 
@@ -82,8 +76,6 @@ void host_uart_task(void* parm) {
                                         uart_msg.bitfield.value,
                                         uart_msg.bitfield.channel);
         }
-
-        set_gpo(blue_debug, 0);
 
     }
 

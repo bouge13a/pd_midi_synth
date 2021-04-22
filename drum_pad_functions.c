@@ -193,7 +193,7 @@ void process_drumpad(uint32_t* adc00values,
                 if (idx < 8) {
                     if(adc00values[idx] < LOW_REF) {
                         uart_msg.bitfield.message_type = NOTE_OFF;
-                        uart_msg.bitfield.pad_num = idx;
+                        uart_msg.bitfield.pad_num = get_octave() + idx;
                         pad_states[idx].state = IDLE_STATE;
                         send_to_host(uart_msg);
                         break;
@@ -201,7 +201,7 @@ void process_drumpad(uint32_t* adc00values,
                 } else {
                     if(adc11values[idx-8] < LOW_REF) {
                         uart_msg.bitfield.message_type = NOTE_OFF;
-                        uart_msg.bitfield.pad_num = idx;
+                        uart_msg.bitfield.pad_num = get_octave() + idx;
                         pad_states[idx].state = IDLE_STATE;
                         send_to_host(uart_msg);
                         break;

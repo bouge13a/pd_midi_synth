@@ -364,11 +364,11 @@ void ads1x15_midi_task(void* parm) {
 } // End joystick_task
 
 float get_volume(void) {
-    return volume_data.value/17537.0;
+    return adc0_data[3].value/17537.0;
 }// End get_volume
 
 float get_sensitivity(void) {
-    return sense_data.value/17537.0;
+    return adc0_data[2].value/17537.0;
 } // End get_Sensitivity
 
 

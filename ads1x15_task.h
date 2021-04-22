@@ -13,6 +13,7 @@
 void init_ads1x15(void);
 
 void ads1x15_midi_task(void* parm);
+void ad1x15_looper_task(void* parm);
 
 float get_volume(void);
 float get_sensitivity(void);

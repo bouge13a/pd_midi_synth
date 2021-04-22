@@ -27,12 +27,12 @@ static const uint32_t MENU_BAR_WIDTH = 70;
 
 typedef struct  {
     const char* name;
-    void (*pfnDrawPage)(void);
-    void (*pfnDrawData)(void);
-    void (*pfnDrawInput)(int);
-    uint32_t refresh_rate;
-    bool on_screen;
-    bool write_to_page;
+    void        (*pfnDrawPage)(void);
+    void        (*pfnDrawData)(void);
+    void        (*pfnDrawInput)(int);
+    uint32_t    refresh_rate;
+    bool        on_screen;
+    bool        write_to_page;
 } console_page_t;
 
 static void start_draw_menu(void);

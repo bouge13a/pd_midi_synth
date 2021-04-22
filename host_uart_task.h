@@ -29,10 +29,9 @@ typedef enum {
 
 typedef struct {
     uint8_t  message_type : 4;
-    uint8_t  pad_num      : 4;
+    uint8_t  pad_num      : 8;
     uint16_t value        :16;
     uint8_t  channel      : 4;
-    uint8_t  reserved     : 4;
 }uart_msg_t;
 
 typedef union {

@@ -49,16 +49,14 @@ void process_effects(uint32_t* adc00values,
 
             effects[index].last_value = adc00values[index];
 
-
         } else {
 
             if(abs(adc11values[index] - effects[index].last_value) > EFFECT_INCREMENT) {
-                msg.bitfield.message_type = EFFECT_MSG;
+                msg.bitfield.message_type = EQ_MSG;
                 msg.bitfield.ctrl_num = index;
                 msg.bitfield.value = (adc11values[index]/4096.0)*256;
 
                 usb_hid_send(msg);
-
             }
 
             effects[index].last_value = adc11values[index];

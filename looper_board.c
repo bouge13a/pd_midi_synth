@@ -22,6 +22,7 @@
 #include "looper_buttons_task.h"
 #include "looper_effects.h"
 #include "looper_volume_functions.h"
+#include "ads1x15_task.h"
 
 static QueueHandle_t console_uart_rx_q_looper = NULL;
 
@@ -59,6 +60,8 @@ void init_looper_board(void) {
 
     init_looper_volumes();
 
+    init_ads1x15();
+
 
     /////////////////////////////////////////////////////////
     //                  Add pages to Console
@@ -90,6 +93,13 @@ void init_looper_board(void) {
              taskmanager_drawdata,
              taskmanager_drawinput,
              portMAX_DELAY,
+             false);
+
+    add_page("ADS1015",
+             ads1x15_drawpage,
+             ads1x15_drawdata,
+             ads1x15_drawinput,
+             250,
              false);
 
     init_usb_hid(add_page("USB Msgs",
@@ -138,4 +148,12 @@ void init_looper_board(void) {
                 3,                          /* Priority at which the task is created. */
                 NULL );                     /* Used to pass out the created task's handle. */
 
+    xTaskCreate(ads1x15_midi_task,               /* Function that implements the task. */
+                "Buttons",                  /* Text name for the task. */
+                configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
+                NULL,                       /* Parameter passed into the task. */
+                3,                          /* Priority at which the task is created. */
+                NULL );                     /* Used to pass out the created task's handle. */
+
 }
+
