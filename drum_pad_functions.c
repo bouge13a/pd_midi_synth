@@ -95,6 +95,8 @@ static uint32_t get_value(float slope) {
             return (uint32_t)(get_volume()*127*0.1);
         }
     }
+
+    return 0;
 }
 
 void process_drumpad(uint32_t* adc00values,
