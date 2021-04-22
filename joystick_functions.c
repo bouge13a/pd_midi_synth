@@ -4,7 +4,7 @@
  *  Created on: Apr 12, 2021
  *      Author: steph
  */
-
+#include <assert.h>
 #include "joystick_functions.h"
 #include "host_uart_task.h"
 #include "rotary_enc_task.h"
@@ -20,8 +20,8 @@ typedef enum {
     IDLE,
 }js_state_e;
 
-js_state_e js_x_state = IDLE;
-js_state_e js_y_state = IDLE;
+static js_state_e js_x_state = IDLE;
+static js_state_e js_y_state = IDLE;
 
 void process_joystick(uint16_t x_raw, uint16_t y_raw) {
 
@@ -76,6 +76,11 @@ void process_joystick(uint16_t x_raw, uint16_t y_raw) {
         js_x_state = IDLE;
 
         break;
+
+    default :
+        assert(0);
+
+        break;
     }
 
 
@@ -127,6 +132,10 @@ void process_joystick(uint16_t x_raw, uint16_t y_raw) {
 
         js_y_state = IDLE;
 
+        break;
+
+    default :
+        assert(0);
         break;
     }
 

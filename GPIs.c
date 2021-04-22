@@ -73,7 +73,6 @@ void init_gpis(void) {
                                  GPIO_PIN_TYPE_STD_WPD);
         }
     }
-
 } // End init_buttons
 
 gpio_pin_t* get_gpi_config(const char* name) {

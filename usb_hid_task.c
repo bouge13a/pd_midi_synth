@@ -176,8 +176,6 @@ void init_usb_hid(uint32_t page_index) {
     // on the bus.
     USBDHIDGamepadInit(0, &g_sGamepadDevice);
 
-
-
     usb_reconnected_err = create_error("USB0",
                                        "USB has reconnected");
 

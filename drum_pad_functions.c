@@ -23,11 +23,16 @@ static const uint32_t LOW_REF     = 10;
 static const uint32_t HIGH_REF    = 3000;
 static const uint32_t IDLE_CYCLES = 10;
 
-static const float    VOLUME100   = 0.040;
-static const float    VOLUME75    = 0.010;
-static const float    VOLUME50    = 0.005;
-static const float    VOLUME25    = 0.001;
-
+static const float    VOLUME100   = 0.080;
+static const float    VOLUME90    = 0.040;
+static const float    VOLUME80    = 0.035;
+static const float    VOLUME70    = 0.030;
+static const float    VOLUME60    = 0.025;
+static const float    VOLUME50    = 0.020;
+static const float    VOLUME40    = 0.015;
+static const float    VOLUME30    = 0.010;
+static const float    VOLUME20    = 0.005;
+static const float    VOLUME10    = 0.0001;
 
 typedef enum {
     IDLE_STATE,
@@ -70,14 +75,24 @@ static uint32_t get_value(float slope) {
     } else {
         if (slope > VOLUME100) {
             return (uint32_t)(get_volume()*127);
-        } else if (slope > VOLUME75) {
-            return (uint32_t)(get_volume()*127*0.75);
+        } else if (slope > VOLUME90) {
+            return (uint32_t)(get_volume()*127*0.90);
+        } else if (slope > VOLUME80) {
+            return (uint32_t)(get_volume()*127*0.8);
+        } else if (slope > VOLUME70) {
+            return (uint32_t)(get_volume()*127*0.7);
+        } else if (slope > VOLUME60) {
+            return (uint32_t)(get_volume()*127*0.6);
         } else if (slope > VOLUME50) {
-            return (uint32_t)(get_volume()*127*0.50);
-        } else if (slope > VOLUME25) {
-            return (uint32_t)(get_volume()*127*0.25);
-        } else {
-            return (uint32_t)(get_volume()*127*0.10);
+            return (uint32_t)(get_volume()*127*0.5);
+        } else if (slope > VOLUME40) {
+            return (uint32_t)(get_volume()*127*0.4);
+        } else if (slope > VOLUME30) {
+            return (uint32_t)(get_volume()*127*0.3);
+        } else if (slope > VOLUME20) {
+            return (uint32_t)(get_volume()*127*0.2);
+        } else if (slope > VOLUME10) {
+            return (uint32_t)(get_volume()*127*0.1);
         }
     }
 }
@@ -86,6 +101,9 @@ void process_drumpad(uint32_t* adc00values,
                      uint32_t* adc11values,
                      uint32_t adc00time,
                      uint32_t adc11time) {
+
+    assert(adc00values);
+    assert(adc11values);
 
     uint32_t idx;
     uart_msg_u uart_msg;

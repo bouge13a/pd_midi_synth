@@ -29,21 +29,24 @@ void init_gpos(void) {
         gpo_info = looper_gpo_info;
     }
 
+    if (0 != gpo_info.num_gpos) {
 
-    for(idx=0; idx<gpo_info.num_gpos; idx++) {
+        for(idx=0; idx<gpo_info.num_gpos; idx++) {
 
-        MAP_SysCtlPeripheralEnable(gpo_info.gpos[idx]->peripheral);
+            MAP_SysCtlPeripheralEnable(gpo_info.gpos[idx]->peripheral);
 
-        SysCtlGPIOAHBEnable(gpo_info.gpos[idx]->peripheral);
+            SysCtlGPIOAHBEnable(gpo_info.gpos[idx]->peripheral);
 
-        MAP_GPIODirModeSet(gpo_info.gpos[idx]->port,
-                           gpo_info.gpos[idx]->pin,
-                           gpo_info.gpos[idx]->direction);
+            MAP_GPIODirModeSet(gpo_info.gpos[idx]->port,
+                               gpo_info.gpos[idx]->pin,
+                               gpo_info.gpos[idx]->direction);
 
-        MAP_GPIOPadConfigSet(gpo_info.gpos[idx]->port,
-                             gpo_info.gpos[idx]->pin,
-                             GPIO_STRENGTH_12MA,
-                             GPIO_PIN_TYPE_STD);
+            MAP_GPIOPadConfigSet(gpo_info.gpos[idx]->port,
+                                 gpo_info.gpos[idx]->pin,
+                                 GPIO_STRENGTH_12MA,
+                                 GPIO_PIN_TYPE_STD);
+        }
+
     }
 } // End init_leds
 

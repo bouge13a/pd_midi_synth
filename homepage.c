@@ -23,7 +23,7 @@ void homepage_drawpage(void) {
     UARTprintf("SRAM:        32 KB\r\n");
     UARTprintf("Flash:       256 KB\r\n\n");
 
-    UARTprintf("Clock        %d MHz\r\n", SysCtlClockGet()/1000000);
+    UARTprintf("Clock        %d MHz\r\n", 16);
     UARTprintf("Heap Size:   %d Bytes\r\n", configTOTAL_HEAP_SIZE);
     UARTprintf("Heap Used:   %d Bytes\r\n", configTOTAL_HEAP_SIZE - xPortGetFreeHeapSize());
 }

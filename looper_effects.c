@@ -5,6 +5,8 @@
  *      Author: steph
  */
 
+#include <assert.h>
+
 #include "looper_effects.h"
 #include "usb_hid_task.h"
 
@@ -31,6 +33,9 @@ void init_looper_effects(void) {
 
 void process_effects(uint32_t* adc00values,
                      uint32_t* adc11values) {
+
+    assert(adc00values);
+    assert(adc11values);
 
     uint32_t index;
     usb_hid_msg_u msg;
