@@ -42,7 +42,7 @@ void send_midi_message(uart_msg_u msg) {
         msg_bytes[2] = 0x7F & msg.bitfield.value;
         break;
     case PITCH :
-        msg_bytes[0] = ((STATUS_BIT | PITCH_MSG_TYPE) << 4) | msg.bitfield.channel ;
+        msg_bytes[0] = (STATUS_BIT | PITCH_MSG_TYPE << 4) | msg.bitfield.channel ;
         msg_bytes[1] = 0x7F & (msg.bitfield.value >> 7);
         msg_bytes[2] = (0x7F & msg.bitfield.value);
         break;

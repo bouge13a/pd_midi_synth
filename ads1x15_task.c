@@ -356,8 +356,10 @@ void ads1x15_midi_task(void* parm) {
             process_midi_knobs(adc1_data);
 
         } else {
-            vTaskDelay(16);
+            vTaskDelay(30);
         }
+
+        vTaskDelay(25);
 
         index++;
     }
