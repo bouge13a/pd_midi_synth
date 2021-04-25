@@ -18,10 +18,12 @@
 #include "ads1x15_task.h"
 #include "midi_buttons_task.h"
 
-static const uint32_t NUM_OF_PADS = 12;
-static const uint32_t LOW_REF     = 10;
-static const uint32_t HIGH_REF    = 3000;
-static const uint32_t IDLE_CYCLES = 10;
+static const uint32_t NUM_OF_PADS     = 12;
+static const uint32_t LOW_REF         = 10;
+static const uint32_t HIGH_REF        = 3000;
+static const uint32_t POLYPHONIC_REF = 4000;
+static const uint32_t POLYPHONIC_CNT = 1000;
+static const uint32_t IDLE_CYCLES     = 10;
 
 static const float    VOLUME100   = 0.080;
 static const float    VOLUME90    = 0.040;
@@ -39,6 +41,7 @@ typedef enum {
     LOW_STATE,
     MID_STATE,
     HIGH_STATE,
+    POLYPHONIC_STATE,
 }pad_states_e;
 
 typedef struct {
@@ -54,6 +57,8 @@ pad_states_t pad_states[12];
 static uint32_t page_num;
 
 static char float_string[20];
+
+static uint32_t poly_count = 1;
 
 void init_drumpad(uint32_t page_number) {
 
@@ -217,6 +222,10 @@ void process_drumpad(uint32_t* adc00values,
                         pad_states[idx].state = IDLE_STATE;
                         send_to_host(uart_msg);
                         break;
+                    } else if (adc00values[idx] > POLYPHONIC_REF) {
+                        pad_states[idx].state = POLYPHONIC_STATE;
+                        break;
+
                     }
                 } else {
                     if(adc11values[idx-8] < LOW_REF) {
@@ -225,8 +234,77 @@ void process_drumpad(uint32_t* adc00values,
                         pad_states[idx].state = IDLE_STATE;
                         send_to_host(uart_msg);
                         break;
+                    } else if (adc11values[idx-8] > POLYPHONIC_REF) {
+                        pad_states[idx].state = POLYPHONIC_STATE;
+                        break;
                     }
                 }
+                break;
+
+            case POLYPHONIC_STATE :
+
+                if (0 == poly_count % POLYPHONIC_CNT ) {
+
+                    poly_count = 1;
+
+                    if (idx<8) {
+
+                        if (adc00values[idx] > POLYPHONIC_REF) {
+                            uart_msg.bitfield.message_type = OVERDRIVE;
+                            uart_msg.bitfield.pad_num = get_octave() + idx;
+                            uart_msg.bitfield.value = (adc00values[idx] - POLYPHONIC_REF);
+                            send_to_host(uart_msg);
+                            break;
+                        } else {
+                            uart_msg.bitfield.message_type = OVERDRIVE;
+                            uart_msg.bitfield.pad_num = get_octave() + idx;
+                            uart_msg.bitfield.value = 0;
+                            send_to_host(uart_msg);
+                            pad_states[idx].state = HIGH_STATE;
+                            poly_count = 1;
+                            break;
+                        }
+                    } else {
+                        if (adc11values[idx-8] > POLYPHONIC_REF) {
+                            uart_msg.bitfield.message_type = OVERDRIVE;
+                            uart_msg.bitfield.pad_num = get_octave() + idx;
+                            uart_msg.bitfield.value = (adc11values[idx-8] - POLYPHONIC_REF);
+                            send_to_host(uart_msg);
+                            break;
+                        } else {
+                            uart_msg.bitfield.message_type = OVERDRIVE;
+                            uart_msg.bitfield.pad_num = get_octave() + idx;
+                            uart_msg.bitfield.value = 0;
+                            send_to_host(uart_msg);
+                            pad_states[idx].state = HIGH_STATE;
+                            poly_count = 1;
+                            break;
+                        }
+                    }
+                } else {
+//                    if (idx < 8) {
+//                        if (adc00values[idx] < POLYPHONIC_REF) {
+//                            uart_msg.bitfield.message_type = OVERDRIVE;
+//                            uart_msg.bitfield.pad_num = get_octave() + idx;
+//                            uart_msg.bitfield.value = 0;
+//                            send_to_host(uart_msg);
+//                            pad_states[idx].state = HIGH_STATE;
+//                            poly_count = 1;
+//                            break;
+//                        }
+//                    } else {
+//                        if (adc11values[idx-8] < POLYPHONIC_REF) {
+//                            uart_msg.bitfield.message_type = OVERDRIVE;
+//                            uart_msg.bitfield.pad_num = get_octave() + idx;
+//                            uart_msg.bitfield.value = 0;
+//                            send_to_host(uart_msg);
+//                            pad_states[idx].state = HIGH_STATE;
+//                            poly_count = 1;
+//                            break;
+//                        }
+//                    }
+                }
+                poly_count++;
                 break;
             default :
                 assert(0);

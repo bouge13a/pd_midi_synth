@@ -15,6 +15,7 @@
 
 static const uint8_t STATUS_BIT        = 0x80;
 static const uint8_t NOTE_OFF_MSG_TYPE = 0x00;
+static const uint8_t POLYPHON_MSG_TYPE = 0x02;
 static const uint8_t NOTE_ON_MSG_TYPE  = 0x01;
 static const uint8_t CTRL_CHG_MSG_TYPE = 0x03;
 static const uint8_t PITCH_MSG_TYPE    = 0x06;
@@ -49,6 +50,11 @@ void send_midi_message(uart_msg_u msg) {
     case MODULATION :
         msg_bytes[0] = (STATUS_BIT | CTRL_CHG_MSG_TYPE << 4) | msg.bitfield.channel;
         msg_bytes[1] = 0x7F & MOD_CRTL_CHG;
+        msg_bytes[2] = 0x7F & msg.bitfield.value;
+        break;
+    case OVERDRIVE :
+        msg_bytes[0] = (STATUS_BIT | POLYPHON_MSG_TYPE << 4) | msg.bitfield.channel;
+        msg_bytes[1] = 0x7F & msg.bitfield.pad_num;
         msg_bytes[2] = 0x7F & msg.bitfield.value;
         break;
     case KNOB1 :
