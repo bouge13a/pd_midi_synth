@@ -25,26 +25,26 @@ static gpio_pin_t greenled = {
     .direction  = GPIO_DIR_MODE_OUT,
 };
 
-static gpio_pin_t blueled = {
-    .name       = "blue debug",
-    .pin        = GPIO_PIN_2,
-    .peripheral = SYSCTL_PERIPH_GPIOF,
-    .port       = GPIO_PORTF_AHB_BASE,
-    .direction  = GPIO_DIR_MODE_OUT,
-};
+//static gpio_pin_t blueled = {
+//    .name       = "blue debug",
+//    .pin        = GPIO_PIN_2,
+//    .peripheral = SYSCTL_PERIPH_GPIOF,
+//    .port       = GPIO_PORTF_AHB_BASE,
+//    .direction  = GPIO_DIR_MODE_OUT,
+//};
 
-static gpio_pin_t redled = {
-    .name       = "red debug",
-    .pin        = GPIO_PIN_1,
-    .peripheral = SYSCTL_PERIPH_GPIOF,
-    .port       = GPIO_PORTF_AHB_BASE,
-    .direction  = GPIO_DIR_MODE_OUT,
-};
+//static gpio_pin_t redled = {
+//    .name       = "red debug",
+//    .pin        = GPIO_PIN_1,
+//    .peripheral = SYSCTL_PERIPH_GPIOF,
+//    .port       = GPIO_PORTF_AHB_BASE,
+//    .direction  = GPIO_DIR_MODE_OUT,
+//};
 
 static gpio_pin_t led_0 = {
     .name       = "led 0",
-    .pin        = GPIO_PIN_1,
-    .peripheral = SYSCTL_PERIPH_GPIOB,
+    .pin        = GPIO_PIN_2,
+    .peripheral = SYSCTL_PERIPH_GPIOF,
     .port       = GPIO_PORTB_AHB_BASE,
     .direction  = GPIO_DIR_MODE_OUT,
 };
@@ -67,7 +67,7 @@ static gpio_pin_t led_2 = {
 
 static gpio_pin_t led_3 = {
     .name       = "led 3",
-    .pin        = GPIO_PIN_7,
+    .pin        = GPIO_PIN_4,
     .peripheral = SYSCTL_PERIPH_GPIOB,
     .port       = GPIO_PORTB_AHB_BASE,
     .direction  = GPIO_DIR_MODE_OUT,
@@ -75,7 +75,7 @@ static gpio_pin_t led_3 = {
 
 static gpio_pin_t led_4 = {
     .name       = "led 4",
-    .pin        = GPIO_PIN_0,
+    .pin        = GPIO_PIN_1,
     .peripheral = SYSCTL_PERIPH_GPIOF,
     .port       = GPIO_PORTF_AHB_BASE,
     .direction  = GPIO_DIR_MODE_OUT,
@@ -107,8 +107,8 @@ static gpio_pin_t led_7 = {
 
 static gpio_pin_t* looper_gpos[] = {
     &greenled,
-    &redled,
-    &blueled,
+//    &redled,
+//    &blueled,
     &led_0,
     &led_1,
     &led_2,

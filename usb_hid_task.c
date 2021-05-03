@@ -212,7 +212,7 @@ void usb_hid_task(void* parm) {
             IntMasterEnable();
 
             if (is_on_screen(page_idx)) {
-                UARTprintf("%d %d %d", sReport.msg_type,
+                UARTprintf("%d %d %d\n\r", sReport.msg_type,
                                        sReport.ctrl_num,
                                        sReport.value_msb);
             }

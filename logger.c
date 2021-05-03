@@ -18,9 +18,8 @@ static const uint32_t MAX_NUM_ERRORS = 20;
 static error_t errors[20];
 static uint32_t num_of_errors = 0;
 
-gpio_pin_t* red_debug;
 gpio_pin_t* green_debug;
-gpio_pin_t* blue_debug;
+
 
 error_t* create_error(const char* name,
                       const char* info) {
@@ -42,16 +41,11 @@ void set_error(error_t* error) {
 
     error->occurences++;
 
-    set_gpo(green_debug, 0);
-    set_gpo(red_debug, 1);
-
 } // End set_error
 
 void init_logger(void) {
 
-    red_debug = get_gpo_config("red debug");
     green_debug = get_gpo_config("green debug");
-    blue_debug = get_gpo_config("blue debug");
 
     set_gpo(green_debug, 1);
 }

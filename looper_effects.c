@@ -8,12 +8,15 @@
 #include <assert.h>
 
 #include "looper_effects.h"
-#include "usb_hid_task.h"
+#include "host_uart_task.h"
 
 #include <stdlib.h>
 #include <assert.h>
 
 static const uint32_t EFFECT_INCREMENT = 100;
+
+static const uint32_t EFFECT_OFFSET = 102;
+static const uint32_t MASTER_OFFSET = 110;
 
 typedef struct {
     uint32_t last_value;
@@ -38,17 +41,18 @@ void process_effects(uint32_t* adc00values,
     assert(adc11values);
 
     uint32_t index;
-    usb_hid_msg_u msg;
+    uart_msg_u uart_msg;
 
     for (index=0; index<12; index++) {
         if (index < 8) {
 
             if(abs(adc00values[index] - effects[index].last_value) > EFFECT_INCREMENT) {
-                msg.bitfield.message_type = EFFECT_MSG;
-                msg.bitfield.ctrl_num = index;
-                msg.bitfield.value = (adc00values[index]/4096.0)*256;
 
-                usb_hid_send(msg);
+                uart_msg.bitfield.message_type = EFFECT;
+                uart_msg.bitfield.pad_num = EFFECT_OFFSET + index;
+                uart_msg.bitfield.value = (adc00values[index]/4096.0)*256;
+
+                send_to_host(uart_msg);
 
             }
 
@@ -57,11 +61,11 @@ void process_effects(uint32_t* adc00values,
         } else {
 
             if(abs(adc11values[index] - effects[index].last_value) > EFFECT_INCREMENT) {
-                msg.bitfield.message_type = EQ_MSG;
-                msg.bitfield.ctrl_num = index;
-                msg.bitfield.value = (adc11values[index]/4096.0)*256;
+                uart_msg.bitfield.message_type = EFFECT;
+                uart_msg.bitfield.pad_num = MASTER_OFFSET + index;
+                uart_msg.bitfield.value = (adc11values[index]/4096.0)*256;
 
-                usb_hid_send(msg);
+                send_to_host(uart_msg);
             }
 
             effects[index].last_value = adc11values[index];

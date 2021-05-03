@@ -30,7 +30,8 @@ looper_buttons_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/
 looper_buttons_task.obj: ../GPIs.h
 looper_buttons_task.obj: ../board_pin_defs.h
 looper_buttons_task.obj: ../GPOs.h
-looper_buttons_task.obj: ../usb_hid_task.h
+looper_buttons_task.obj: ../host_uart_task.h
+looper_buttons_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h
 
 ../looper_buttons_task.c: 
 C:/Users/steph/workspace_v10/drum_pad/looper_buttons_task.h: 
@@ -62,4 +63,5 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h:
 ../GPIs.h: 
 ../board_pin_defs.h: 
 ../GPOs.h: 
-../usb_hid_task.h: 
+../host_uart_task.h: 
+C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h: 

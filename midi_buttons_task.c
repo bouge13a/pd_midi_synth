@@ -23,8 +23,8 @@ typedef enum {
 }button_state_e;
 
 enum {
-    OCTAVE_UP,
-    OCTAVE_DOWN,
+    OCTAVE_UP   = 0,
+    OCTAVE_DOWN = 1,
 };
 
 typedef struct {
@@ -36,7 +36,7 @@ button_states_t button_states[2];
 
 void init_midi_buttons(void) {
 
-    octave = 63;
+    octave = 62;
 
     pressure_sense = get_gpi_config("p sense");
 

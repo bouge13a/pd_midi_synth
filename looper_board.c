@@ -23,6 +23,7 @@
 #include "looper_effects.h"
 #include "looper_volume_functions.h"
 #include "ads1x15_task.h"
+#include "host_uart_task.h"
 
 static QueueHandle_t console_uart_rx_q_looper = NULL;
 
@@ -102,12 +103,19 @@ void init_looper_board(void) {
              250,
              false);
 
-    init_usb_hid(add_page("USB Msgs",
-                          usbhid_drawpage,
-                          usbhid_drawdata,
-                          usbhid_drawinput,
-                          portMAX_DELAY,
-                          true));
+//    init_usb_hid(add_page("USB Msgs",
+//                          usbhid_drawpage,
+//                          usbhid_drawdata,
+//                          usbhid_drawinput,
+//                          portMAX_DELAY,
+//                          true));
+
+    init_host_uart(add_page("UART msgs",
+                            uartmsg_drawpage,
+                            uartmsg_drawdata,
+                            uartmsg_drawinput,
+                            portMAX_DELAY,
+                            true));
 
     ///////////////////////////////////////////////////////
     //                Create Tasks
@@ -120,12 +128,12 @@ void init_looper_board(void) {
                 3,                          /* Priority at which the task is created. */
                 NULL );                     /* Used to pass out the created task's handle. */
 
-    xTaskCreate(looper_adc_task,               /* Function that implements the task. */
-                "ADC",                  /* Text name for the task. */
-                400,                        /* Stack size in words, not bytes. */
-                NULL,                       /* Parameter passed into the task. */
-                3,                          /* Priority at which the task is created. */
-                NULL );                     /* Used to pass out the created task's handle. */
+//    xTaskCreate(looper_adc_task,               /* Function that implements the task. */
+//                "ADC",                  /* Text name for the task. */
+//                400,                        /* Stack size in words, not bytes. */
+//                NULL,                       /* Parameter passed into the task. */
+//                3,                          /* Priority at which the task is created. */
+//                NULL );                     /* Used to pass out the created task's handle. */
 
     xTaskCreate(i2c_task,               /* Function that implements the task. */
                 "I2C1",                  /* Text name for the task. */
@@ -134,12 +142,12 @@ void init_looper_board(void) {
                 3,                          /* Priority at which the task is created. */
                 NULL );                     /* Used to pass out the created task's handle. */
 
-    xTaskCreate(usb_hid_task,               /* Function that implements the task. */
-                "USB0",                  /* Text name for the task. */
-                configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
-                NULL,                       /* Parameter passed into the task. */
-                3,                          /* Priority at which the task is created. */
-                NULL );                     /* Used to pass out the created task's handle. */
+//    xTaskCreate(usb_hid_task,               /* Function that implements the task. */
+//                "USB0",                  /* Text name for the task. */
+//                configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
+//                NULL,                       /* Parameter passed into the task. */
+//                3,                          /* Priority at which the task is created. */
+//                NULL );                     /* Used to pass out the created task's handle. */
 
     xTaskCreate(looper_buttons_task,               /* Function that implements the task. */
                 "Buttons",                  /* Text name for the task. */
@@ -148,8 +156,15 @@ void init_looper_board(void) {
                 3,                          /* Priority at which the task is created. */
                 NULL );                     /* Used to pass out the created task's handle. */
 
-    xTaskCreate(ads1x15_midi_task,               /* Function that implements the task. */
+    xTaskCreate(ads1x15_looper_task,               /* Function that implements the task. */
                 "Buttons",                  /* Text name for the task. */
+                configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
+                NULL,                       /* Parameter passed into the task. */
+                3,                          /* Priority at which the task is created. */
+                NULL );                     /* Used to pass out the created task's handle. */
+
+    xTaskCreate(host_uart_task,               /* Function that implements the task. */
+                "UART1",                  /* Text name for the task. */
                 configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
                 NULL,                       /* Parameter passed into the task. */
                 3,                          /* Priority at which the task is created. */

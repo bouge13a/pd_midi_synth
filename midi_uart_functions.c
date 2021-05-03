@@ -77,6 +77,15 @@ void send_midi_message(uart_msg_u msg) {
         msg_bytes[1] = 0x7F & CHAN_VOL_CTRL_CHG;
         msg_bytes[2] = 0x7F & msg.bitfield.value;
         break;
+
+    case LOOP :
+    case 10 :
+    case EFFECT:
+    case MASTER :
+        msg_bytes[0] = (STATUS_BIT | CTRL_CHG_MSG_TYPE << 4) | msg.bitfield.channel;
+        msg_bytes[1] = 0x7F & msg.bitfield.pad_num;
+        msg_bytes[2] = 0x7F & msg.bitfield.value;
+        break;
     default :
         assert(0);
         break;

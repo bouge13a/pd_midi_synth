@@ -8,6 +8,12 @@
 #ifndef LOOPER_BUTTONS_TASK_H_
 #define LOOPER_BUTTONS_TASK_H_
 
+typedef enum {
+    RECORD_START,
+    PLAY_START,
+    PLAY_STOP
+}loop_msg_e;
+
 void init_looper_buttons(void);
 
 void looper_buttons_task(void* parm);

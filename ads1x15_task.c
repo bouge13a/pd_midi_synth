@@ -267,7 +267,7 @@ void init_ads1x15(void) {
     }
 }
 
-void ad1x15_looper_task(void* parm) {
+void ads1x15_looper_task(void* parm) {
 
     while (1) {
 

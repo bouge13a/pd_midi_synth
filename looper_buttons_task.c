@@ -17,7 +17,7 @@
 #include "GPIs.h"
 #include "GPOs.h"
 #include "board_pin_defs.h"
-#include "usb_hid_task.h"
+#include "host_uart_task.h"
 
 typedef enum {
     BUTTON_UP_IDLE,
@@ -40,6 +40,8 @@ static bool recording = false;
 
 static const uint32_t BLINK_PERIOD = 250; // ms
 
+static const uint32_t LOOP_OFFSET = 46;
+
 void init_looper_buttons(void) {
 
     uint32_t index;
@@ -61,7 +63,7 @@ void looper_buttons_task(void* parm) {
     uint32_t index;
     uint32_t count = 0;
 
-    usb_hid_msg_u usb_hid_msg;
+    uart_msg_u uart_msg;
 
     while(1) {
         for (index=0; index<8; index++) {
@@ -75,11 +77,11 @@ void looper_buttons_task(void* parm) {
                             recording = true;
                             looper_pins[index].loop_state = BUTTON_DOWN_RECORD;
 
-                            usb_hid_msg.bitfield.message_type = RECORD_MSG;
-                            usb_hid_msg.bitfield.ctrl_num = index;
-                            usb_hid_msg.bitfield.value = 0;
+                            uart_msg.bitfield.message_type = LOOP;
+                            uart_msg.bitfield.pad_num = LOOP_OFFSET + index;
+                            uart_msg.bitfield.value = RECORD_START;
 
-                            usb_hid_send(usb_hid_msg);
+                            send_to_host(uart_msg);
 
                         }
                     }
@@ -101,11 +103,11 @@ void looper_buttons_task(void* parm) {
                         looper_pins[index].loop_state = BUTTON_DOWN_PLAY;
                         recording = false;
 
-                        usb_hid_msg.bitfield.message_type = PLAY_MSG;
-                        usb_hid_msg.bitfield.ctrl_num = index;
-                        usb_hid_msg.bitfield.value = 0;
+                        uart_msg.bitfield.message_type = LOOP;
+                        uart_msg.bitfield.pad_num = LOOP_OFFSET + index;
+                        uart_msg.bitfield.value = PLAY_START;
 
-                        usb_hid_send(usb_hid_msg);
+                        send_to_host(uart_msg);
 
                         break;
                     }
@@ -131,11 +133,11 @@ void looper_buttons_task(void* parm) {
                     if (1 == read_gpi(looper_pins[index].loop_pin)) {
                         looper_pins[index].loop_state = BUTTON_DOWN_IDLE;
 
-                        usb_hid_msg.bitfield.message_type = STOP_MSG;
-                        usb_hid_msg.bitfield.ctrl_num = index;
-                        usb_hid_msg.bitfield.value = 0;
+                        uart_msg.bitfield.message_type = LOOP;
+                        uart_msg.bitfield.pad_num = LOOP_OFFSET + index;
+                        uart_msg.bitfield.value = PLAY_STOP;
 
-                        usb_hid_send(usb_hid_msg);
+                        send_to_host(uart_msg);
                     }
 
                     break;
@@ -154,7 +156,7 @@ void looper_buttons_task(void* parm) {
 
         }
         count++;
-        vTaskDelay(1);
+        vTaskDelay(20);
     }
 
 } // End looper_buttons_task

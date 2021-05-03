@@ -132,24 +132,56 @@ static const uint8_t g_pui8GameReportDescriptor[] =
             //
             // The msg_type and control number
             //
-            Usage (USB_HID_X),
-            Usage (USB_HID_Y),
+            Usage (USB_HID_GENERIC_DESKTOP),
 
-            //
-            //
-            //
-            ReportSize(8),
-            ReportCount(2),
-            Input(USB_HID_INPUT_DATA | USB_HID_INPUT_VARIABLE |
-                  USB_HID_INPUT_ABS),
-
-            //1 16 bit value
-            Usage (USB_HID_RX),
 
             ReportSize(8),
             ReportCount(1),
             Input(USB_HID_INPUT_DATA | USB_HID_INPUT_VARIABLE |
+                  USB_HID_INPUT_ABS),
+
+                  Usage (USB_HID_GENERIC_DESKTOP),
+
+
+                  ReportSize(8),
+                  ReportCount(1),
+                  Input(USB_HID_INPUT_DATA | USB_HID_INPUT_VARIABLE |
                         USB_HID_INPUT_ABS),
+
+                        Usage (USB_HID_GENERIC_DESKTOP),
+
+
+                        ReportSize(8),
+                        ReportCount(1),
+                        Input(USB_HID_INPUT_DATA | USB_HID_INPUT_VARIABLE |
+                              USB_HID_INPUT_ABS),
+
+//            //1 16 bit value
+//            Usage (USB_HID_RX),
+//
+//            ReportSize(8),
+//            ReportCount(1),
+//            Input(USB_HID_INPUT_DATA | USB_HID_INPUT_VARIABLE |
+//                        USB_HID_INPUT_ABS),
+//
+//                        //
+//                        // The 8 buttons.
+//                        //
+//                        UsagePage(USB_HID_BUTTONS),
+//                        UsageMinimum(1),
+//                        UsageMaximum(8),
+//                        LogicalMinimum(0),
+//                        LogicalMaximum(1),
+//                        PhysicalMinimum(0),
+//                        PhysicalMaximum(1),
+//
+//                        //
+//                        // 8 - 1 bit values for the buttons.
+//                        //
+//                        ReportSize(1),
+//                        ReportCount(8),
+//                        Input(USB_HID_INPUT_DATA | USB_HID_INPUT_VARIABLE |
+//                              USB_HID_INPUT_ABS),
 
 
         EndCollection,

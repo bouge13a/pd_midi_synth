@@ -15,7 +15,7 @@
 #include "task.h"
 
 
-typedef enum {
+enum {
     NOTE_ON,
     NOTE_OFF,
     OVERDRIVE,
@@ -25,7 +25,11 @@ typedef enum {
     KNOB2,
     KNOB3,
     KNOB4,
-}uart_msg_type_e;
+    LOOP,
+    LOOPVOLUME,
+    EFFECT,
+    MASTER
+};
 
 typedef struct {
     uint8_t  message_type : 4;
