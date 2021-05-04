@@ -51,10 +51,10 @@ void init_midi_channel_select(void) {
 
     uint32_t dummy_data;
 
-    button_states[CHANNEL_UP].pin = get_gpi_config("octave up");
+    button_states[CHANNEL_UP].pin = get_gpi_config("channel up");
     button_states[CHANNEL_UP].last_button_state = BUTTON_UP;
 
-    button_states[CHANNEL_DOWN].pin = get_gpi_config("octave down");
+    button_states[CHANNEL_DOWN].pin = get_gpi_config("channel down");
     button_states[CHANNEL_DOWN].last_button_state = BUTTON_UP;
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_SSI0);
@@ -82,6 +82,9 @@ void init_midi_channel_select(void) {
     SSIEnable(SSI0_BASE);
 
     while(SSIDataGetNonBlocking(SSI0_BASE, &dummy_data));
+
+    SSIDataPut(SSI0_BASE, ZERO_SEG);
+    SSIDataPut(SSI0_BASE, ZERO_SEG);
 
 } // End init_midi_channel_select
 
@@ -191,15 +194,18 @@ void midi_channel_select_task(void* parm) {
                 }
                 break;
             case BUTTON_DOWN :
+                if(0 == read_gpi(button_states[index].pin)) {
+                    button_states[index].last_button_state = BUTTON_UP;
+                }
                 break;
             default:
                 assert(0);
                 break;
 
             }
-
-            vTaskDelay(100);
         }
+
+        vTaskDelay(100);
     }
 } // End midi_channel_select_task
 
