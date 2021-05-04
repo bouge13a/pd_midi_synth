@@ -12,11 +12,14 @@
 
 #include <stdlib.h>
 #include <assert.h>
+#include <stdbool.h>
 
 static const uint32_t EFFECT_INCREMENT = 100;
 
 static const uint32_t EFFECT_OFFSET = 102;
 static const uint32_t MASTER_OFFSET = 110;
+
+static bool send_all_effects = false;
 
 typedef struct {
     uint32_t last_value;
@@ -43,6 +46,18 @@ void process_effects(uint32_t* adc00values,
     uint32_t index;
     uart_msg_u uart_msg;
 
+    if(send_all_effects) {
+        for (index=0; index<12; index++) {
+            uart_msg.bitfield.message_type = EFFECT;
+            uart_msg.bitfield.pad_num = EFFECT_OFFSET + index;
+            uart_msg.bitfield.value = (effects[index].last_value/4096.0)*127;
+
+            send_to_host(uart_msg);
+        }
+
+        send_all_effects = false;
+    }
+
     for (index=0; index<12; index++) {
         if (index < 8) {
 
@@ -50,7 +65,7 @@ void process_effects(uint32_t* adc00values,
 
                 uart_msg.bitfield.message_type = EFFECT;
                 uart_msg.bitfield.pad_num = EFFECT_OFFSET + index;
-                uart_msg.bitfield.value = (adc00values[index]/4096.0)*256;
+                uart_msg.bitfield.value = (adc00values[index]/4096.0)*127;
 
                 send_to_host(uart_msg);
 
@@ -63,7 +78,7 @@ void process_effects(uint32_t* adc00values,
             if(abs(adc11values[index] - effects[index].last_value) > EFFECT_INCREMENT) {
                 uart_msg.bitfield.message_type = EFFECT;
                 uart_msg.bitfield.pad_num = MASTER_OFFSET + index;
-                uart_msg.bitfield.value = (adc11values[index]/4096.0)*256;
+                uart_msg.bitfield.value = (adc11values[index]/4096.0)*127;
 
                 send_to_host(uart_msg);
             }
@@ -74,3 +89,7 @@ void process_effects(uint32_t* adc00values,
     }
 
 } // End process_effects
+
+void send_effects(void) {
+    send_all_effects = true;
+} // End send_effects

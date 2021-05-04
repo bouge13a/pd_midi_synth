@@ -16,4 +16,6 @@ void init_looper_volumes(void);
 void process_looper_volumes(uint32_t* adc0_data,
                             uint32_t* adc1_data);
 
+void send_volumes(void);
+
 #endif /* LOOPER_VOLUME_FUNCTIONS_H_ */

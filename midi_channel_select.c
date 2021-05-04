@@ -205,7 +205,7 @@ void midi_channel_select_task(void* parm) {
             }
         }
 
-        vTaskDelay(100);
+        vTaskDelay(50);
     }
 } // End midi_channel_select_task
 

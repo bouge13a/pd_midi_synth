@@ -26,6 +26,7 @@ looper_volume_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/incl
 looper_volume_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h
 looper_volume_functions.obj: ../looper_volume_functions.h
 looper_volume_functions.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdlib.h
+looper_volume_functions.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h
 
 ../looper_volume_functions.c: 
 ../host_uart_task.h: 
@@ -53,3 +54,4 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h:
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h: 
 ../looper_volume_functions.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdlib.h: 
+C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h: 

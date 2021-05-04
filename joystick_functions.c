@@ -100,8 +100,6 @@ void process_joystick(uint16_t x_raw, uint16_t y_raw) {
 
         if (y_raw > JS_HIGH_REF) {
 
-
-
             js_uart_msg.bitfield.channel = get_channel();
             js_uart_msg.bitfield.pad_num = 0;
             js_uart_msg.bitfield.message_type = PITCH;
@@ -141,7 +139,5 @@ void process_joystick(uint16_t x_raw, uint16_t y_raw) {
         assert(0);
         break;
     }
-
-
 
 } // End process_joystick

@@ -27,6 +27,7 @@ looper_effects.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue
 looper_effects.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h
 looper_effects.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h
 looper_effects.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdlib.h
+looper_effects.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h
 
 ../looper_effects.c: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/assert.h: 
@@ -55,3 +56,4 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h:
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdlib.h: 
+C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h: 

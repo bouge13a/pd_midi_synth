@@ -15,4 +15,6 @@ void init_looper_effects(void);
 void process_effects(uint32_t* adc00values,
                      uint32_t* adc11values);
 
+void send_effects(void);
+
 #endif /* LOOPER_EFFECTS_H_ */
