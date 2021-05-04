@@ -12,27 +12,19 @@
 #include "GPIs.h"
 #include "board_pin_defs.h"
 #include "assert.h"
+#include "utils.h"
 
 static uint32_t octave;
 
 static gpio_pin_t* pressure_sense;
 
-typedef enum {
-    BUTTON_UP,
-    BUTTON_DOWN,
-}button_state_e;
 
 enum {
     OCTAVE_UP   = 0,
     OCTAVE_DOWN = 1,
 };
 
-typedef struct {
-    gpio_pin_t* pin;
-    button_state_e last_button_state;
-}button_states_t;
-
-button_states_t button_states[2];
+static button_states_t button_states[2];
 
 void init_midi_buttons(void) {
 
@@ -45,6 +37,8 @@ void init_midi_buttons(void) {
 
     button_states[OCTAVE_DOWN].pin = get_gpi_config("octave down");
     button_states[OCTAVE_DOWN].last_button_state = BUTTON_UP;
+
+
 
 } // End init_midi_buttons
 

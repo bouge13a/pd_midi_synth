@@ -78,7 +78,7 @@ void init_console_uart(QueueHandle_t uart_rx_queue) {
     MAP_GPIOPinConfigure(GPIO_PA0_U0RX);
     MAP_GPIOPinConfigure(GPIO_PA1_U0TX);
 
-    MAP_GPIOPinTypeUART(GPIO_PORTA_AHB_BASE, GPIO_PIN_0 | GPIO_PIN_1);
+    MAP_GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
 
     // Use the internal 16MHz oscillator as the UART clock source.
     MAP_UARTClockSourceSet(UART0_BASE, UART_CLOCK_PIOSC);

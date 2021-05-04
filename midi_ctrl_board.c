@@ -25,7 +25,7 @@
 #include "GPOs.h"
 #include "host_uart_task.h"
 #include "drum_pad_functions.h"
-#include "rotary_enc_task.h"
+#include "midi_channel_select.h"
 #include "ads1x15_task.h"
 #include "midi_buttons_task.h"
 
@@ -57,7 +57,7 @@ void init_midi_ctrl_board(void){
 
     init_logger();
 
-    init_rotary_enc();
+    init_midi_channel_select();
 
     init_ads1x15();
 
@@ -149,8 +149,8 @@ void init_midi_ctrl_board(void){
                 3,                          /* Priority at which the task is created. */
                 NULL );                     /* Used to pass out the created task's handle. */
 
-    xTaskCreate(rotary_enc_task,               /* Function that implements the task. */
-                "Encoder",                  /* Text name for the task. */
+    xTaskCreate(midi_channel_select_task,               /* Function that implements the task. */
+                "Chan Buttons",                  /* Text name for the task. */
                 configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
                 NULL,                       /* Parameter passed into the task. */
                 3,                          /* Priority at which the task is created. */

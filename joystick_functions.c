@@ -9,7 +9,7 @@
 
 #include "joystick_functions.h"
 #include "host_uart_task.h"
-#include "rotary_enc_task.h"
+#include "midi_channel_select.h"
 
 
 

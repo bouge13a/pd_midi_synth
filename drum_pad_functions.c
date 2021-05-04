@@ -14,7 +14,7 @@
 #include "host_uart_task.h"
 #include "console_task.h"
 #include "driverlib/sysctl.h"
-#include "rotary_enc_task.h"
+#include "midi_channel_select.h"
 #include "ads1x15_task.h"
 #include "midi_buttons_task.h"
 

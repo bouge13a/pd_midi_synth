@@ -38,7 +38,7 @@ static looper_pin_t looper_pins[8];
 
 static bool recording = false;
 
-static const uint32_t BLINK_PERIOD = 250; // ms
+static const uint32_t BLINK_PERIOD = 250/20; // ms
 
 static const uint32_t LOOP_OFFSET = 46;
 

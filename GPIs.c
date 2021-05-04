@@ -52,7 +52,9 @@ void init_gpis(void) {
 
             MAP_SysCtlPeripheralEnable(gpi_info.gpis[idx]->peripheral);
 
-            SysCtlGPIOAHBEnable(gpi_info.gpis[idx]->peripheral);
+            if (gpi_info.gpis[idx]->port != GPIO_PORTA_BASE) {
+                SysCtlGPIOAHBEnable(gpi_info.gpis[idx]->peripheral);
+            }
 
             while(!SysCtlPeripheralReady(gpi_info.gpis[idx]->peripheral));
 

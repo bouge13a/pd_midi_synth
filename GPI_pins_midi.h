@@ -15,35 +15,19 @@
 #include "driverlib/sysctl.h"
 
 
-static gpio_pin_t enc_bit_0 = {
-    .name       = "bit 0",
+static gpio_pin_t chan_up = {
+    .name       = "channel up",
     .pin        = GPIO_PIN_4,
     .peripheral = SYSCTL_PERIPH_GPIOF,
     .port       = GPIO_PORTF_AHB_BASE,
     .direction  = GPIO_DIR_MODE_IN
 };
 
-static gpio_pin_t enc_bit_1 = {
-    .name       = "bit 1",
+static gpio_pin_t chan_down = {
+    .name       = "channel down",
     .pin        = GPIO_PIN_7,
     .peripheral = SYSCTL_PERIPH_GPIOD,
     .port       = GPIO_PORTD_AHB_BASE,
-    .direction  = GPIO_DIR_MODE_IN
-};
-
-static gpio_pin_t enc_bit_2 = {
-    .name       = "bit 2",
-    .pin        = GPIO_PIN_4,
-    .peripheral = SYSCTL_PERIPH_GPIOC,
-    .port       = GPIO_PORTC_AHB_BASE,
-    .direction  = GPIO_DIR_MODE_IN
-};
-
-static gpio_pin_t enc_bit_3 = {
-    .name       = "bit 3",
-    .pin        = GPIO_PIN_5,
-    .peripheral = SYSCTL_PERIPH_GPIOC,
-    .port       = GPIO_PORTC_AHB_BASE,
     .direction  = GPIO_DIR_MODE_IN
 };
 
@@ -73,10 +57,8 @@ static gpio_pin_t octave_down = {
 
 
 static gpio_pin_t* midi_gpi_pins[] = {
-    &enc_bit_0,
-    &enc_bit_1,
-    &enc_bit_2,
-    &enc_bit_3,
+    &chan_up,
+    &chan_down,
     &pressure_sense,
     &octave_up,
     &octave_down,

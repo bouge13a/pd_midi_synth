@@ -32,7 +32,7 @@ drum_pad_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/t
 drum_pad_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h
 drum_pad_functions.obj: ../console_task.h
 drum_pad_functions.obj: ../driverlib/sysctl.h
-drum_pad_functions.obj: ../rotary_enc_task.h
+drum_pad_functions.obj: ../midi_channel_select.h
 drum_pad_functions.obj: ../ads1x15_task.h
 drum_pad_functions.obj: ../midi_buttons_task.h
 
@@ -68,6 +68,6 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h:
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h: 
 ../console_task.h: 
 ../driverlib/sysctl.h: 
-../rotary_enc_task.h: 
+../midi_channel_select.h: 
 ../ads1x15_task.h: 
 ../midi_buttons_task.h: 

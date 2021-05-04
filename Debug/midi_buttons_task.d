@@ -27,6 +27,7 @@ midi_buttons_task.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/in
 midi_buttons_task.obj: ../GPIs.h
 midi_buttons_task.obj: ../board_pin_defs.h
 midi_buttons_task.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/assert.h
+midi_buttons_task.obj: ../utils.h
 
 ../midi_buttons_task.c: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h: 
@@ -55,3 +56,4 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h:
 ../GPIs.h: 
 ../board_pin_defs.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/assert.h: 
+../utils.h: 

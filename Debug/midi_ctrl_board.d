@@ -38,7 +38,7 @@ midi_ctrl_board.obj: ../GPIs.h
 midi_ctrl_board.obj: ../GPOs.h
 midi_ctrl_board.obj: ../host_uart_task.h
 midi_ctrl_board.obj: ../drum_pad_functions.h
-midi_ctrl_board.obj: ../rotary_enc_task.h
+midi_ctrl_board.obj: ../midi_channel_select.h
 midi_ctrl_board.obj: ../ads1x15_task.h
 midi_ctrl_board.obj: ../midi_buttons_task.h
 
@@ -80,6 +80,6 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h:
 ../GPOs.h: 
 ../host_uart_task.h: 
 ../drum_pad_functions.h: 
-../rotary_enc_task.h: 
+../midi_channel_select.h: 
 ../ads1x15_task.h: 
 ../midi_buttons_task.h: 

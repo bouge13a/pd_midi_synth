@@ -45,7 +45,7 @@ static gpio_pin_t led_0 = {
     .name       = "led 0",
     .pin        = GPIO_PIN_2,
     .peripheral = SYSCTL_PERIPH_GPIOF,
-    .port       = GPIO_PORTB_AHB_BASE,
+    .port       = GPIO_PORTF_AHB_BASE,
     .direction  = GPIO_DIR_MODE_OUT,
 };
 
