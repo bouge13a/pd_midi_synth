@@ -53,6 +53,8 @@ void process_looper_volumes(uint32_t* adc0_data,
         }
 
         send_all_volumes = false;
+
+        return;
     }
 
     for (index=0; index<4; index++) {

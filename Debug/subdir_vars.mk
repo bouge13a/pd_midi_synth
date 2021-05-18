@@ -35,11 +35,10 @@ C_SRCS += \
 ../midi_ctrl_board.c \
 ../midi_knobs_functions.c \
 ../midi_uart_functions.c \
+../midi_usb_rx_task.c \
 ../task_manager_page.c \
 ../text_controls.c \
 ../tm4c123gh6pm_startup_ccs.c \
-../usb_hid_task.c \
-../usb_structs.c \
 ../watchdog_task.c 
 
 C_DEPS += \
@@ -69,11 +68,10 @@ C_DEPS += \
 ./midi_ctrl_board.d \
 ./midi_knobs_functions.d \
 ./midi_uart_functions.d \
+./midi_usb_rx_task.d \
 ./task_manager_page.d \
 ./text_controls.d \
 ./tm4c123gh6pm_startup_ccs.d \
-./usb_hid_task.d \
-./usb_structs.d \
 ./watchdog_task.d 
 
 OBJS += \
@@ -103,11 +101,10 @@ OBJS += \
 ./midi_ctrl_board.obj \
 ./midi_knobs_functions.obj \
 ./midi_uart_functions.obj \
+./midi_usb_rx_task.obj \
 ./task_manager_page.obj \
 ./text_controls.obj \
 ./tm4c123gh6pm_startup_ccs.obj \
-./usb_hid_task.obj \
-./usb_structs.obj \
 ./watchdog_task.obj 
 
 OBJS__QUOTED += \
@@ -137,11 +134,10 @@ OBJS__QUOTED += \
 "midi_ctrl_board.obj" \
 "midi_knobs_functions.obj" \
 "midi_uart_functions.obj" \
+"midi_usb_rx_task.obj" \
 "task_manager_page.obj" \
 "text_controls.obj" \
 "tm4c123gh6pm_startup_ccs.obj" \
-"usb_hid_task.obj" \
-"usb_structs.obj" \
 "watchdog_task.obj" 
 
 C_DEPS__QUOTED += \
@@ -171,11 +167,10 @@ C_DEPS__QUOTED += \
 "midi_ctrl_board.d" \
 "midi_knobs_functions.d" \
 "midi_uart_functions.d" \
+"midi_usb_rx_task.d" \
 "task_manager_page.d" \
 "text_controls.d" \
 "tm4c123gh6pm_startup_ccs.d" \
-"usb_hid_task.d" \
-"usb_structs.d" \
 "watchdog_task.d" 
 
 C_SRCS__QUOTED += \
@@ -205,11 +200,10 @@ C_SRCS__QUOTED += \
 "../midi_ctrl_board.c" \
 "../midi_knobs_functions.c" \
 "../midi_uart_functions.c" \
+"../midi_usb_rx_task.c" \
 "../task_manager_page.c" \
 "../text_controls.c" \
 "../tm4c123gh6pm_startup_ccs.c" \
-"../usb_hid_task.c" \
-"../usb_structs.c" \
 "../watchdog_task.c" 
 
 

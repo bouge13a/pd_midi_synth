@@ -36,11 +36,10 @@ ORDERED_OBJS += \
 "./midi_ctrl_board.obj" \
 "./midi_knobs_functions.obj" \
 "./midi_uart_functions.obj" \
+"./midi_usb_rx_task.obj" \
 "./task_manager_page.obj" \
 "./text_controls.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
-"./usb_hid_task.obj" \
-"./usb_structs.obj" \
 "./watchdog_task.obj" \
 "./FreeRTOS/croutine.obj" \
 "./FreeRTOS/event_groups.obj" \
@@ -83,28 +82,9 @@ ORDERED_OBJS += \
 "./driverlib/udma.obj" \
 "./driverlib/usb.obj" \
 "./driverlib/watchdog.obj" \
-"./usb/usbbuffer.obj" \
-"./usb/usbdaudio.obj" \
-"./usb/usbdbulk.obj" \
-"./usb/usbdcdc.obj" \
-"./usb/usbdcdesc.obj" \
-"./usb/usbdcomp.obj" \
-"./usb/usbdconfig.obj" \
-"./usb/usbddfu-rt.obj" \
-"./usb/usbdenum.obj" \
-"./usb/usbdesc.obj" \
-"./usb/usbdhandler.obj" \
-"./usb/usbdhid.obj" \
-"./usb/usbdhidgamepad.obj" \
-"./usb/usbdhidkeyb.obj" \
-"./usb/usbdhidmouse.obj" \
-"./usb/usbdma.obj" \
-"./usb/usbdmsc.obj" \
-"./usb/usbkeyboardmap.obj" \
-"./usb/usbmode.obj" \
-"./usb/usbringbuf.obj" \
-"./usb/usbtick.obj" \
-"./usb/usbulpi.obj" \
+"./usb_midi/usb_midi_fifo.obj" \
+"./usb_midi/usbmidi.obj" \
+"./usb_midi/usbmidi_handlers.obj" \
 "./utils/uartstdio.obj" \
 "./utils/ustdlib.obj" \
 "../tm4c123gh6pm.cmd" \
@@ -123,13 +103,13 @@ RMDIR := RMDIR /S/Q
 -include FreeRTOS/subdir_vars.mk
 -include FreeRTOS/portable/CCS/ARM_CM4F/subdir_vars.mk
 -include driverlib/subdir_vars.mk
--include usb/subdir_vars.mk
+-include usb_midi/subdir_vars.mk
 -include utils/subdir_vars.mk
 -include subdir_rules.mk
 -include FreeRTOS/subdir_rules.mk
 -include FreeRTOS/portable/CCS/ARM_CM4F/subdir_rules.mk
 -include driverlib/subdir_rules.mk
--include usb/subdir_rules.mk
+-include usb_midi/subdir_rules.mk
 -include utils/subdir_rules.mk
 -include objects.mk
 
@@ -261,11 +241,10 @@ drum_pad.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "ADC_task.obj" "GPIs.obj" "GPOs.obj" "I2C_task.obj" "ads1x15_task.obj" "board_select.obj" "console_task.obj" "console_uart.obj" "control_page.obj" "drum_pad_functions.obj" "heap_2.obj" "homepage.obj" "hooks.obj" "host_uart_task.obj" "joystick_functions.obj" "logger.obj" "looper_board.obj" "looper_buttons_task.obj" "looper_effects.obj" "looper_volume_functions.obj" "main.obj" "midi_buttons_task.obj" "midi_channel_select.obj" "midi_ctrl_board.obj" "midi_knobs_functions.obj" "midi_uart_functions.obj" "task_manager_page.obj" "text_controls.obj" "tm4c123gh6pm_startup_ccs.obj" "usb_hid_task.obj" "usb_structs.obj" "watchdog_task.obj" "FreeRTOS\croutine.obj" "FreeRTOS\event_groups.obj" "FreeRTOS\list.obj" "FreeRTOS\queue.obj" "FreeRTOS\stream_buffer.obj" "FreeRTOS\tasks.obj" "FreeRTOS\timers.obj" "FreeRTOS\portable\CCS\ARM_CM4F\port.obj" "FreeRTOS\portable\CCS\ARM_CM4F\portasm.obj" "driverlib\adc.obj" "driverlib\aes.obj" "driverlib\can.obj" "driverlib\comp.obj" "driverlib\cpu.obj" "driverlib\crc.obj" 
-	-$(RM) "driverlib\des.obj" "driverlib\eeprom.obj" "driverlib\emac.obj" "driverlib\epi.obj" "driverlib\epi_workaround_ccs.obj" "driverlib\flash.obj" "driverlib\fpu.obj" "driverlib\gpio.obj" "driverlib\hibernate.obj" "driverlib\i2c.obj" "driverlib\interrupt.obj" "driverlib\lcd.obj" "driverlib\mpu.obj" "driverlib\pwm.obj" "driverlib\qei.obj" "driverlib\shamd5.obj" "driverlib\ssi.obj" "driverlib\sw_crc.obj" "driverlib\sysctl.obj" "driverlib\sysexc.obj" "driverlib\systick.obj" "driverlib\timer.obj" "driverlib\uart.obj" "driverlib\udma.obj" "driverlib\usb.obj" "driverlib\watchdog.obj" "usb\usbbuffer.obj" "usb\usbdaudio.obj" "usb\usbdbulk.obj" "usb\usbdcdc.obj" "usb\usbdcdesc.obj" "usb\usbdcomp.obj" "usb\usbdconfig.obj" "usb\usbddfu-rt.obj" "usb\usbdenum.obj" "usb\usbdesc.obj" "usb\usbdhandler.obj" "usb\usbdhid.obj" "usb\usbdhidgamepad.obj" "usb\usbdhidkeyb.obj" "usb\usbdhidmouse.obj" "usb\usbdma.obj" "usb\usbdmsc.obj" "usb\usbkeyboardmap.obj" "usb\usbmode.obj" "usb\usbringbuf.obj" "usb\usbtick.obj" 
-	-$(RM) "usb\usbulpi.obj" "utils\uartstdio.obj" "utils\ustdlib.obj" 
-	-$(RM) "ADC_task.d" "GPIs.d" "GPOs.d" "I2C_task.d" "ads1x15_task.d" "board_select.d" "console_task.d" "console_uart.d" "control_page.d" "drum_pad_functions.d" "heap_2.d" "homepage.d" "hooks.d" "host_uart_task.d" "joystick_functions.d" "logger.d" "looper_board.d" "looper_buttons_task.d" "looper_effects.d" "looper_volume_functions.d" "main.d" "midi_buttons_task.d" "midi_channel_select.d" "midi_ctrl_board.d" "midi_knobs_functions.d" "midi_uart_functions.d" "task_manager_page.d" "text_controls.d" "tm4c123gh6pm_startup_ccs.d" "usb_hid_task.d" "usb_structs.d" "watchdog_task.d" "FreeRTOS\croutine.d" "FreeRTOS\event_groups.d" "FreeRTOS\list.d" "FreeRTOS\queue.d" "FreeRTOS\stream_buffer.d" "FreeRTOS\tasks.d" "FreeRTOS\timers.d" "FreeRTOS\portable\CCS\ARM_CM4F\port.d" "driverlib\adc.d" "driverlib\aes.d" "driverlib\can.d" "driverlib\comp.d" "driverlib\cpu.d" "driverlib\crc.d" "driverlib\des.d" "driverlib\eeprom.d" "driverlib\emac.d" "driverlib\epi.d" "driverlib\flash.d" "driverlib\fpu.d" "driverlib\gpio.d" 
-	-$(RM) "driverlib\hibernate.d" "driverlib\i2c.d" "driverlib\interrupt.d" "driverlib\lcd.d" "driverlib\mpu.d" "driverlib\pwm.d" "driverlib\qei.d" "driverlib\shamd5.d" "driverlib\ssi.d" "driverlib\sw_crc.d" "driverlib\sysctl.d" "driverlib\sysexc.d" "driverlib\systick.d" "driverlib\timer.d" "driverlib\uart.d" "driverlib\udma.d" "driverlib\usb.d" "driverlib\watchdog.d" "usb\usbbuffer.d" "usb\usbdaudio.d" "usb\usbdbulk.d" "usb\usbdcdc.d" "usb\usbdcdesc.d" "usb\usbdcomp.d" "usb\usbdconfig.d" "usb\usbddfu-rt.d" "usb\usbdenum.d" "usb\usbdesc.d" "usb\usbdhandler.d" "usb\usbdhid.d" "usb\usbdhidgamepad.d" "usb\usbdhidkeyb.d" "usb\usbdhidmouse.d" "usb\usbdma.d" "usb\usbdmsc.d" "usb\usbkeyboardmap.d" "usb\usbmode.d" "usb\usbringbuf.d" "usb\usbtick.d" "usb\usbulpi.d" "utils\uartstdio.d" "utils\ustdlib.d" 
+	-$(RM) "ADC_task.obj" "GPIs.obj" "GPOs.obj" "I2C_task.obj" "ads1x15_task.obj" "board_select.obj" "console_task.obj" "console_uart.obj" "control_page.obj" "drum_pad_functions.obj" "heap_2.obj" "homepage.obj" "hooks.obj" "host_uart_task.obj" "joystick_functions.obj" "logger.obj" "looper_board.obj" "looper_buttons_task.obj" "looper_effects.obj" "looper_volume_functions.obj" "main.obj" "midi_buttons_task.obj" "midi_channel_select.obj" "midi_ctrl_board.obj" "midi_knobs_functions.obj" "midi_uart_functions.obj" "midi_usb_rx_task.obj" "task_manager_page.obj" "text_controls.obj" "tm4c123gh6pm_startup_ccs.obj" "watchdog_task.obj" "FreeRTOS\croutine.obj" "FreeRTOS\event_groups.obj" "FreeRTOS\list.obj" "FreeRTOS\queue.obj" "FreeRTOS\stream_buffer.obj" "FreeRTOS\tasks.obj" "FreeRTOS\timers.obj" "FreeRTOS\portable\CCS\ARM_CM4F\port.obj" "FreeRTOS\portable\CCS\ARM_CM4F\portasm.obj" "driverlib\adc.obj" "driverlib\aes.obj" "driverlib\can.obj" "driverlib\comp.obj" "driverlib\cpu.obj" "driverlib\crc.obj" "driverlib\des.obj" 
+	-$(RM) "driverlib\eeprom.obj" "driverlib\emac.obj" "driverlib\epi.obj" "driverlib\epi_workaround_ccs.obj" "driverlib\flash.obj" "driverlib\fpu.obj" "driverlib\gpio.obj" "driverlib\hibernate.obj" "driverlib\i2c.obj" "driverlib\interrupt.obj" "driverlib\lcd.obj" "driverlib\mpu.obj" "driverlib\pwm.obj" "driverlib\qei.obj" "driverlib\shamd5.obj" "driverlib\ssi.obj" "driverlib\sw_crc.obj" "driverlib\sysctl.obj" "driverlib\sysexc.obj" "driverlib\systick.obj" "driverlib\timer.obj" "driverlib\uart.obj" "driverlib\udma.obj" "driverlib\usb.obj" "driverlib\watchdog.obj" "usb_midi\usb_midi_fifo.obj" "usb_midi\usbmidi.obj" "usb_midi\usbmidi_handlers.obj" "utils\uartstdio.obj" "utils\ustdlib.obj" 
+	-$(RM) "ADC_task.d" "GPIs.d" "GPOs.d" "I2C_task.d" "ads1x15_task.d" "board_select.d" "console_task.d" "console_uart.d" "control_page.d" "drum_pad_functions.d" "heap_2.d" "homepage.d" "hooks.d" "host_uart_task.d" "joystick_functions.d" "logger.d" "looper_board.d" "looper_buttons_task.d" "looper_effects.d" "looper_volume_functions.d" "main.d" "midi_buttons_task.d" "midi_channel_select.d" "midi_ctrl_board.d" "midi_knobs_functions.d" "midi_uart_functions.d" "midi_usb_rx_task.d" "task_manager_page.d" "text_controls.d" "tm4c123gh6pm_startup_ccs.d" "watchdog_task.d" "FreeRTOS\croutine.d" "FreeRTOS\event_groups.d" "FreeRTOS\list.d" "FreeRTOS\queue.d" "FreeRTOS\stream_buffer.d" "FreeRTOS\tasks.d" "FreeRTOS\timers.d" "FreeRTOS\portable\CCS\ARM_CM4F\port.d" "driverlib\adc.d" "driverlib\aes.d" "driverlib\can.d" "driverlib\comp.d" "driverlib\cpu.d" "driverlib\crc.d" "driverlib\des.d" "driverlib\eeprom.d" "driverlib\emac.d" "driverlib\epi.d" "driverlib\flash.d" "driverlib\fpu.d" "driverlib\gpio.d" "driverlib\hibernate.d" 
+	-$(RM) "driverlib\i2c.d" "driverlib\interrupt.d" "driverlib\lcd.d" "driverlib\mpu.d" "driverlib\pwm.d" "driverlib\qei.d" "driverlib\shamd5.d" "driverlib\ssi.d" "driverlib\sw_crc.d" "driverlib\sysctl.d" "driverlib\sysexc.d" "driverlib\systick.d" "driverlib\timer.d" "driverlib\uart.d" "driverlib\udma.d" "driverlib\usb.d" "driverlib\watchdog.d" "usb_midi\usb_midi_fifo.d" "usb_midi\usbmidi.d" "usb_midi\usbmidi_handlers.d" "utils\uartstdio.d" "utils\ustdlib.d" 
 	-$(RM) "driverlib\epi_workaround_ccs.d" 
 	-$(RM) "FreeRTOS\portable\CCS\ARM_CM4F\portasm.d" 
 	-@echo 'Finished clean'

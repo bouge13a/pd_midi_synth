@@ -56,6 +56,8 @@ void process_effects(uint32_t* adc00values,
         }
 
         send_all_effects = false;
+
+        return;
     }
 
     for (index=0; index<12; index++) {
