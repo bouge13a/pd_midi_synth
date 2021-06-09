@@ -6,9 +6,9 @@
  */
 #include <assert.h>
 #include <stdlib.h>
+#include <usb_midi_task.h>
 
 #include "joystick_functions.h"
-#include "host_uart_task.h"
 #include "midi_channel_select.h"
 
 

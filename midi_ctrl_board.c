@@ -23,7 +23,7 @@
 #include "task_manager_page.h"
 #include "GPIs.h"
 #include "GPOs.h"
-#include "host_uart_task.h"
+#include "usb_midi_task.h"
 #include "drum_pad_functions.h"
 #include "midi_channel_select.h"
 #include "ads1x15_task.h"
@@ -95,10 +95,10 @@ void init_midi_ctrl_board(void){
              portMAX_DELAY,
              false);
 
-    init_host_uart(add_page("UART msgs",
-                            uartmsg_drawpage,
-                            uartmsg_drawdata,
-                            uartmsg_drawinput,
+    init_usb_midi(add_page("USB MIDI",
+                           usb_midi_drawpage,
+                           usb_midi_drawdata,
+                           usb_midi_drawinput,
                             portMAX_DELAY,
                             true));
 
@@ -142,8 +142,15 @@ void init_midi_ctrl_board(void){
                 NULL );                     /* Used to pass out the created task's handle. */
 
 
-    xTaskCreate(host_uart_task,               /* Function that implements the task. */
-                "UART1",                  /* Text name for the task. */
+    xTaskCreate(usb_midi_task,               /* Function that implements the task. */
+                "USB MIDI TX",                  /* Text name for the task. */
+                configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
+                NULL,                       /* Parameter passed into the task. */
+                3,                          /* Priority at which the task is created. */
+                NULL );                     /* Used to pass out the created task's handle. */
+
+    xTaskCreate(usb_midi_rx_task,               /* Function that implements the task. */
+                "USB MIDI RX",                  /* Text name for the task. */
                 configMINIMAL_STACK_SIZE,                        /* Stack size in words, not bytes. */
                 NULL,                       /* Parameter passed into the task. */
                 3,                          /* Priority at which the task is created. */

@@ -27,11 +27,6 @@ midi_usb_rx_task.obj: C:/Users/steph/workspace_v10/drum_pad/usb_midi/usb_midi.h
 midi_usb_rx_task.obj: C:/Users/steph/workspace_v10/drum_pad/usb_midi/usb_midi_fifo.h
 midi_usb_rx_task.obj: ../midi_usb_rx_task.h
 midi_usb_rx_task.obj: C:/Users/steph/workspace_v10/drum_pad/usb_midi/usbmidi.h
-midi_usb_rx_task.obj: ../pconfig.h
-midi_usb_rx_task.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_ints.h
-midi_usb_rx_task.obj: ../driverlib/timer.h
-midi_usb_rx_task.obj: ../driverlib/interrupt.h
-midi_usb_rx_task.obj: ../driverlib/uart.h
 
 ../midi_usb_rx_task.c: 
 ../midi_usb_rx_task.h: 
@@ -60,8 +55,3 @@ C:/Users/steph/workspace_v10/drum_pad/usb_midi/usb_midi.h:
 C:/Users/steph/workspace_v10/drum_pad/usb_midi/usb_midi_fifo.h: 
 ../midi_usb_rx_task.h: 
 C:/Users/steph/workspace_v10/drum_pad/usb_midi/usbmidi.h: 
-../pconfig.h: 
-C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_ints.h: 
-../driverlib/timer.h: 
-../driverlib/interrupt.h: 
-../driverlib/uart.h: 

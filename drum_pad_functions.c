@@ -9,9 +9,9 @@
 #include <stdint.h>
 #include <uartstdio.h>
 #include <stdio.h>
+#include <usb_midi_task.h>
 
 #include "drum_pad_functions.h"
-#include "host_uart_task.h"
 #include "console_task.h"
 #include "driverlib/sysctl.h"
 #include "midi_channel_select.h"
@@ -19,7 +19,7 @@
 #include "midi_buttons_task.h"
 
 static const uint32_t NUM_OF_PADS     = 12;
-static const uint32_t LOW_REF         = 50;
+static const uint32_t LOW_REF         = 500;
 static const uint32_t HIGH_REF        = 3000;
 static const uint32_t POLYPHONIC_REF  = 4096-63;
 static const uint32_t POLYPHONIC_CNT  = 1000;

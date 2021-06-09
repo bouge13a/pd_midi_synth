@@ -16,8 +16,7 @@ drum_pad_functions.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/i
 drum_pad_functions.obj: C:/Users/steph/workspace_v10/drum_pad/utils/uartstdio.h
 drum_pad_functions.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdarg.h
 drum_pad_functions.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdio.h
-drum_pad_functions.obj: ../drum_pad_functions.h
-drum_pad_functions.obj: ../host_uart_task.h
+drum_pad_functions.obj: C:/Users/steph/workspace_v10/drum_pad/usb_midi_task.h
 drum_pad_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h
 drum_pad_functions.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stddef.h
 drum_pad_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOSConfig.h
@@ -30,6 +29,7 @@ drum_pad_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/m
 drum_pad_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h
 drum_pad_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h
 drum_pad_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h
+drum_pad_functions.obj: ../drum_pad_functions.h
 drum_pad_functions.obj: ../console_task.h
 drum_pad_functions.obj: ../driverlib/sysctl.h
 drum_pad_functions.obj: ../midi_channel_select.h
@@ -52,8 +52,7 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/sys/_stdint.h:
 C:/Users/steph/workspace_v10/drum_pad/utils/uartstdio.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdarg.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdio.h: 
-../drum_pad_functions.h: 
-../host_uart_task.h: 
+C:/Users/steph/workspace_v10/drum_pad/usb_midi_task.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stddef.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOSConfig.h: 
@@ -66,6 +65,7 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/mpu_wrappers.h:
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/task.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h: 
+../drum_pad_functions.h: 
 ../console_task.h: 
 ../driverlib/sysctl.h: 
 ../midi_channel_select.h: 

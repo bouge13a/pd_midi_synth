@@ -31,12 +31,6 @@ usb_midi/usbmidi.obj: ../usb_midi/usbmidi.h
 usb_midi/usbmidi.obj: ../usb_midi/usbmidi_descriptors.h
 usb_midi/usbmidi.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdlib.h
 usb_midi/usbmidi.obj: ../usb_midi/usbmidi_handlers.h
-usb_midi/usbmidi.obj: C:/Users/steph/workspace_v10/drum_pad/pconfig.h
-usb_midi/usbmidi.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_ints.h
-usb_midi/usbmidi.obj: C:/Users/steph/workspace_v10/drum_pad/driverlib/gpio.h
-usb_midi/usbmidi.obj: C:/Users/steph/workspace_v10/drum_pad/driverlib/timer.h
-usb_midi/usbmidi.obj: C:/Users/steph/workspace_v10/drum_pad/driverlib/interrupt.h
-usb_midi/usbmidi.obj: C:/Users/steph/workspace_v10/drum_pad/driverlib/uart.h
 
 ../usb_midi/usbmidi.c: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h: 
@@ -69,9 +63,3 @@ C:/ti/TivaWare_C_Series-2.2.0.295/usblib/usbaudio.h:
 ../usb_midi/usbmidi_descriptors.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdlib.h: 
 ../usb_midi/usbmidi_handlers.h: 
-C:/Users/steph/workspace_v10/drum_pad/pconfig.h: 
-C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_ints.h: 
-C:/Users/steph/workspace_v10/drum_pad/driverlib/gpio.h: 
-C:/Users/steph/workspace_v10/drum_pad/driverlib/timer.h: 
-C:/Users/steph/workspace_v10/drum_pad/driverlib/interrupt.h: 
-C:/Users/steph/workspace_v10/drum_pad/driverlib/uart.h: 

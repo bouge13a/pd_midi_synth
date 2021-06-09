@@ -12,14 +12,13 @@
 #include "driverlib/rom.h"
 #include "driverlib/rom_map.h"
 #include "driverlib/usb.h"
+#include "inc/hw_memmap.h"
 #include "usblib/usblib.h"
 #include "usblib/usblibpriv.h"
 
 #include "usbmidi_handlers.h"
 #include "usbmidi_types.h"
 #include "usbmidi.h"
-
-#include "pconfig.h"
 
 /**
  * USB MIDI does define some class-specific requests, which we do not handle.

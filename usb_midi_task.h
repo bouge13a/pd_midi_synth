@@ -5,8 +5,8 @@
  *      Author: steph
  */
 
-#ifndef HOST_UART_TASK_H_
-#define HOST_UART_TASK_H_
+#ifndef USB_MIDI_TASK_H_
+#define USB_MIDI_TASK_H_
 
 #include <stdint.h>
 
@@ -43,19 +43,21 @@ typedef union {
     char       bytes[4];
 }uart_msg_u;
 
-void init_host_uart(uint32_t oage_number);
+void init_usb_midi(uint32_t oage_number);
 
-void host_uart_task(void* parm);
+void usb_midi_task(void* parm);
+
+void usb_midi_rx_task(void* parm);
 
 void send_to_host(uart_msg_u message);
 
 void send_to_host_from_isr(uart_msg_u message);
 
 // GUI functions
-void uartmsg_drawpage(void);
-void uartmsg_drawdata(void);
-void uartmsg_drawinput(int character);
+void usb_midi_drawpage(void);
+void usb_midi_drawdata(void);
+void usb_midi_drawinput(int character);
 
 
 
-#endif /* HOST_UART_TASK_H_ */
+#endif /* USB_MIDI_TASK_H_ */
