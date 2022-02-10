@@ -1,6 +1,6 @@
 # FIXED
 
-utils/uartstdio.obj: C:/ti/TivaWare_C_Series-2.2.0.295/utils/uartstdio.c
+utils/uartstdio.obj: ../utils/uartstdio.c
 utils/uartstdio.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h
 utils/uartstdio.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/_ti_config.h
 utils/uartstdio.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/linkage.h
@@ -25,7 +25,7 @@ utils/uartstdio.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h
 utils/uartstdio.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/uart.h
 utils/uartstdio.obj: C:/ti/TivaWare_C_Series-2.2.0.295/utils/uartstdio.h
 
-C:/ti/TivaWare_C_Series-2.2.0.295/utils/uartstdio.c: 
+../utils/uartstdio.c: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/_ti_config.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/linkage.h: 

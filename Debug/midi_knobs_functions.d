@@ -16,7 +16,7 @@ midi_knobs_functions.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS
 midi_knobs_functions.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/machine/_stdint.h
 midi_knobs_functions.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/sys/_stdint.h
 midi_knobs_functions.obj: ../board_pin_defs.h
-midi_knobs_functions.obj: ../host_uart_task.h
+midi_knobs_functions.obj: ../usb_midi_task.h
 midi_knobs_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h
 midi_knobs_functions.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stddef.h
 midi_knobs_functions.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOSConfig.h
@@ -47,7 +47,7 @@ C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/machine/_types.h:
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/machine/_stdint.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/sys/_stdint.h: 
 ../board_pin_defs.h: 
-../host_uart_task.h: 
+../usb_midi_task.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/FreeRTOS.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stddef.h: 
 C:/Users/steph/workspace_v10/drum_pad/FreeRTOSConfig.h: 

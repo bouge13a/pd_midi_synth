@@ -14,7 +14,7 @@
 #include "text_controls.h"
 #include "ads1x15_task.h"
 #include "I2C_task.h"
-#include "host_uart_task.h"
+//#include "host_uart_task.h"
 #include "midi_channel_select.h"
 #include "joystick_functions.h"
 #include "midi_knobs_functions.h"

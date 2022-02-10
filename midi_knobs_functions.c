@@ -9,7 +9,7 @@
 #include <stdlib.h>
 
 #include "midi_knobs_functions.h"
-#include "host_uart_task.h"
+#include "usb_midi_task.h"
 #include "midi_channel_select.h"
 
 static const uint32_t CAPTURE_WINDOW = 50;

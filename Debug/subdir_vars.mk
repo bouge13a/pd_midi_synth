@@ -38,6 +38,7 @@ C_SRCS += \
 ../text_controls.c \
 ../tm4c123gh6pm_startup_ccs.c \
 ../usb_midi_task.c \
+../utils.c \
 ../watchdog_task.c 
 
 C_DEPS += \
@@ -70,6 +71,7 @@ C_DEPS += \
 ./text_controls.d \
 ./tm4c123gh6pm_startup_ccs.d \
 ./usb_midi_task.d \
+./utils.d \
 ./watchdog_task.d 
 
 OBJS += \
@@ -102,6 +104,7 @@ OBJS += \
 ./text_controls.obj \
 ./tm4c123gh6pm_startup_ccs.obj \
 ./usb_midi_task.obj \
+./utils.obj \
 ./watchdog_task.obj 
 
 OBJS__QUOTED += \
@@ -134,6 +137,7 @@ OBJS__QUOTED += \
 "text_controls.obj" \
 "tm4c123gh6pm_startup_ccs.obj" \
 "usb_midi_task.obj" \
+"utils.obj" \
 "watchdog_task.obj" 
 
 C_DEPS__QUOTED += \
@@ -166,6 +170,7 @@ C_DEPS__QUOTED += \
 "text_controls.d" \
 "tm4c123gh6pm_startup_ccs.d" \
 "usb_midi_task.d" \
+"utils.d" \
 "watchdog_task.d" 
 
 C_SRCS__QUOTED += \
@@ -198,6 +203,7 @@ C_SRCS__QUOTED += \
 "../text_controls.c" \
 "../tm4c123gh6pm_startup_ccs.c" \
 "../usb_midi_task.c" \
+"../utils.c" \
 "../watchdog_task.c" 
 
 

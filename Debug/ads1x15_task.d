@@ -28,8 +28,6 @@ ads1x15_task.obj: ../text_controls.h
 ads1x15_task.obj: ../ads1x15_task.h
 ads1x15_task.obj: ../I2C_task.h
 ads1x15_task.obj: C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h
-ads1x15_task.obj: ../host_uart_task.h
-ads1x15_task.obj: C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h
 ads1x15_task.obj: ../midi_channel_select.h
 ads1x15_task.obj: ../joystick_functions.h
 ads1x15_task.obj: ../utils.h
@@ -64,8 +62,6 @@ C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/list.h:
 ../ads1x15_task.h: 
 ../I2C_task.h: 
 C:/ti/ccs1020/ccs/tools/compiler/ti-cgt-arm_20.2.2.LTS/include/stdbool.h: 
-../host_uart_task.h: 
-C:/Users/steph/workspace_v10/drum_pad/FreeRTOS/include/queue.h: 
 ../midi_channel_select.h: 
 ../joystick_functions.h: 
 ../utils.h: 

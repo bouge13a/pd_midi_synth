@@ -28,4 +28,7 @@ typedef struct {
 }button_states_t;
 
 
+//void int_to_bin_string(uint32_t integer, uint8_t* string);
+
+
 #endif /* UTILS_H_ */
