@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name TC2050-IDC)(type KiCad)(uri C:/Users/avenugop/GoogleDrive/KiCad_Digikey/TC2050-IDC)(options "")(descr ""))
+  (lib (name AB26TRB-32)(type KiCad)(uri C:/Users/avenugop/GoogleDrive/KiCad_Digikey/AB26TRB-32.768KHZ-T)(options "")(descr ""))
+  (lib (name NX5032GA-16MHZ)(type KiCad)(uri C:/Users/avenugop/GoogleDrive/KiCad_Digikey/NX5032GA-16MHZ)(options "")(descr ""))
+)

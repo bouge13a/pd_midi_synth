@@ -1,0 +1,234 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 3
+Title "Looper Board"
+Date "2021-05-08"
+Rev "0"
+Comp "Cadsims UK"
+Comment1 "Drawn by: Aravind"
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Sheet
+S 6050 2300 1750 2550
+U 609694D5
+F0 "ADC" 50
+F1 "ADC.sch" 50
+F2 "+3.3V" I L 6050 2500 50 
+F3 "I2C_SCL" I L 6050 2650 50 
+F4 "I2C_SDA" I L 6050 2750 50 
+F5 "+5V" I L 6050 2400 50 
+F6 "LED0" I L 6050 2900 50 
+F7 "LED1" I L 6050 3000 50 
+F8 "LOOP0" O L 6050 3800 50 
+F9 "LED2" I L 6050 3100 50 
+F10 "LED3" I L 6050 3200 50 
+F11 "LED4" I L 6050 3300 50 
+F12 "LED5" I L 6050 3400 50 
+F13 "LED6" I L 6050 3500 50 
+F14 "LED7" I L 6050 3600 50 
+F15 "LOOP1" O L 6050 3900 50 
+F16 "LOOP2" O L 6050 4000 50 
+F17 "LOOP3" O L 6050 4100 50 
+F18 "LOOP4" O L 6050 4200 50 
+F19 "LOOP5" O L 6050 4300 50 
+F20 "LOOP6" O L 6050 4400 50 
+F21 "LOOP7" O L 6050 4500 50 
+F22 "EFFECT" O L 6050 4700 50 
+$EndSheet
+Text Notes 6500 3800 0    110  ~ 22
+ADC\nLOOP SWITCH\nLED
+Text Notes 3850 3950 0    110  ~ 22
+MCU\nUSB\nPOWER
+Wire Wire Line
+	5250 2400 6050 2400
+Wire Wire Line
+	6050 2500 5250 2500
+$Sheet
+S 3400 2300 1900 2550
+U 63F23F40
+F0 "MCU_PWR_IO" 50
+F1 "MCU_PWR_IO.sch" 50
+F2 "+3.3V" O R 5300 2500 50 
+F3 "+5V" O R 5300 2400 50 
+F4 "I2C_SCL" O R 5300 2650 50 
+F5 "I2C_SDA" O R 5300 2750 50 
+F6 "LED0" I R 5300 2900 50 
+F7 "LED1" I R 5300 3000 50 
+F8 "LOOP0" I R 5300 3800 50 
+F9 "LED2" I R 5300 3100 50 
+F10 "LED3" I R 5300 3200 50 
+F11 "LED4" I R 5300 3300 50 
+F12 "LED5" I R 5300 3400 50 
+F13 "LED6" I R 5300 3500 50 
+F14 "LED7" I R 5300 3600 50 
+F15 "LOOP1" I R 5300 3900 50 
+F16 "LOOP2" I R 5300 4000 50 
+F17 "LOOP3" I R 5300 4100 50 
+F18 "LOOP4" I R 5300 4200 50 
+F19 "LOOP5" I R 5300 4300 50 
+F20 "LOOP6" I R 5300 4400 50 
+F21 "LOOP7" I R 5300 4500 50 
+F22 "EFFECT" O R 5300 4700 50 
+$EndSheet
+Wire Wire Line
+	5250 2650 6050 2650
+Wire Wire Line
+	6050 2750 5250 2750
+Wire Wire Line
+	5300 2900 6050 2900
+Wire Wire Line
+	6050 3000 5300 3000
+Wire Wire Line
+	5300 3100 6050 3100
+Wire Wire Line
+	6050 3200 5300 3200
+Wire Wire Line
+	5300 3300 6050 3300
+Wire Wire Line
+	6050 3400 5300 3400
+Wire Wire Line
+	5300 3500 6050 3500
+Wire Wire Line
+	6050 3600 5300 3600
+Wire Wire Line
+	5300 3800 6050 3800
+Wire Wire Line
+	6050 3900 5300 3900
+Wire Wire Line
+	5300 4000 6050 4000
+Wire Wire Line
+	6050 4100 5300 4100
+Wire Wire Line
+	5300 4200 6050 4200
+Wire Wire Line
+	6050 4300 5300 4300
+Wire Wire Line
+	5300 4400 6050 4400
+Wire Wire Line
+	6050 4500 5300 4500
+Wire Wire Line
+	5300 4700 6050 4700
+Text Notes 4900 1750 0    157  ~ 31
+Looper Board
+$Comp
+L Mechanical:MountingHole_Pad H1
+U 1 1 60BC7ECE
+P 9200 2500
+F 0 "H1" V 9154 2650 50  0000 L CNN
+F 1 "MountingHole_Pad" V 9245 2650 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3mm_Pad_Via" H 9200 2500 50  0001 C CNN
+F 3 "~" H 9200 2500 50  0001 C CNN
+	1    9200 2500
+	0    1    1    0   
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H2
+U 1 1 60BC89F5
+P 9200 2700
+F 0 "H2" V 9154 2850 50  0000 L CNN
+F 1 "MountingHole_Pad" V 9245 2850 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3mm_Pad_Via" H 9200 2700 50  0001 C CNN
+F 3 "~" H 9200 2700 50  0001 C CNN
+	1    9200 2700
+	0    1    1    0   
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H3
+U 1 1 60BC8BF8
+P 9200 2900
+F 0 "H3" V 9154 3050 50  0000 L CNN
+F 1 "MountingHole_Pad" V 9245 3050 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3mm_Pad_Via" H 9200 2900 50  0001 C CNN
+F 3 "~" H 9200 2900 50  0001 C CNN
+	1    9200 2900
+	0    1    1    0   
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H4
+U 1 1 60BC8E17
+P 9200 3100
+F 0 "H4" V 9154 3250 50  0000 L CNN
+F 1 "MountingHole_Pad" V 9245 3250 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3mm_Pad_Via" H 9200 3100 50  0001 C CNN
+F 3 "~" H 9200 3100 50  0001 C CNN
+	1    9200 3100
+	0    1    1    0   
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H5
+U 1 1 60BC91BA
+P 9200 3300
+F 0 "H5" V 9154 3450 50  0000 L CNN
+F 1 "MountingHole_Pad" V 9245 3450 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3mm_Pad_Via" H 9200 3300 50  0001 C CNN
+F 3 "~" H 9200 3300 50  0001 C CNN
+	1    9200 3300
+	0    1    1    0   
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H6
+U 1 1 60BC94E0
+P 9200 3500
+F 0 "H6" V 9154 3650 50  0000 L CNN
+F 1 "MountingHole_Pad" V 9245 3650 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3mm_Pad_Via" H 9200 3500 50  0001 C CNN
+F 3 "~" H 9200 3500 50  0001 C CNN
+	1    9200 3500
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	9100 2500 8900 2500
+Wire Wire Line
+	8900 2500 8900 2700
+Wire Wire Line
+	8900 3500 9100 3500
+Wire Wire Line
+	9100 3300 8900 3300
+Connection ~ 8900 3300
+Wire Wire Line
+	8900 3300 8900 3500
+Wire Wire Line
+	9100 3100 8900 3100
+Connection ~ 8900 3100
+Wire Wire Line
+	8900 3100 8900 3300
+Wire Wire Line
+	9100 2900 8900 2900
+Connection ~ 8900 2900
+Wire Wire Line
+	8900 2900 8900 3100
+Wire Wire Line
+	9100 2700 8900 2700
+Connection ~ 8900 2700
+Wire Wire Line
+	8900 2700 8900 2900
+$Comp
+L power:GND #PWR03
+U 1 1 60BCB605
+P 8900 3800
+F 0 "#PWR03" H 8900 3550 50  0001 C CNN
+F 1 "GND" H 8905 3627 50  0000 C CNN
+F 2 "" H 8900 3800 50  0001 C CNN
+F 3 "" H 8900 3800 50  0001 C CNN
+	1    8900 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8900 3800 8900 3500
+Connection ~ 8900 3500
+Wire Notes Line width 39
+	10250 2200 10250 4200
+Wire Notes Line width 39
+	10250 4200 8500 4200
+Wire Notes Line width 39
+	8500 4200 8500 2200
+Wire Notes Line width 39
+	8500 2200 10250 2200
+Text Notes 8700 2400 0    110  ~ 22
+MOUNTING HOLES
+$EndSCHEMATC
